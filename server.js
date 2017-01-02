@@ -7,7 +7,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static(process.cwd() + '/public'));
 app.use('/styles', express.static(__dirname + '/styles'))
 
-var routes = require('./controllers/mainController.js');
+var routes = require('./controllers/appController.js');
 //var initdb = require("./db/init.js");
 
 app.use('/', routes);
