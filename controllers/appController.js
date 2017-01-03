@@ -17,9 +17,22 @@ if (config.renderJSON == "1") {
   renderJSON = true;
 }
 
+console.log('appController running');
+
+router.get('/', function(req, res) {
+    res.redirect('/home');
+});
+
+router.get('/home', function(req, res) {
+    User.findAll()
+    .then(function(data){
+        res.render('index', {test: data});
+    });
+});
+
 router.get('/currentuser', function (req, res){
   var profile = {
-    role: ""
+    role: "",
     firstname: "",
     lastname: "",
     username: "",
@@ -87,14 +100,14 @@ router.delete('/user/delete', function (req, res) {
 
 
 /////SIGNUP////
-router.get('/signup', signupController.show);
-router.post('/signup', signupController.signup);
+//router.get('/signup', signupController.show);
+//router.post('/signup', signupController.signup);
 
 ////LOGOUT///
-router.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/');
-});
+// router.get('/logout', function(req, res) {
+//   req.logout();
+//   res.redirect('/');
+// });
 
 
 /////OTHER///////

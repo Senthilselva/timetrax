@@ -4,6 +4,8 @@ var sequelize = require('sequelize');
 var models = require('../models');
 var conn = models.sequelize;
 
+console.log('Initializing DB');
+
 // =======================================================================
 // Prepare Tables 
 // =======================================================================
@@ -19,7 +21,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return models.User.create(
 	{
-		role: "Admin"
+		role: "Admin",
 		firstname: "Gracie",
 		lastname: "Diaz",
 		username: "gudiaz",
@@ -45,7 +47,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip: "08812",
 		contactname: "Tom Loeffler",
 		contactphone: "732-968-8069",
-		contactemail: "LoefflerPools@gmail.com",
+		contactemail: "LoefflerPools@gmail.com"
 	});
 })
 
@@ -62,7 +64,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip: "07921",
 		contactname: "Camille Loeffler",
 		contactphone: "732-968-8069",
-		contactemail: "LoefflerPools@gmail.com",
+		contactemail: "LoefflerPools@gmail.com"
 	});
 })
 
@@ -76,7 +78,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip: "07040",
 		contactname: "Camille Loeffler",
 		contactphone: "732-968-8069",
-		contactemail: "LoefflerPools@gmail.com",
+		contactemail: "LoefflerPools@gmail.com"
 	});
 })
 

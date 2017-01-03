@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "timetrax_db",
+    "database": "TimeTrax",
     "host": "localhost",
     "dialect": "mysql",
     "renderJSON": "1"

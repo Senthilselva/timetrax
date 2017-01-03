@@ -59,9 +59,9 @@
 	// This code here allows us to render our main component (in this case "Main")
 	// Include the Main React Dependencies
 	_reactDom2.default.render(_react2.default.createElement(
-	  "p",
-	  null,
-	  "Timetrax!"
+		"p",
+		null,
+		"Timetrax!"
 	), document.getElementById("app"));
 
 /***/ },
