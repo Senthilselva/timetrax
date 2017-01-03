@@ -78,7 +78,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip: "07040",
 		contactname: "Camille Loeffler",
 		contactphone: "732-968-8069",
-		contactemail: "LoefflerPools@gmail.com"
+		contactemail: "LoefflerPools@msn.com"
 	});
 })
 
