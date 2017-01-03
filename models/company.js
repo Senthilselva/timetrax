@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     contactname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     contactphone: {
       type: DataTypes.STRING,
@@ -36,8 +36,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     contactemail: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
       validate: {
         isEmail: true,
       }
