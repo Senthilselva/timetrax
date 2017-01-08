@@ -1,7 +1,7 @@
 module.exports = {
   
   // This code will be compiled 
-  entry: "./app/app.js",
+  entry: "./app/main.js",
 
   // Then output into this file
   output: {
