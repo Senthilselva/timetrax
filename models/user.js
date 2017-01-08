@@ -22,11 +22,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
       validate: {
         isEmail: true,
       }
@@ -51,15 +46,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    password: {
+    password: DataTypes.STRING,
+    SSN: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
     salt: {
       type: DataTypes.STRING
     },
   },
   {
-    paranoid: false,
+    paranoid: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here
