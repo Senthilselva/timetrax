@@ -20402,7 +20402,7 @@
 	                        _reactMaterialize.Card,
 	                        { className: "white", textClassName: "black-text", title: "Login", actions: [_react2.default.createElement(
 	                                "a",
-	                                { href: "#" },
+	                                { href: "/register" },
 	                                "Change Password"
 	                            )] },
 	                        _react2.default.createElement(
@@ -46554,12 +46554,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var helpers = {
+	
 	        _checkLogin: function _checkLogin(email, password) {
 	                console.log("checklogin" + email + "  " + password);
 	
-	                // return axios.post("/login/user", { title: title,
-	                //                                   url: url,
-	                //                                   pub_date: pub_date });
+	                return _axios2.default.post("/user/login", { username: email,
+	                        password: password });
 	        }
 	
 	}; // Include the axios package for performing HTTP requests ( based alternative to request)
