@@ -1,5 +1,6 @@
 // Include React
 var React = require("react");
+import {Link} from 'react-router'
 
 var App = React.createClass({
 
@@ -8,14 +9,12 @@ var App = React.createClass({
 
     return (
       <div className="container">
-
         <div className="row">
-
-          <div className="jumbotron">
-            <a href="#/home"><button className="btn btn-default">Home</button></a>
-            <a href="#/login"><button className="btn btn-default">Login</button></a>
-            <a href="#/signup"><button className="btn btn-default">Signup</button></a>
-          </div>
+         <div>
+          <Link to='/home' className='btn btn--login btn--nav'>Home</Link>
+          <Link to='/login' className='btn btn--login btn--nav'>Login</Link>
+          <Link to='/signup' className='btn btn--login btn--nav'>Signup</Link>
+        </div>
           <div className="container">
             {/* Added this.props.children to dump all of the child components into place */}
             {this.props.children}

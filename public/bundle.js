@@ -19777,28 +19777,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Reference the high-level components
-	var App = __webpack_require__(367); // // Include the React library
-	// var React = require("react");
-
-	// // Include the react-router module
-	// var router = require("react-router");
-
-	// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-	// // Include the Route component for displaying individual routes
-	// var Route = router.Route;
-
-	// // Include the Router component to contain all our Routes
-	// // Here where we can pass in some configuration as props
-	// var Router = router.Router;
-
-	// // Include the hashHistory prop to handle routing client side without a server
-	// // https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#hashhistory
-	// var hashHistory = router.browserHistory;
-
-	// // Include the IndexRoute (catch-all route)
-	// var IndexRoute = router.IndexRoute;
-
+	var App = __webpack_require__(367);
 	var Login = __webpack_require__(368);
 	var Signup = __webpack_require__(571);
 	var Home = __webpack_require__(572);
@@ -19812,13 +19791,13 @@
 	  null,
 	  _react2.default.createElement(
 	    _reactRouter.Router,
-	    { history: _reactRouter.hashHistory },
+	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: App },
-	      _react2.default.createElement(_reactRouter.Route, { path: 'home', component: Home }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'login', component: Login }),
-	      _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: Signup }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/home', component: Home }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: Login }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: Signup }),
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: Home })
 	    )
 	  )
@@ -31885,8 +31864,11 @@
 
 	"use strict";
 
+	var _reactRouter = __webpack_require__(160);
+
 	// Include React
 	var React = __webpack_require__(1);
+
 
 	var App = React.createClass({
 	  displayName: "App",
@@ -31902,33 +31884,21 @@
 	        { className: "row" },
 	        React.createElement(
 	          "div",
-	          { className: "jumbotron" },
+	          null,
 	          React.createElement(
-	            "a",
-	            { href: "#/home" },
-	            React.createElement(
-	              "button",
-	              { className: "btn btn-default" },
-	              "Home"
-	            )
+	            _reactRouter.Link,
+	            { to: "/home", className: "btn btn--login btn--nav" },
+	            "Home"
 	          ),
 	          React.createElement(
-	            "a",
-	            { href: "#/login" },
-	            React.createElement(
-	              "button",
-	              { className: "btn btn-default" },
-	              "Login"
-	            )
+	            _reactRouter.Link,
+	            { to: "/login", className: "btn btn--login btn--nav" },
+	            "Login"
 	          ),
 	          React.createElement(
-	            "a",
-	            { href: "#/signup" },
-	            React.createElement(
-	              "button",
-	              { className: "btn btn-default" },
-	              "Signup"
-	            )
+	            _reactRouter.Link,
+	            { to: "/signup", className: "btn btn--login btn--nav" },
+	            "Signup"
 	          )
 	        ),
 	        React.createElement(
