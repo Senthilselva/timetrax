@@ -25587,7 +25587,8 @@
 	            event.preventDefault();
 	            console.log("CLICK");
 	            console.log(this.state.email + "  " + this.state.password);
-	            _Helpers2.default._checkLogin(this.state.email, this.state.password);
+	            var userData = _Helpers2.default._checkLogin(this.state.email, this.state.password);
+	            console.log(userData);
 	        }
 	    }, {
 	        key: "_handleChange",
