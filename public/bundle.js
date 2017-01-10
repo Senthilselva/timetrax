@@ -51756,7 +51756,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+		value: true
 	});
 	
 	var _axios = __webpack_require__(/*! axios */ 438);
@@ -51767,12 +51767,18 @@
 	
 	var helpers = {
 	
-	        _checkLogin: function _checkLogin(email, password) {
-	                console.log("checklogin" + email + "  " + password);
+		_checkLogin: function _checkLogin(email, password) {
+			console.log("checklogin" + email + "  " + password);
 	
-	                return _axios2.default.post("/user/login", { username: email,
-	                        password: password });
-	        }
+			return _axios2.default.post("/user/login", { username: email,
+				password: password });
+		},
+	
+		_createUser: function _createUser(userInfo) {
+			console.log("create user" + JSON.stringify(userInfo));
+	
+			return _axios2.default.post("/user/create", userInfo);
+		}
 	
 	}; // Include the axios package for performing HTTP requests ( based alternative to request)
 	exports.default = helpers;
@@ -53056,7 +53062,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	                            value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -53065,36 +53071,192 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactMaterialize = __webpack_require__(/*! react-materialize */ 218);
+	
+	var _Helpers = __webpack_require__(/*! ../utils/Helpers */ 437);
+	
+	var _Helpers2 = _interopRequireDefault(_Helpers);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //import react 
+	
+	
+	// Helper Functicon
+	
 	
 	var Register = function (_React$Component) {
-	   _inherits(Register, _React$Component);
+	                            _inherits(Register, _React$Component);
 	
-	   function Register(props) {
-	      _classCallCheck(this, Register);
+	                            function Register(props) {
+	                                                        _classCallCheck(this, Register);
 	
-	      return _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
-	   }
+	                                                        var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
 	
-	   _createClass(Register, [{
-	      key: "render",
-	      value: function render() {
-	         return _react2.default.createElement(
-	            "h1",
-	            null,
-	            " Register "
-	         );
-	      }
-	   }]);
+	                                                        _this.state = {
+	                                                                                    firstname: "",
+	                                                                                    lastname: "",
+	                                                                                    address: "",
+	                                                                                    city: "",
+	                                                                                    state: "",
+	                                                                                    zip: "",
+	                                                                                    phone: "",
+	                                                                                    SSN: "",
+	                                                                                    username: "",
+	                                                                                    password: ""
+	                                                        };
 	
-	   return Register;
-	}(_react2.default.Component);
+	                                                        _this._handleChange = _this._handleChange.bind(_this);
+	                                                        _this._handleSubmit = _this._handleSubmit.bind(_this);
+	                                                        return _this;
+	                            }
+	
+	                            _createClass(Register, [{
+	                                                        key: "_handleSubmit",
+	                                                        value: function _handleSubmit(event) {
+	                                                                                    event.preventDefault();
+	                                                                                    console.log("CLICK");
+	                                                                                    console.log(this.state.email + "  " + this.state.password);
+	                                                                                    _Helpers2.default._createUser(this.state);
+	                                                        }
+	                            }, {
+	                                                        key: "_handleChange",
+	                                                        value: function _handleChange(event) {
+	                                                                                    var newState = {};
+	                                                                                    console.log(event.target.id + "   " + event.target.value);
+	                                                                                    newState[event.target.id] = event.target.value;
+	                                                                                    this.setState(newState);
+	                                                        }
+	
+	                                                        //render- function
+	
+	                            }, {
+	                                                        key: "render",
+	                                                        value: function render() {
+	                                                                                    return _react2.default.createElement(
+	                                                                                                                _reactMaterialize.Row,
+	                                                                                                                null,
+	                                                                                                                _react2.default.createElement(_reactMaterialize.Col, { m: 4 }),
+	                                                                                                                _react2.default.createElement(
+	                                                                                                                                            _reactMaterialize.Col,
+	                                                                                                                                            { m: 4 },
+	                                                                                                                                            _react2.default.createElement(
+	                                                                                                                                                                        _reactMaterialize.Card,
+	                                                                                                                                                                        { className: "white", textClassName: "black-text", title: "Create User", actions: [_react2.default.createElement(
+	                                                                                                                                                                                                                                "a",
+	                                                                                                                                                                                                                                { href: "/register" },
+	                                                                                                                                                                                                                                "Change Password"
+	                                                                                                                                                                                                    )] },
+	                                                                                                                                                                        _react2.default.createElement(
+	                                                                                                                                                                                                    "form",
+	                                                                                                                                                                                                    { onSubmit: this._handleSubmit },
+	                                                                                                                                                                                                    _react2.default.createElement(
+	                                                                                                                                                                                                                                _reactMaterialize.Row,
+	                                                                                                                                                                                                                                null,
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "First Name",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "firstname",
+	                                                                                                                                                                                                                                                            name: "firstName",
+	                                                                                                                                                                                                                                                            value: this.state.firstname,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "Last Name",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "lastname",
+	                                                                                                                                                                                                                                                            name: "lasstName",
+	                                                                                                                                                                                                                                                            value: this.state.lastname,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "Address",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "address",
+	                                                                                                                                                                                                                                                            name: "address",
+	                                                                                                                                                                                                                                                            value: this.state.address,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "City",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "city",
+	                                                                                                                                                                                                                                                            name: "city",
+	                                                                                                                                                                                                                                                            value: this.state.city,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "State",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "state",
+	                                                                                                                                                                                                                                                            name: "state",
+	                                                                                                                                                                                                                                                            value: this.state.state,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "Zip Code",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "zip",
+	                                                                                                                                                                                                                                                            name: "zip",
+	                                                                                                                                                                                                                                                            value: this.state.zip,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "email",
+	                                                                                                                                                                                                                                                            label: "Email",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            id: "username",
+	                                                                                                                                                                                                                                                            name: "username",
+	                                                                                                                                                                                                                                                            value: this.state.username,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "password",
+	                                                                                                                                                                                                                                                            label: "Password",
+	                                                                                                                                                                                                                                                            id: "password",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            name: "password",
+	                                                                                                                                                                                                                                                            value: this.state.password,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(_reactMaterialize.Input, { type: "text",
+	                                                                                                                                                                                                                                                            label: "SSN",
+	                                                                                                                                                                                                                                                            id: "SSN",
+	                                                                                                                                                                                                                                                            s: 12,
+	                                                                                                                                                                                                                                                            name: "SSN",
+	                                                                                                                                                                                                                                                            value: this.state.SSN,
+	                                                                                                                                                                                                                                                            onChange: this._handleChange,
+	                                                                                                                                                                                                                                                            required: true
+	                                                                                                                                                                                                                                }),
+	                                                                                                                                                                                                                                _react2.default.createElement(
+	                                                                                                                                                                                                                                                            _reactMaterialize.Button,
+	                                                                                                                                                                                                                                                            { type: "submit" },
+	                                                                                                                                                                                                                                                            " Login "
+	                                                                                                                                                                                                                                )
+	                                                                                                                                                                                                    )
+	                                                                                                                                                                        )
+	                                                                                                                                            )
+	                                                                                                                )
+	                                                                                    );
+	                                                        } //render
+	
+	                            }]);
+	
+	                            return Register;
+	}(_react2.default.Component); //React.Component
+	
+	
+	// Export the componen back for use in other files
+	
 	
 	exports.default = Register;
 
