@@ -1,6 +1,4 @@
-//import react 
 import React from "react";
-import {Col, Card, Row, Input, Button} from "react-materialize";
 
 //auth function
 import Auth  from "./Auth";
@@ -8,7 +6,7 @@ import Auth  from "./Auth";
 // Helper Functicon
 import helpers from "../utils/Helpers";
 
-class Login extends React.Component {
+class Logout extends React.Component {
 	constructor(props) {
     super(props);
 
