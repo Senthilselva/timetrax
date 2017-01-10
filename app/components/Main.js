@@ -32,7 +32,7 @@ constructor(props) {
     return (
     <div>
       <p>
-            {this.state.loggedIn.authenticated ? (
+            {this.state.loggedIn ? (
               <a href="#" onClick={this._handleClick}>Logout</a>
             ) : (
               <a href="#/login">Login</a>

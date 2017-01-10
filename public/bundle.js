@@ -25519,7 +25519,7 @@
 	        _react2.default.createElement(
 	          "p",
 	          null,
-	          this.state.loggedIn.authenticated ? _react2.default.createElement(
+	          this.state.loggedIn ? _react2.default.createElement(
 	            "a",
 	            { href: "#", onClick: this._handleClick },
 	            "Logout"
@@ -25562,9 +25562,7 @@
 	
 	module.exports = {
 		_loggedIn: function _loggedIn() {
-			if (localStorage.token) return localStorage.token;else var login = {};
-			login.authenticated = false;
-			return login;
+			if (localStorage.token) return localStorage.token;else return null;
 		},
 		_setToken: function _setToken(userData) {
 			localStorage.token = userData;
@@ -25572,6 +25570,7 @@
 			console.log(localStorage.token);
 		},
 		_logOut: function _logOut() {
+			console.log("Log Out");
 			delete localStorage.token;
 		}
 	};

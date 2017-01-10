@@ -3,9 +3,7 @@ module.exports = {
 		if(localStorage.token)
 			return localStorage.token;
 		else
-			var login= {}
-			login.authenticated = false;
-			return login;
+			return null;
 	},
 
 	_setToken(userData){
@@ -15,6 +13,7 @@ module.exports = {
 	},
 
 	_logOut(){
+		console.log("Log Out")
 		delete localStorage.token;
 	}
 }
