@@ -24,9 +24,13 @@ class Login extends React.Component {
         event.preventDefault();
         console.log("CLICK");
         console.log(this.state.email + "  "+this.state.password);
-        var userData = helpers._checkLogin(this.state.email,this.state.password);
-        Auth._setToken(userData)
-        console.log(userData)
+        helpers._checkLogin(this.state.email,this.state.password)
+        .then(function(userData,err){
+            console.log("handle submit"+userData)
+            Auth._setToken(userData)
+            console.log(err)
+        })
+        
     }
 
     _handleChange(event) {

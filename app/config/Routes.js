@@ -17,7 +17,7 @@ module.exports = (
       <Route path="register" component={ Register } />
 
       {/* If user selects any other path... we get the Info Route */}
-      { /* <IndexRoute component={ Main } />
+      {/* <IndexRoute component={ Main } />
          */}
     </Route>
   </Router>

@@ -25520,9 +25520,20 @@
 	          "p",
 	          null,
 	          this.state.loggedIn ? _react2.default.createElement(
-	            "a",
-	            { href: "#", onClick: this._handleClick },
-	            "Logout"
+	            "div",
+	            null,
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", onClick: this._handleClick },
+	              "Logout"
+	            ),
+	            _react2.default.createElement(
+	              "h1",
+	              null,
+	              " ",
+	              this.state.loggedIn.userName,
+	              " "
+	            )
 	          ) : _react2.default.createElement(
 	            "a",
 	            { href: "#/login" },
@@ -25562,16 +25573,21 @@
 	
 	module.exports = {
 		_loggedIn: function _loggedIn() {
-			if (localStorage.token) return localStorage.token;else return null;
+			if (localStorage.token) return localStorage;else return null;
 		},
 		_setToken: function _setToken(userData) {
-			localStorage.token = userData;
+			console.log("_setToken" + JSON.stringify(userData));
+			localStorage.token = Math.random().toString(36).substring(7);
+			localStorage.setItem("userName", userData.data.username);
+			console.log("userName" + userData.data.username);
 			//localStorage.token.authenticated = true;
-			console.log(localStorage.token);
+			//console.log(JSON.stringify(localStorage.token.object));
+			console.log(localStorage);
 		},
 		_logOut: function _logOut() {
 			console.log("Log Out");
 			delete localStorage.token;
+			localStorage.clear();
 		}
 	};
 
@@ -25642,9 +25658,11 @@
 	            event.preventDefault();
 	            console.log("CLICK");
 	            console.log(this.state.email + "  " + this.state.password);
-	            var userData = _Helpers2.default._checkLogin(this.state.email, this.state.password);
-	            _Auth2.default._setToken(userData);
-	            console.log(userData);
+	            _Helpers2.default._checkLogin(this.state.email, this.state.password).then(function (userData, err) {
+	                console.log("handle submit" + userData);
+	                _Auth2.default._setToken(userData);
+	                console.log(err);
+	            });
 	        }
 	    }, {
 	        key: "_handleChange",
