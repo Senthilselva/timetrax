@@ -1,25 +1,31 @@
-module.exports = {
-  
-  // This code will be compiled 
-  entry: "./app/app.js",
+var webpack = require('webpack');
+var path = require('path');
 
-  // Then output into this file
-  output: {
-    filename: "public/bundle.js"
-  },
+var BUILD_DIR = path.resolve(__dirname, 'public');
+var APP_DIR = path.resolve(__dirname, 'src');
 
-  // This will be what we do
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          // These are the specific transformations we'll be using. 
+var config = {
+    entry: APP_DIR + '/router.jsx',
+    output: {
+        path: BUILD_DIR,
+        filename: 'bundle.js'
+    },
+    module : {
+        loaders : [
+            {
+                test : /\.jsx?/,
+                include : APP_DIR,
+                exclude: /(node_modules|bower_components)/,
+                loader: 'babel-loader?presets[]=es2015&presets[]=react' 
+            }
+        ],
+       query: {
           presets: ['react', 'es2015']
-        }
-      }
-    ]
-  }
-}
+        },
+  // This lets us debug our react code in chrome dev tools. Errors will have lines and file names
+  // Without this the console says all errors are coming from just coming from bundle.js
+  devtool: "eval-source-map"
+    }
+};
+
+module.exports = config;

@@ -8,48 +8,48 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     firstname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     lastname: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
+        isEmail: true
       }
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     zip: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     password: {
       type: DataTypes.STRING,
