@@ -14,7 +14,7 @@ import Main from './components/main.jsx'
 import User from './components/user.jsx'
 import UserDetail from './components/user-detail.jsx'
 
-//import car data here
+//import static data here
 import companyData from "../db/companyData.js"
 import jobData from "../db/jobData.js"
 import userData from "../db/userData.js"
