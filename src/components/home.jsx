@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
+import Auth  from "./auth.jsx";
 
 class Home extends Component {
-    render(){
-        return (<h1>Home Page</h1>);
+	constructor(props) {
+        super(props);
     }
-}
 
-export default Home
+    render() {
+    	return <h1>Time Trax</h1>
+  	}
+}
