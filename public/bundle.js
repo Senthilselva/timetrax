@@ -22184,15 +22184,15 @@
 	//helper to requireLogin
 	module.exports = _react2.default.createElement(
 	  _reactRouter.Router,
-	  { history: _reactRouter.hashHistory },
+	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: _Main2.default },
-	    _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _Login2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'logout', component: _Logout2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'register', component: _Register2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _Home2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _Dashboard2.default, onEnter: requireAuth }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/logout', component: _Logout2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/register', component: _Register2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _Home2.default }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/dashboard', component: _Dashboard2.default, onEnter: requireAuth }),
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
 	  )
 	);
@@ -27463,7 +27463,7 @@
 	              "Log out"
 	            ) : _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: "login" },
+	              { to: "/login" },
 	              "Sign in"
 	            )
 	          ),
@@ -27472,7 +27472,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: "register" },
+	              { to: "/register" },
 	              "Register"
 	            )
 	          ),
@@ -27481,7 +27481,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: "home" },
+	              { to: "/home" },
 	              "Home"
 	            )
 	          ),
@@ -27490,7 +27490,7 @@
 	            null,
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: "dashboard" },
+	              { to: "/dashboard" },
 	              "Dashboard"
 	            ),
 	            " (authenticated)"

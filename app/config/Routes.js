@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Router, IndexRoute, hashHistory} from 'react-router';
+import { Route, Router, IndexRoute, browserHistory} from 'react-router';
 
 import  Main from "../components/Main";
 import  Login from "../components/children/Login";
@@ -24,15 +24,15 @@ function requireAuth(nextState, replace) {
 
 // Export the Routes
 module.exports = (
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={ Main }>
 
       {/* If user selects Info or Chat show the appropriate component */}
-      <Route path="login" component= { Login } />
-      <Route path="logout" component= { Logout } />
-      <Route path="register" component={ Register } />
-      <Route path="home" component={Home} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <Route path="/login" component= { Login } />
+      <Route path="/logout" component= { Logout } />
+      <Route path="/register" component={ Register } />
+      <Route path="/home" component={Home} />
+      <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
       {/* If user selects any other path... we get the Info Route */}
        <IndexRoute component={ Home } />
          
