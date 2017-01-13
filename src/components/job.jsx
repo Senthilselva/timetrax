@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Auth  from "../utils/auth.js";
 
 class Job extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render(){
+        const token = Auth._getToken()
         // Get data from route props
         const jobs = this.props.route.data;
         // Map through jobs and return linked jobs

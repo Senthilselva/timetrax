@@ -10,7 +10,7 @@
     "url": "https://github.com/gudiaz/timetrax/issues"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --colors --progress",
     "serve": "serve ./public",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -40,18 +40,17 @@
     "express-session": "~1.11.3",
     "geocoder": "^0.2.2",
     "if-env": "^1.0.0",
-    "material-ui": "^0.16.6",
-    "materialize-css": "^0.97.8",
+    "jquery": "^2.1.4",
+    "materialize-css": "^0.97.3",
     "method-override": "^2.3.6",
     "morgan": "^1.7.0",
     "mysql": "^2.12.0",
     "passport": "~0.3.0",
     "passport-local": "~1.0.0",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-materialize": "^0.17.7",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "react-materialize": ">=0.14.0",
     "react-router": "^2.4.1",
-    "react-tap-event-plugin": "^2.0.1",
     "sequelize": "^3.25.0",
     "sequelize-cli": "^2.4.0",
     "serve-favicon": "^2.3.2"
@@ -64,6 +63,7 @@
     "express": "^4.14.0",
     "history": "^3.0.0",
     "http-server": "^0.8.5",
-    "json-loader": "^0.5.4"
+    "json-loader": "^0.5.4",
+    "react": "^15.4.2"
   }
 }

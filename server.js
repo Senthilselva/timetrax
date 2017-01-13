@@ -39,9 +39,13 @@ app.use(cookieParser());
 //var initdb = require("./db/init.js");
 
 //console.log('defining app controller');
-//var routes = require('./controllers/appController.js');
-//app.use('/', routes);
-//app.set('port', (process.env.PORT || 3000));
+var routes = require('./controllers/appController');
+var user_controller = require('./controllers/userController');
+app.use('/', routes);
+app.use('/user', user_controller);
+
+// we bring in the models we exported with index.js
+var models = require("./models");
 
 // send all requests to index.html so browserHistory works
 app.get('*', function (req, res) {

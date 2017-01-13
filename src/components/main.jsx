@@ -1,16 +1,15 @@
 import React, {Component} from "react";
 import { Link } from "react-router";
-import Auth  from "./auth.jsx";
+import Auth  from "../utils/auth.js";
+import {Navbar, NavItem, Col, Card, Row, Input, Button} from "react-materialize";
 
-class Main extends Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-        loggedIn : Auth._loggedIn()
-    }
-    this._handleClick = this._handleClick.bind(this);
-    this._setLogin = this._setLogin.bind(this);
-    this._updateAuth = this._updateAuth.bind(this);
+        this.state = { loggedIn : Auth._loggedIn() }
+        this._handleClick = this._handleClick.bind(this);
+        this._setLogin = this._setLogin.bind(this);
+        this._updateAuth = this._updateAuth.bind(this);
     }
 
     _updateAuth(loggedIn) {
@@ -36,7 +35,9 @@ class Main extends Component {
     }
 
     render(){
-        return(
+       const token = Auth._getToken()
+
+       return(
             <div>
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
@@ -50,17 +51,15 @@ class Main extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul className="nav navbar-nav">
-                                {/* Change from a to Link */}
                                 <li><Link to="/" activeClassName="active">Home</Link></li>
-                                <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
                                 <li><Link to="/users" activeClassName="active">Users</Link></li>
                                 <li><Link to="/jobs" activeClassName="active">Jobs</Link></li>
                                 <li><Link to="/company" activeClassName="active">Company</Link></li>
                                 <li><Link to="/register">Register</Link></li>
-                                <li><Link to="/login" activeClassName="active">Login</Link></li>
-                            </ul>
+                             </ul>
+                            <div>{this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}</div>
                         </div>
-                        <div>{this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}</div>
                     </div>
                 </nav>
  

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
+import helpers from "../utils/helpers.js";
 import {Col, Card, Row, Input, Button} from "react-materialize";
-import helpers from "./utils/helpers.jsx";
 
 class Register extends Component {
 
@@ -39,8 +39,10 @@ class Register extends Component {
         
     }
 
+    _handleRedirect(){
+        browserHistory.push('/');
+    }
 
-//render- function
 	render() {
     	return (
     	<Row>
@@ -144,10 +146,7 @@ class Register extends Component {
 			</Col>
 		</Row>
     	);
-	}//render
+	}
+}
 
-}//React.Component
-
-
-// Export the componen back for use in other files
 export default Register;

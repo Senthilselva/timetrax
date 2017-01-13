@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import {Col, Card, Row, Input, Button} from "react-materialize";
 import { withRouter } from 'react-router'
-import Auth  from "./auth.jsx";
-import helpers from "./utils/helpers.jsx";
+import Auth  from "../utils/auth.js";
+import helpers from "../utils/helpers.js";
+import {Col, Card, Row, Input, Button} from "react-materialize";
 
 class Login extends Component {
 	constructor(props) {
-    super(props);
+        super(props);
 
-    this.state = {
-      email: "",
-      password:"",
-      error: false
-    };
-     this._handleChange = this._handleChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
+        this.state = {
+          email: "",
+          password:"",
+          error: false
+        };
+        this._handleChange = this._handleChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
 
     _handleSubmit(event) {
@@ -28,47 +28,20 @@ class Login extends Component {
         else {
             this.props.router.replace('/dashboard');
         }
-
-        // const { location } = this.props
-
-        // if (location.state && location.state.nextPathname) {
-        //   //this.props.router.replace(location.state.nextPathname)
-        //     this.props.router.replace('/dashboard');
-        // } else {
-        //   this.props.router.replace('/')
-        // }
-      })
-        
+      })  
     }
-//*******************Changed 0n 1/11/17 
-// *******few changed from 
-// *********https://github.com/ReactTraining/react-router/blob/master/examples/auth-flow
-        // event.preventDefault();
-        // console.log("CLICK");
-        // //console.log(this);
-        // //console.log(this.props);
-        // console.log(this.props.route);
-        // console.log(this.state.email + "  "+this.state.password);
-        // helpers._checkLogin(this.state.email,this.state.password)
-        // .then(function(userData,err){
-        //     console.log("handle submit"+userData)
-        //     Auth._setToken(userData)
-        //     console.log(err)
-        //     // this.props._setLog("akakakakaka")
-        //})
-        
-    //}
 
     _handleChange(event) {
         var newState = {};
-        console.log(event.target.id +"   "+event.target.value);
+        console.log(event.target.id + "   " + event.target.value);
         newState[event.target.id] = event.target.value;
         this.setState(newState);
-        
     }
 
+    _handleRedirect() {
+        browserHistory.push('/');
+    }
 
-//render- function
 	render() {
     	return (
     	<Row>
@@ -106,10 +79,7 @@ class Login extends Component {
 			</Col>
 		</Row>
     	);
-	}//render
+	}
+}
 
-}//React.Component
-//)
-
-// Export the componen back for use in other files
 export default Login;

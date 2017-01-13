@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import Auth  from "./auth.jsx";
 
 class Home extends Component {
 	constructor(props) {

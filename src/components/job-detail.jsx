@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import Auth  from "../utils/auth.js";
 
 class jobDetail extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     handleRedirect(){
         browserHistory.push('/jobs');
     }
-    render(){
+
+    render() {
+        const token = Auth._getToken()
         const jobs = this.props.route.data;
         const id = this.props.params.id;
         const job = jobs.filter(job => {

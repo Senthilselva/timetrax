@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Auth  from "./auth.jsx";
+import Auth  from "../utils/auth.js";
 
 class Logout extends Component {
 	constructor(props) {
@@ -15,5 +15,4 @@ class Logout extends Component {
     }
 };
 
-// Export the componen back for use in other files
 export default Logout;

@@ -1,8 +1,8 @@
-import Helpers from "./utils/helpers.jsx";
+import Helpers from "./helpers.js";
 
 module.exports = {
     
-        _login(email, password, cb) {
+    _login(email, password, cb) {
         cb = arguments[arguments.length - 1]
 
         if (localStorage.token) {
@@ -23,7 +23,6 @@ module.exports = {
                 this._onChange(false)
             }
         }.bind(this));
-
     },
 
     _loggedIn() {
@@ -51,5 +50,4 @@ module.exports = {
     },
 
     _onChange() {}
-    
 }

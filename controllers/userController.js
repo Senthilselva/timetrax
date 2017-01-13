@@ -4,10 +4,10 @@ var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
 
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
-var setupPassport = require('../config/passport'),
-    flash = require('connect-flash');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var setupPassport = require('../config/passport');
+var flash = require('connect-flash');
 
 router.post('/create', function(req,res) {
   console.log("inside create");

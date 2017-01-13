@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Auth  from "./auth.jsx";
+import Auth  from "../utils/auth.js";
 
 
 class Dashboard extends Component {
@@ -8,13 +8,13 @@ class Dashboard extends Component {
     }
 
     render() {
-         const token = Auth._getToken()
+        const token = Auth._getToken()
 
         return (
             <div>
                 <h1>Dashboard</h1>
                 <p>You made it!</p>
-                <p>{token}</p>
+                <p>token: {token}</p>
             </div>
     )
     }

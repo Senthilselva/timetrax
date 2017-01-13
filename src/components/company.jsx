@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Auth  from "../utils/auth.js";
 
 class Company extends Component {
-    render(){
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const token = Auth._getToken()
+
         // Get data from route props
         const companies = this.props.route.data;
         // Map through companies and return linked companies

@@ -16,7 +16,7 @@ import User from './components/user.jsx'
 import UserDetail from './components/user-detail.jsx'
 
 //helper to requireLogin
-import Auth from "./components/auth.jsx";
+import Auth from "./utils/auth.js";
 
 //import static data here
 import companyData from "../db/companyData.js"
@@ -28,12 +28,14 @@ render(
         <Route component={Main}>
             <Route path="/" component={Home}/>
             <Route path="/company" component={Company} data={companyData}/>
-            <Route path="/dashboard" component={Dashboard} data={companyData}/>
+            <Route path="/dashboard" component={Dashboard}/>
             <Route path="/jobs" component={Job} data={jobData}/>
             <Route path="/jobs/:id" component={JobDetail} data={jobData}/>
             <Route path="/login" component={Login}/>
+            <Route path="/register" component={Register}/>
+            <Route path="/user/login" component={Login}/>
+            <Route path="/user/:id" component={UserDetail} data={userData}/>
             <Route path="/users" component={User} data={userData}/>
-            <Route path="/users/:id" component={UserDetail} data={userData}/>
         </Route>
     </Router>,
     document.getElementById('app')
