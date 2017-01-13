@@ -1,20 +1,20 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Schedule = sequelize.define('Schedule', {
+  var Timesheet = sequelize.define('Timesheet', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true    
     },
-    startDate: {
+    Date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
-    startTime: {
+    clockedIn: {
       type: DataTypes.TIME,
       allowNull: false,
     },
-    endTime: {
+    clockedOut: {
       type: DataTypes.TIME,
       allowNull: false,
     }
@@ -24,21 +24,21 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        Schedule.belongsTo(models.Job, {
+        Timesheet.belongsTo(models.Job, {
           onDelete: "CASCADE",
           hooks: true,
           foreignKey: {
             allowNull: false
           }
         })
-        Schedule.belongsTo(models.User,{
+        Timesheet.belongsTo(models.User,{
           onDelete: "CASCADE",
           foreignKey: {
-            allowNull: true
+            allowNull: false
           }
         })
       }//associate
     }
   });
-  return Schedule;
+  return Timesheet;
 };

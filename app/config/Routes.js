@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, IndexRoute, browserHistory} from 'react-router';
 
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import  Main from "../components/Main";
 import  Login from "../components/children/Login";
 import  Logout from "../components/children/Logout";
-import  Register  from "../components/children/Register";
+import  Register  from "../components/children/admin/Register";
 import  Home  from "../components/children/Home";
 import  Dashboard  from "../components/children/Dashboard";
 
@@ -24,6 +27,8 @@ function requireAuth(nextState, replace) {
 
 // Export the Routes
 module.exports = (
+
+ <MuiThemeProvider>
   <Router history={browserHistory}>
     <Route path="/" component={ Main }>
 
@@ -38,6 +43,7 @@ module.exports = (
          
     </Route>
   </Router>
+</MuiThemeProvider>
 );
 
 

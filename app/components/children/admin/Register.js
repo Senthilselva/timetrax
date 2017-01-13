@@ -3,7 +3,7 @@ import React from "react";
 import {Col, Card, Row, Input, Button} from "react-materialize";
 
 // Helper Functicon
-import helpers from "../utils/Helpers";
+import helpers from "../../utils/Helpers";
 
 class Register extends React.Component {
 
