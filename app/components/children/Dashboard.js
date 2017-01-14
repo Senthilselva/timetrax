@@ -1,4 +1,5 @@
 import React from "react";
+import Scheduletable from "./dashboard/Scheduletable.js"
 //auth function
 import Auth  from "./Auth";
 
@@ -9,13 +10,14 @@ class Dashboard extends React.Component {
     }
 
     render() {
-    	 const token = Auth._getToken()
+    	 const userData = Auth._getData();
 
     	return (
       		<div>
 	        	<h1>Dashboard</h1>
-	        	<p>You made it!</p>
-	        	<p>{token}</p>
+	        	<p>Hello!</p>
+	        	<p>{userData.firstName} {userData.lastName}</p>
+            <Scheduletable />
       		</div>
     )
   	}
