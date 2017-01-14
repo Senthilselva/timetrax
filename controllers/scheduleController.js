@@ -3,31 +3,39 @@ var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
 
-router.get('/user', function(req,res) {
+router.get('/user/:userName', function(req,res) {
   console.log("inside user Schedule");
-  console.log(JSON.stringify(req.body));
- 	console.log(req);
+  console.log(JSON.stringify(req.params));
+ 	//console.log(req);
 
-  	models.Schedule.findAll({
-    include: [
-      { 
-        model : models.User,
-        where: { username: req.body.username} 
-      },
-      {
-        model:  models.Job 
-      }
-    ]
-  }).then(function(data){
+  	models.Schedule.findAll(
 
-    // var hbsObject = {
-    //   userFirstName: req.session.firstName,
-    //   userLastName: req.session.lastName,
-    //   userzipCode:req.session.zipCode,
-    //   userEmail:req.session.email,
-    //   jobs: data};
-    console.log(JSON.stringify(data[1]));
-     res.json(data)
+      { include: [
+        { 
+          model : models.User,
+          where: { username: req.params.userName} 
+        },
+        {
+          model:  models.Job 
+        }
+      ]
+    }).then(function(data){
+    var jobList = [];
+    var job = {};
+
+    for(var i=0; i< data.length; i++){
+    console.log(data[i].startDate+" "+ 
+                data[i].startDate+" "+
+                data[i].Job.name);
+
+    job.startDate = data[i].startDate;
+    job.startTime = data[i].startTime;
+    job.jobName = data[i].Job.name;
+    job.jobAdd = data[i].Job.address;
+
+    jobList.push(job)
+  }
+     res.json(jobList)
   })
 
 });

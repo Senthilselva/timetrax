@@ -10,7 +10,7 @@ constructor(props) {
   super(props);
 
   this.state = {
-    name: ""
+    scheduleTables:[]
   };
 
 }//Constructor
@@ -19,67 +19,30 @@ componentWillMount() {
   console.log(Helpers)
   Helpers._getSchedule()
       .then(function(userData,err){
-        console.log(JSON.stringify(userData));
-        this.setState({name:"senthil"});
+        //console.log(JSON.stringify(userData));
+        this.setState({scheduleTables:userData.data});
+        //console.log(JSON.stringify(this.state.scheduleTables));
       }.bind(this));
 }//componentWillMount
 
 render(){
-  return(
-    <Card>
-      <CardHeader
-        title= { this.state.name }
-        subtitle="Subtitle"
-        actAsExpander={true}
-        showExpandableButton={true}
-      />
-    </Card>
-  );
+  console.log((this.state.scheduleTables));
+
+    return (
+        <div>
+          {this.state.scheduleTables.map(function(startDate,i){
+            return(
+            <div key={i}> 
+              {startDate.jobName} 
+            </div>
+            );
+          })}
+        </div>
+    );
 }
 
 }//class defination
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const scheduleCard = () => (
-  <Card>
-    <CardHeader
-      title="Title"
-      subtitle="Subtitle"
-      actAsExpander={true}
-      showExpandableButton={true}
-    />
-    <CardActions>
-      <FlatButton label="Action1" />
-      <FlatButton label="Action2" />
-    </CardActions>
-    <CardText expandable={true}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-    </CardText>
-  </Card>
-);
 
 // Export the componen back for use in other files
 export default ScheduleTable;

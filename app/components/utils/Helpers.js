@@ -22,7 +22,8 @@ const helpers = {
 	_getSchedule: () => {
 		var vEmail =localStorage.getItem('userName');
 		console.log("get Schedule"+vEmail);
-		return axios.get("/schedule/user", vEmail);
+		var user = { username : vEmail };
+		return axios.get("/schedule/user/"+vEmail );
 	}
 
 }

@@ -35475,7 +35475,8 @@
 		_getSchedule: function _getSchedule() {
 			var vEmail = localStorage.getItem('userName');
 			console.log("get Schedule" + vEmail);
-			return _axios2.default.get("/schedule/user", vEmail);
+			var user = { username: vEmail };
+			return _axios2.default.get("/schedule/user/" + vEmail);
 		}
 	
 	};
@@ -41691,7 +41692,7 @@
 	    var _this = _possibleConstructorReturn(this, (ScheduleTable.__proto__ || Object.getPrototypeOf(ScheduleTable)).call(this, props));
 	
 	    _this.state = {
-	      name: ""
+	      scheduleTables: []
 	    };
 	
 	    return _this;
@@ -41702,22 +41703,26 @@
 	    value: function componentWillMount() {
 	      console.log(_Helpers2.default);
 	      _Helpers2.default._getSchedule().then(function (userData, err) {
-	        console.log(JSON.stringify(userData));
-	        this.setState({ name: "senthil" });
+	        //console.log(JSON.stringify(userData));
+	        this.setState({ scheduleTables: userData.data });
+	        //console.log(JSON.stringify(this.state.scheduleTables));
 	      }.bind(this));
 	    } //componentWillMount
 	
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      console.log(this.state.scheduleTables);
+	
 	      return _react2.default.createElement(
-	        _Card.Card,
+	        'div',
 	        null,
-	        _react2.default.createElement(_Card.CardHeader, {
-	          title: this.state.name,
-	          subtitle: 'Subtitle',
-	          actAsExpander: true,
-	          showExpandableButton: true
+	        this.state.scheduleTables.map(function (startDate, i) {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: i },
+	            startDate.jobName
+	          );
 	        })
 	      );
 	    }
@@ -41727,31 +41732,9 @@
 	}(_react2.default.Component); //class defination
 	
 	
-	var scheduleCard = function scheduleCard() {
-	  return _react2.default.createElement(
-	    _Card.Card,
-	    null,
-	    _react2.default.createElement(_Card.CardHeader, {
-	      title: 'Title',
-	      subtitle: 'Subtitle',
-	      actAsExpander: true,
-	      showExpandableButton: true
-	    }),
-	    _react2.default.createElement(
-	      _Card.CardActions,
-	      null,
-	      _react2.default.createElement(_FlatButton2.default, { label: 'Action1' }),
-	      _react2.default.createElement(_FlatButton2.default, { label: 'Action2' })
-	    ),
-	    _react2.default.createElement(
-	      _Card.CardText,
-	      { expandable: true },
-	      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'
-	    )
-	  );
-	};
-	
 	// Export the componen back for use in other files
+	
+	
 	exports.default = ScheduleTable;
 
 /***/ },
