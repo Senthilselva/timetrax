@@ -30,10 +30,13 @@ render(){
 
     return (
         <div>
-          {this.state.scheduleTables.map(function(startDate,i){
+          {this.state.scheduleTables.map(function(id,i){
             return(
             <div key={i}> 
-              {startDate.jobName} 
+              {id.jobName}
+              {id.startDate}
+              {id.startTime}
+              {id.jobAdd}
             </div>
             );
           })}

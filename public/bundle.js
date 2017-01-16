@@ -41717,11 +41717,14 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.state.scheduleTables.map(function (startDate, i) {
+	        this.state.scheduleTables.map(function (id, i) {
 	          return _react2.default.createElement(
 	            'div',
 	            { key: i },
-	            startDate.jobName
+	            id.jobName,
+	            id.startDate,
+	            id.startTime,
+	            id.jobAdd
 	          );
 	        })
 	      );

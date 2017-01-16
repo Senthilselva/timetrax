@@ -21,13 +21,13 @@ router.get('/user/:userName', function(req,res) {
       ]
     }).then(function(data){
     var jobList = [];
-    var job = {};
 
     for(var i=0; i< data.length; i++){
     console.log(data[i].startDate+" "+ 
                 data[i].startDate+" "+
                 data[i].Job.name);
-
+    var job = {};
+    job.id = data[i].id;
     job.startDate = data[i].startDate;
     job.startTime = data[i].startTime;
     job.jobName = data[i].Job.name;
