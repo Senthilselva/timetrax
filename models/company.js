@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('Company', {
+  var Companys = sequelize.define('Company', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -8,37 +8,37 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     zip: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactname: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactphone: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactemail: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isEmail: true
+        isEmail: true,
       }
     },
   },
@@ -52,5 +52,5 @@ module.exports = function(sequelize, DataTypes) {
        }
     }
   });
-  return User;
+  return Companys;
 };

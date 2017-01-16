@@ -2,6 +2,7 @@
 .env
 *.ignore
 *.log
+*.bak
 node_modules
 npm-debug.log* 
 /client/public/build/

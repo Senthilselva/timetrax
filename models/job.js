@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('Job', {
+  var Job = sequelize.define('Job', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -8,49 +8,55 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     zip: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactname: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactphone: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     contactemail: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isEmail: true
+        isEmail: true,
       }
     },
   },
   {
-    paranoid: false,
+    paranoid: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        //Job.hasMany(models.Job, {foreignKey: 'jobId'});
-        //Job.hasMany(models.Schedule, {foreignKey: 'scheduleId'});
-       }
+        Job.hasMany(models.Schedule, {
+          onDelete: "CASCADE",
+          hooks: true,
+          foreignKey: {
+            allowNull: false
+          }
+        })
+      }//associate
     }
   });
-  return User;
+  return Job;
 };
