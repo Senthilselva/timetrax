@@ -1,6 +1,8 @@
 import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 
 //import helper file
 import Helpers from '../../utils/Helpers.js';
@@ -29,18 +31,29 @@ render(){
   console.log((this.state.scheduleTables));
 
     return (
-        <div>
+       <table>
+        <tr>
+          <th>Client</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Address</th>
+          <th></th>
+        </tr>
+    
+
           {this.state.scheduleTables.map(function(id,i){
             return(
-            <div key={i}> 
-              {id.jobName}
-              {id.startDate}
-              {id.startTime}
-              {id.jobAdd}
-            </div>
+          <tr key={i}> 
+            <td>{id.jobName}</td>
+            <td>{id.startDate}</td>
+            <td>{id.startTime}</td>
+            <td>{id.endTime}</td>
+            <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
+          </tr>
             );
           })}
-        </div>
+        </table>
     );
 }
 
