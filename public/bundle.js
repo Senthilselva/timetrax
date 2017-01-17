@@ -71751,7 +71751,8 @@
 	        return {
 	            isPlaying: false,
 	            time: this.getMaxTime(),
-	            maxtime: this.getMaxTime()
+	            maxtime: this.getMaxTime(),
+	            clockintime: new Date()
 	        };
 	    },
 
@@ -71764,6 +71765,7 @@
 
 	    startTimer: function startTimer() {
 	        var _this = this;
+	        this.state.clockintime = new Date();
 	        return window.setInterval(function () {
 	            if (_this.state.time > 0) {
 	                _this.setState({
@@ -71820,6 +71822,7 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
+	            this.state.clockintime.toLocaleTimeString(),
 	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime }),
 	            _react2.default.createElement(
 	                'div',
@@ -71876,7 +71879,6 @@
 	    },
 
 	    render: function render() {
-
 	        return _react2.default.createElement(
 	            'div',
 	            null,

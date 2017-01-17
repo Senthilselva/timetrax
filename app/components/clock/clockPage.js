@@ -15,6 +15,7 @@ var ClockPage = React.createClass({
             isPlaying: false,
             time: this.getMaxTime(),
             maxtime: this.getMaxTime(),
+            clockintime:new Date()
         };
     },
 
@@ -27,6 +28,7 @@ var ClockPage = React.createClass({
 
     startTimer: function() {
         var _this = this;
+        this.state.clockintime = new Date();
         return window.setInterval(function () {
             if (_this.state.time > 0) {
                 _this.setState({
@@ -86,6 +88,7 @@ var ClockPage = React.createClass({
     render: function() {
         return (
             <div>
+                {this.state.clockintime.toLocaleTimeString()}
                 <Clock time={this.state.time} maxtime={this.state.maxtime} />
 
                 <div className="floating">
