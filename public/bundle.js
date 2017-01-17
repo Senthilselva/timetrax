@@ -35481,13 +35481,15 @@
 		_getOneSchedule: function _getOneSchedule(id) {
 			console.log("_getOneSchedule  " + id);
 			_axios2.default.get("/schedule/schedule/" + id).then(function (newSchedule) {
-				console.log(JSON.stringify(newSchedule));
+				console.log("llllllllllllllllllllllllll" + JSON.stringify(newSchedule));
 				var newTimeSheet = {};
 				newTimeSheet.JobId = newSchedule.data.JobId;
 				newTimeSheet.UserId = newSchedule.data.UserId;
+				newTimeSheet.clockIn = Date.now();
 				_axios2.default.post("/timesheet/create", newTimeSheet).then(function (newdata) {
 					console.log("newSchedule :" + JSON.stringify(newSchedule));
-					console.log("New Data :" + JSON.stringify(newdata));
+					//console.log("New Data :"+ JSON.stringify(newdata));
+					return newSchedule.data;
 				});
 			});
 		}
@@ -45105,18 +45107,33 @@
 		function Timecard(props) {
 			_classCallCheck(this, Timecard);
 	
-			return _possibleConstructorReturn(this, (Timecard.__proto__ || Object.getPrototypeOf(Timecard)).call(this, props));
+			var _this = _possibleConstructorReturn(this, (Timecard.__proto__ || Object.getPrototypeOf(Timecard)).call(this, props));
+	
+			_this.state = {
+				name: "",
+				job: "",
+				city: "",
+				toDate: Date.now(),
+				time: Date.now()
+			};
+			return _this;
 		}
 	
 		_createClass(Timecard, [{
 			key: "componentWillMount",
 			value: function componentWillMount() {
 				console.log("componentWillMount");
-				_Helpers2.default._getOneSchedule(this.props.clockInId);
-				// .then(function(userData,err){
-				// 	console.log(JSON.stringify(userData))
-				//  	//this.setState({scheduleTables:userData.data});
-				// }.bind(this));
+				//var vTimecard = Helpers._getOneSchedule(this.props.clockInId);
+				_Helpers2.default._getOneSchedule(this.props.clockInId).then(function (vTimecard) {
+					console.log("back from helper in componentWillMount " + JSON.stringify(vTimecard));
+					this.setState({ name: vTimecard.firstname });
+					this.setState({ job: vTimecard.jobname });
+					this.setState({ city: vTimecard.city });
+					this.setState({ todate: vTimecard.startDate });
+					this.setState({ time: vTimecard.startTime });
+	
+					console.log(this.state.city);
+				});
 			} //componentWillMount	
 	
 		}, {
