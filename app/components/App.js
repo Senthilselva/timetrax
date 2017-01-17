@@ -14,6 +14,7 @@ var App = React.createClass({
           <Link to='/home' className='btn btn--login btn--nav'>Home</Link>
           <Link to='/login' className='btn btn--login btn--nav'>Login</Link>
           <Link to='/signup' className='btn btn--login btn--nav'>Signup</Link>
+          <Link to='/clock' className='btn btn--login btn--nav'>Clock</Link>
         </div>
           <div className="container">
             {/* Added this.props.children to dump all of the child components into place */}

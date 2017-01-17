@@ -9,6 +9,7 @@ var App = require("../components/App");
 var Login = require("../components/Login");
 var Signup = require("../components/Signup");
 var Home = require("../components/Home");
+var ClockPage = require('../components/clock/clockPage'); 
 
 // Export the Routes
 module.exports = (
@@ -21,7 +22,7 @@ module.exports = (
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-
+      <Route path="/clock" component={ClockPage} /> 
       <IndexRoute component={Home} />
 
     </Route>
