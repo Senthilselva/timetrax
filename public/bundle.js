@@ -71892,7 +71892,8 @@
 	        circular: {
 	            position: 'absolute !important',
 	            textAlign: 'center',
-	            top: -50
+	            top: -50,
+	            left: -10
 	        }
 	    }
 	};

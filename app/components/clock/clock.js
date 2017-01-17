@@ -11,11 +11,12 @@ const styles = {
                 color: 'black',
                 position: 'relative',
                 top : 50,
-                
+
                 circular : {
                     position: 'absolute !important',
                     textAlign: 'center',
                     top : -50,
+                    left : -10
                 }
             }
 };
