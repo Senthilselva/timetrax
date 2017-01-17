@@ -71712,7 +71712,11 @@
 	        _react2.default.createElement(
 	          _materialUi.Card,
 	          { id: 'home', className: 'col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8' },
-	          'Home ????'
+	          _react2.default.createElement(
+	            _materialUi.CardText,
+	            null,
+	            'Home ????'
+	          )
 	        )
 	      )
 	    );
@@ -71832,7 +71836,7 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { className: 'row' },
 	            _react2.default.createElement(
 	                'span',
 	                null,

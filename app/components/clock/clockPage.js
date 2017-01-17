@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router} from 'react-router';
-import {RaisedButton, FloatingActionButton, Colors} from 'material-ui';
+import {Card,RaisedButton, FloatingActionButton, Colors} from 'material-ui';
 
 var Clock = require('./clock');
 
@@ -98,7 +98,7 @@ var ClockPage = React.createClass({
     
     render: function() {
         return (
-            <div>
+        <div className= 'row'>
                 <span> Time in : {this.state.clockintime.toLocaleTimeString()} </span>
                 <Clock time={this.state.time} maxtime={this.state.maxtime} />
 
@@ -110,7 +110,7 @@ var ClockPage = React.createClass({
                         <FloatingActionButton iconClassName="fa fa-refresh" iconStyle={{color: '#2196F3'}} onClick={this.handleReset} />
                     </span>
                 </div>
-            </div>
+        </div>
         );
     }
 });
