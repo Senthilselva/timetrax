@@ -4,6 +4,20 @@ import {RaisedButton, FloatingActionButton, Colors} from 'material-ui';
 
 var Clock = require('./clock');
 
+const styles = {
+  floating : {
+    height: 56,
+    width: 100,
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    textAlign: 'center',
+    item : {
+        margin: 10
+    }
+   }  
+};
+
 var ClockPage = React.createClass({
     
     getMaxTime: function() {
@@ -91,11 +105,11 @@ var ClockPage = React.createClass({
                 {this.state.clockintime.toLocaleTimeString()}
                 <Clock time={this.state.time} maxtime={this.state.maxtime} />
 
-                <div className="floating">
-                    <span className="item">
+                <div>
+                    <span >
                         <FloatingActionButton iconClassName={this.getIconName()} iconStyle={{color: '#2196F3'}} onClick={this.handleStart} />
                     </span>
-                    <span className="item">
+                    <span>
                         <FloatingActionButton iconClassName="fa fa-refresh" iconStyle={{color: '#2196F3'}} onClick={this.handleReset} />
                     </span>
                 </div>

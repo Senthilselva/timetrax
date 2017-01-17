@@ -71739,6 +71739,20 @@
 
 	var Clock = __webpack_require__(573);
 
+	var styles = {
+	    floating: {
+	        height: 56,
+	        width: 100,
+	        position: 'absolute',
+	        bottom: 20,
+	        left: 0,
+	        textAlign: 'center',
+	        item: {
+	            margin: 10
+	        }
+	    }
+	};
+
 	var ClockPage = _react2.default.createClass({
 	    displayName: 'ClockPage',
 
@@ -71826,15 +71840,15 @@
 	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime }),
 	            _react2.default.createElement(
 	                'div',
-	                { className: 'floating' },
+	                null,
 	                _react2.default.createElement(
 	                    'span',
-	                    { className: 'item' },
+	                    null,
 	                    _react2.default.createElement(_materialUi.FloatingActionButton, { iconClassName: this.getIconName(), iconStyle: { color: '#2196F3' }, onClick: this.handleStart })
 	                ),
 	                _react2.default.createElement(
 	                    'span',
-	                    { className: 'item' },
+	                    null,
 	                    _react2.default.createElement(_materialUi.FloatingActionButton, { iconClassName: 'fa fa-refresh', iconStyle: { color: '#2196F3' }, onClick: this.handleReset })
 	                )
 	            )
@@ -71860,6 +71874,25 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var styles = {
+	    clock: {
+	        fontSize: 15,
+	        fontWeight: 300,
+	        fontFamily: 'Lato',
+	        width: 100,
+	        textAlign: 'center',
+	        height: 100,
+	        color: 'black',
+	        position: 'relative',
+
+	        circular: {
+	            position: 'absolute !important',
+	            textAlign: 'center',
+	            top: -30
+	        }
+	    }
+	};
+
 	var Clock = _react2.default.createClass({
 	    displayName: 'Clock',
 
@@ -71881,11 +71914,11 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            null,
+	            { style: styles.clock },
 	            this.getTime(),
 	            _react2.default.createElement(
 	                'div',
-	                null,
+	                { style: styles.clock.circular },
 	                _react2.default.createElement(_CircularProgress2.default, { mode: 'determinate',
 	                    value: this.getPercent(),
 	                    size: 2 })

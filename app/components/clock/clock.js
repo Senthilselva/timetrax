@@ -1,6 +1,23 @@
 import React from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-
+const styles = {
+  clock : {
+                fontSize: 15,
+                fontWeight: 300,
+                fontFamily: 'Lato',
+                width: 100,
+                textAlign: 'center',
+                height: 100,
+                color: 'black',
+                position: 'relative',
+                
+                circular : {
+                    position: 'absolute !important',
+                    textAlign: 'center',
+                    top : -30,
+                }
+            }
+};
 
 var Clock = React.createClass({
     getDefaultProps: function() {
@@ -20,9 +37,9 @@ var Clock = React.createClass({
 
     render: function() {
         return (
-            <div>
+             <div style={styles.clock}>
                 {this.getTime()}
-                <div>
+                 <div style={styles.clock.circular}>
                     <CircularProgress mode="determinate" 
                                       value={this.getPercent()} 
                                       size={2} />
