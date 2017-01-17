@@ -99,7 +99,7 @@ var ClockPage = React.createClass({
     render: function() {
         return (
             <div>
-                {this.state.clockintime.toLocaleTimeString()}
+                <span> Time in : {this.state.clockintime.toLocaleTimeString()} </span>
                 <Clock time={this.state.time} maxtime={this.state.maxtime} />
 
                 <div style={styles.floating}>

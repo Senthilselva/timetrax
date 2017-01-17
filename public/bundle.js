@@ -71833,7 +71833,13 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            this.state.clockintime.toLocaleTimeString(),
+	            _react2.default.createElement(
+	                'span',
+	                null,
+	                ' Time in : ',
+	                this.state.clockintime.toLocaleTimeString(),
+	                ' '
+	            ),
 	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime }),
 	            _react2.default.createElement(
 	                'div',
