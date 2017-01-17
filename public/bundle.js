@@ -35475,8 +35475,21 @@
 		_getSchedule: function _getSchedule() {
 			var vEmail = localStorage.getItem('userName');
 			console.log("get Schedule" + vEmail);
-			var user = { username: vEmail };
 			return _axios2.default.get("/schedule/user/" + vEmail);
+		},
+	
+		_getOneSchedule: function _getOneSchedule(id) {
+			console.log("_getOneSchedule  " + id);
+			_axios2.default.get("/schedule/schedule/" + id).then(function (newSchedule) {
+				console.log(JSON.stringify(newSchedule));
+				var newTimeSheet = {};
+				newTimeSheet.JobId = newSchedule.data.JobId;
+				newTimeSheet.UserId = newSchedule.data.UserId;
+				_axios2.default.post("/timesheet/create", newTimeSheet).then(function (newdata) {
+					console.log("newSchedule :" + JSON.stringify(newSchedule));
+					console.log("New Data :" + JSON.stringify(newdata));
+				});
+			});
 		}
 	
 	};
@@ -41649,7 +41662,7 @@
 	          " ",
 	          userData.lastName
 	        ),
-	        this.state.clockInId == 0 ? _react2.default.createElement(_Scheduletable2.default, { _getScheduleClockInId: this._getScheduleClockInId }) : _react2.default.createElement(_Timecard2.default, { scheduleClockInId: this.state.clockInId })
+	        this.state.clockInId == 0 ? _react2.default.createElement(_Scheduletable2.default, { _getScheduleClockInId: this._getScheduleClockInId }) : _react2.default.createElement(_Timecard2.default, { clockInId: this.state.clockInId })
 	      );
 	    }
 	  }]);
@@ -45071,9 +45084,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Auth = __webpack_require__(/*! ../Auth */ 384);
+	var _Helpers = __webpack_require__(/*! ../../utils/Helpers.js */ 385);
 	
-	var _Auth2 = _interopRequireDefault(_Auth);
+	var _Helpers2 = _interopRequireDefault(_Helpers);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -45083,7 +45096,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	//auth function
+	//import helper file
 	
 	
 	var Timecard = function (_React$Component) {
@@ -45096,6 +45109,17 @@
 		}
 	
 		_createClass(Timecard, [{
+			key: "componentWillMount",
+			value: function componentWillMount() {
+				console.log("componentWillMount");
+				_Helpers2.default._getOneSchedule(this.props.clockInId);
+				// .then(function(userData,err){
+				// 	console.log(JSON.stringify(userData))
+				//  	//this.setState({scheduleTables:userData.data});
+				// }.bind(this));
+			} //componentWillMount	
+	
+		}, {
 			key: "render",
 			value: function render() {
 				return _react2.default.createElement(
@@ -45110,7 +45134,7 @@
 						"p",
 						null,
 						" ",
-						this.props.scheduleClockInId,
+						this.props.clockInId,
 						" "
 					)
 				);
