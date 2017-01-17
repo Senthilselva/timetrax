@@ -6,12 +6,9 @@ var Clock = require('./clock');
 
 const styles = {
   floating : {
-    height: 56,
-    width: 100,
     position: 'absolute',
-    bottom: 20,
-    left: 0,
     textAlign: 'center',
+    top : 200,
     item : {
         margin: 10
     }
@@ -105,8 +102,8 @@ var ClockPage = React.createClass({
                 {this.state.clockintime.toLocaleTimeString()}
                 <Clock time={this.state.time} maxtime={this.state.maxtime} />
 
-                <div>
-                    <span >
+                <div style={styles.floating}>
+                    <span style={styles.floating.item}>
                         <FloatingActionButton iconClassName={this.getIconName()} iconStyle={{color: '#2196F3'}} onClick={this.handleStart} />
                     </span>
                     <span>

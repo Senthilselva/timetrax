@@ -5,16 +5,17 @@ const styles = {
                 fontSize: 15,
                 fontWeight: 300,
                 fontFamily: 'Lato',
-                width: 100,
+                width: 80,
                 textAlign: 'center',
-                height: 100,
+                height: 80,
                 color: 'black',
                 position: 'relative',
+                top : 50,
                 
                 circular : {
                     position: 'absolute !important',
                     textAlign: 'center',
-                    top : -30,
+                    top : -50,
                 }
             }
 };

@@ -71741,12 +71741,9 @@
 
 	var styles = {
 	    floating: {
-	        height: 56,
-	        width: 100,
 	        position: 'absolute',
-	        bottom: 20,
-	        left: 0,
 	        textAlign: 'center',
+	        top: 200,
 	        item: {
 	            margin: 10
 	        }
@@ -71840,10 +71837,10 @@
 	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime }),
 	            _react2.default.createElement(
 	                'div',
-	                null,
+	                { style: styles.floating },
 	                _react2.default.createElement(
 	                    'span',
-	                    null,
+	                    { style: styles.floating.item },
 	                    _react2.default.createElement(_materialUi.FloatingActionButton, { iconClassName: this.getIconName(), iconStyle: { color: '#2196F3' }, onClick: this.handleStart })
 	                ),
 	                _react2.default.createElement(
@@ -71879,16 +71876,17 @@
 	        fontSize: 15,
 	        fontWeight: 300,
 	        fontFamily: 'Lato',
-	        width: 100,
+	        width: 80,
 	        textAlign: 'center',
-	        height: 100,
+	        height: 80,
 	        color: 'black',
 	        position: 'relative',
+	        top: 50,
 
 	        circular: {
 	            position: 'absolute !important',
 	            textAlign: 'center',
-	            top: -30
+	            top: -50
 	        }
 	    }
 	};
