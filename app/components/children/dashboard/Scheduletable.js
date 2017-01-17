@@ -1,11 +1,14 @@
 import React from 'react';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
+import RaisedButton from 'material-ui/RaisedButton';
 
 //import helper file
 import Helpers from '../../utils/Helpers.js';
+
+const style = {
+  margin: 12,
+};
+
+
 
 class ScheduleTable extends React.Component {
 constructor(props) {
@@ -15,20 +18,25 @@ constructor(props) {
     scheduleTables:[]
   };
 
+  this._onClockIn = this._onClockIn.bind(this)
 }//Constructor
 
 componentWillMount() {
   console.log(Helpers)
   Helpers._getSchedule()
       .then(function(userData,err){
-        //console.log(JSON.stringify(userData));
         this.setState({scheduleTables:userData.data});
-        //console.log(JSON.stringify(this.state.scheduleTables));
       }.bind(this));
 }//componentWillMount
 
+_onClockIn(event) {
+  console.log("on Clock In  " + JSON.stringify(event.target.value));
+  this.props._getScheduleClockInId(event.target.value);
+}
+
 render(){
   console.log((this.state.scheduleTables));
+      var that =this;
 
     return (
        <table>
@@ -50,6 +58,14 @@ render(){
             <td>{id.startTime}</td>
             <td>{id.endTime}</td>
             <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
+            {/* <td><RaisedButton type="button" value={id.id} 
+            onClick={that._onClockIn.bind(this)} label="Clock In" 
+            primary={true} /> </td> 
+            */}
+
+            <td><button type="button" value={id.id} onClick={that._onClockIn} 
+            style={style}>"Clock-in"</button> </td>
+           
           </tr>
             );
           })}
