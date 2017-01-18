@@ -28,7 +28,8 @@ const Logged = function(props) {
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <a href="/profile">Profile</a>
+    <Link to="/profile"><MenuItem primaryText="Profile" /></Link>
+    <Link to="/logout"><MenuItem primaryText="Logout" /></Link>
   </IconMenu>
 };
 

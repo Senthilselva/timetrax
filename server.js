@@ -63,8 +63,9 @@ app.set('port', process.env.PORT || 3000);
 // (thus creating the apropos tables)
 models.sequelize.sync().then(function () {
 	// set our app to listen to the port we set above
-  var server = app.listen(app.get('port'), function() {
+});
+
+ var server = app.listen(app.get('port'), function() {
   	// then save a log of the listening to our debugger.
     console.log('Express server listening on port ' + server.address().port);
   });
-});

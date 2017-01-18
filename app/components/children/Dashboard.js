@@ -26,7 +26,7 @@ class Dashboard extends React.Component {
 
       return (
           <div>
-            <h1>Dashboard</h1>
+            Dashboard
             <p>Hello!</p>
             <p>{userData.firstName} {userData.lastName}</p>
 

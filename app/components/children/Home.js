@@ -9,7 +9,7 @@ class Home extends React.Component {
     }
 
     render() {
-    	return <h1>Time Trax</h1>
+    	return Time Trax
   	}
 }
 
