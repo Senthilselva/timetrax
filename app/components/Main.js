@@ -8,7 +8,7 @@ import Header from "./children/Header";
 class Main extends React.Component {
 
 constructor(props) {
-	super(props);
+  super(props);
   this.state = {
     loggedIn : Auth._loggedIn()
   }
