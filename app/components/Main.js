@@ -1,19 +1,14 @@
 import React from "react";
 import { Link } from 'react-router'
-// Import sub-components
- import Auth  from "./children/Auth";
-// import Register  from "./children/Register";
-
-
-// Helper Function
-//import helpers from "./utils/Helpers";
+import Auth  from "./children/Auth";
+import Header from "./children/Header";
 
 
 //define class
 class Main extends React.Component {
 
 constructor(props) {
-	super(props);
+  super(props);
   this.state = {
     loggedIn : Auth._loggedIn()
   }
@@ -47,20 +42,8 @@ constructor(props) {
  render() {
     return (
 
-      <div>
-        <ul>
-          <li>
-            {this.state.loggedIn ? (
-              <Link to="logout">Log out</Link>
-            ) : (
-              <Link to="/login">Sign in</Link>
-            )}
-          </li>
-          <li><Link to="/register">Register</Link></li>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-        </ul>
-        {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+      <div className="mainContainer">
+          <Header />
       </div>
       
     );

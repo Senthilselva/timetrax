@@ -30,7 +30,6 @@ var routes = require('./controllers/appController');
 var user_controller = require('./controllers/userController');
 var schedule_controller = require('./controllers/scheduleController');
 var timesheet_controller = require('./controllers/timesheetController');
-
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + '/public'));
 
