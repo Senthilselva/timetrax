@@ -44,6 +44,7 @@ constructor(props) {
 
       <div className="mainContainer">
           <Header />
+          {this.props.children}
       </div>
       
     );

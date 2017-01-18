@@ -1,16 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router';
 import Router from 'react-router';
-import {AppBar, Drawer, MenuItem, FontIcon} from 'material-ui';
+import {AppBar, Drawer, MenuItem, IconButton, IconMenu, FontIcon, FlatButton, Toggle} from 'material-ui';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-//import Auth  from "./Auth";
+import Auth  from "./Auth";
 
 injectTapEventPlugin();
 
-class Header extends React.Component {
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.muiName = 'FlatButton';
+  }
+
+  render() {
+    return (
+      <Link to="/login"><FlatButton {...this.props} label="Login" /></Link>
+    )
+  }
+}
+
+const Logged = function(props) {
+  <IconMenu {...props}
+    iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
+    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+  >
+    <a href="/profile">Profile</a>
+  </IconMenu>
+};
+
+Logged.muiName = 'IconMenu';
+
+class Header extends Component {
    constructor(props) {
      super(props);
-     this.state = { open: false };
+     this.state = { open: false, loggedIn: true};
      this.handleToggle = this.handleToggle.bind(this);
    }
 
@@ -18,10 +45,14 @@ class Header extends React.Component {
      this.setState({open: !this.state.open});
    }
 
-   render() {
+  render() {
        return (
          <div>
-            <Link to="/home"><AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} /></Link>
+           <Link to="/home">
+           <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} 
+                                    iconElementRight={this.state.loggedin ? <Logged /> : <Login />}
+                           />
+             </Link>
              <Drawer containerStyle={{height: 'calc(100% - 64px)', top: 64}}
                      docked={true}
                      tapToClose={true}
@@ -37,13 +68,13 @@ class Header extends React.Component {
                      width={200}
                      open={this.state.open}
                      onRequestChange={(open) => this.setState({open})}
-                     handleMyProfile={this.handleMyProfile}
-                     handleDashboard={this.handleDashboard}
-                     handleSignOut={this.handleSignOut}
                      >
-               <Link to="/home"><MenuItem onTouchTap={this.handleMyProfile}>Overview</MenuItem></Link>
-               <Link to="/timesheets"><MenuItem onTouchTap={this.handleMyProfile}>Time Sheets</MenuItem></Link>
-               <Link to="/schedule"><MenuItem onTouchTap={this.handleMyProfile}>Schedule</MenuItem></Link>
+
+
+               <Link to="/dashboard"><MenuItem>Dashboard</MenuItem></Link>
+               <Link to="/timesheets"><MenuItem>Time Sheets</MenuItem></Link>
+               <Link to="/schedule"><MenuItem>Schedule</MenuItem></Link>
+               <Link to="/login"><MenuItem>Login</MenuItem></Link>
              </Drawer>
          </div>
        )
