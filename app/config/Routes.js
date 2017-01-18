@@ -11,6 +11,9 @@ import  Logout from "../components/children/Logout";
 import  Register  from "../components/children/admin/Register";
 import  Home  from "../components/children/Home";
 import  Dashboard  from "../components/children/Dashboard";
+import  ScheduleTable  from "../components/children/dashboard/ScheduleTable";
+import  Timecard  from "../components/children/dashboard/Timecard";
+import  Timesheet  from "../components/children/dashboard/Timesheet";
 
 //helper to requireLogin
 import Auth from "../components/children/Auth";
@@ -37,7 +40,14 @@ module.exports = (
       <Route path="logout" component= { Logout } />
       <Route path="register" component={ Register } />
       <Route path="home" component={Home} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <Route path="dashboard" component={Dashboard} onEnter={requireAuth}>
+            <Route path="timecard" component={Timecard} />
+            <Route path="timesheet" component={Timesheet} />
+            <Route path="schedule" component={ScheduleTable} />
+      </Route>
+      <Route path="timecard" component={Timecard} />
+      <Route path="timesheet" component={Timesheet} />
+      <Route path="schedule" component={ScheduleTable} />
       {/* If user selects any other path... we get the Info Route */}
        <IndexRoute component={ Home } />
          

@@ -7,7 +7,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Auth  from "./Auth";
 
-injectTapEventPlugin();
+//injectTapEventPlugin();
 
 class Login extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class Header extends Component {
          <div>
            <Link to="/home">
            <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} 
-                                    iconElementRight={this.state.loggedin ? <Logged /> : <Login />}
+                                    iconElementRight={this.state.loggedIn ? <Logged /> : <Login />}
                            />
              </Link>
              <Drawer containerStyle={{height: 'calc(100% - 64px)', top: 64}}
@@ -81,6 +81,5 @@ class Header extends Component {
        )
    }
 }
-
 
 export default Header;

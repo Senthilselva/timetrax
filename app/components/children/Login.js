@@ -8,6 +8,7 @@ import Auth  from "./Auth";
 // Helper Functicon
 import helpers from "../utils/Helpers";
 //const Login = withRouter(
+
 class Login extends React.Component {
 	constructor(props) {
     super(props);

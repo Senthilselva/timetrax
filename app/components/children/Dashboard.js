@@ -26,9 +26,7 @@ class Dashboard extends React.Component {
 
       return (
           <div>
-            Dashboard
-            <p>Hello!</p>
-            <p>{userData.firstName} {userData.lastName}</p>
+            <p>Hello! {userData.firstName}</p>
 
             {this.state.clockInId == 0 ? (
             <Scheduletable _getScheduleClockInId = {this._getScheduleClockInId} /> 
