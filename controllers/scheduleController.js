@@ -7,9 +7,9 @@ var moment =require('moment')
 router.get('/user/:userName', function(req,res) {
   console.log("inside user Schedule");
   console.log(JSON.stringify(req.params));
- 	//console.log(req);
+  //console.log(req);
 
-  	models.Schedule.findAll(
+    models.Schedule.findAll(
 
       { include: [
         { 
@@ -44,6 +44,44 @@ router.get('/user/:userName', function(req,res) {
      res.json(jobList)
   })
 
+});
+
+router.get('/schedule/:scheduleId', function(req,res) {
+  console.log("Schedule : with it: "+ req.params.scheduleId)
+  vSchId = req.params.scheduleId;
+
+  models.Schedule.findOne({
+    include: [
+        { 
+          model : models.User
+        },
+        {
+          model:  models.Job 
+        }
+      ],
+    where: {
+      'id' : vSchId
+    }
+  }).then(function(data){
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    //console.log(data.Job);
+    //console.log(data.id)
+    //console.log(data.startDate)
+    var vSchedule = {};
+    vSchedule.id = data.id;
+    vSchedule.startDate =data.startDate;
+    vSchedule.startTime = data.startTime;
+    vSchedule.endTime = data.endTime;
+    vSchedule.JobId = data.JobId;
+    vSchedule.UserId = data.UserId;
+    vSchedule.jobname =data.Job.name;
+    vSchedule.jobcity =data.Job.city;
+    vSchedule.firstname = data.User.firstname;
+    console.log("sent new schedule "+JSON.stringify(vSchedule));
+
+
+    res.json(vSchedule);
+  })
 });
 
 module.exports = router;
