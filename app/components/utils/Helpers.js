@@ -1,7 +1,7 @@
 // Include the axios package for performing HTTP requests ( based alternative to request)
 import axios from "axios";
 
-
+//This files make calls the controller
 const helpers = {
 
 	_checkLogin: (email, password) => {
@@ -30,6 +30,8 @@ const helpers = {
 		return axios.get("/schedule/schedule/"+id );
 	}, 
 
+	 //to enter the data into the timesheet table
+	 //calls timesheet controller
 	_createTimecard: (newTimeSheet) => {
 		console.log("_createTimecard" + JSON.stringify(newTimeSheet));
 		return axios.post("/timesheet/create", newTimeSheet);

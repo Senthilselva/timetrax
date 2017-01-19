@@ -7,12 +7,9 @@ class Timecard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name : "",
-			job : "",
-			city: "",
-			toDate: Date.now(),
-			originalStartTime: Date.now(),
-			endTime:Date.now(),
+			timeCard :{},
+
+			yourEndTime:Date.now(),
 			yourStartTime:Date.now(),
 			jobId:0,
 			userId:0
@@ -46,23 +43,15 @@ class Timecard extends React.Component {
 					.then(function(newdata){
 						//console.log("newSchedule :"+ JSON.stringify(newSchedule));
 						//console.log("New Data :"+ JSON.stringify(newdata));
-						var vTimecard = newSchedule.data;
-						//console.log("back from helper in componentWillMount "+ JSON.stringify(vTimecard))
-						this.setState({ name : vTimecard.firstname });
-						this.setState({ job : vTimecard.jobname });
-						this.setState({ city : vTimecard.jobcity });
-						this.setState({ todate : vTimecard.startDate });
-						this.setState({ time : vTimecard.startTime });
-						this.setState({ yourStartTime : Date.now()})
-						this.setState({jobId : vTimecard.JobId});
-			 		 	this.setState({userId : vTimecard.UserId});
-						console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
-
-
+						this.setState({timeCard : newSchedule.data});
+						console.log("back from helper in componentWillMount "
+							+ JSON.stringify(this.state.timeCard));
+						
+						this.setState({ yourStartTime : Date.now()});
+						
+						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
 			 		}.bind(this));
 			
-
-		console.log(this.state.city);
       	}.bind(this));
 	}//componentWillMount	
 
@@ -72,8 +61,8 @@ class Timecard extends React.Component {
 		<div>
 			<h1> Timsheets </h1>
 			<p> { this.props.clockInId } </p>
-			<p> Name: {this.state.name} </p>
-			<p> Job: {this.state.job} </p>
+			<p> Name: {this.state.timeCard.firstname} </p>
+			<p> Job: {this.state.timeCard.jobname} </p>
 			<p> Started At: {this.state.yourStartTime}</p>
 			<button type="button" onClick={this._onClockOut}>Clock-out</button>
         

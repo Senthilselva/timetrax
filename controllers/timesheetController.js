@@ -4,6 +4,7 @@ var router  = express.Router();
 var path = require('path');
 var moment =require('moment');
 
+//enter a new record into the timesheet table with out the end time
 router.post("/create", function(req,res){
 	console.log("inside time sheet");
   // console.log(JSON.stringify(req.body));
