@@ -112,6 +112,7 @@ class Main extends Component {
              <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
              <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
              <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
+             <Link to="register"><MenuItem onTouchTap={this.handleClose}>Register</MenuItem></Link>
            </Drawer>
           {this.props.children}
       </div>
