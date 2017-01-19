@@ -17,7 +17,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Link to="/login"><FlatButton {...this.props} label="Login" /></Link>
+      <Link to="/login"><FlatButton label="Login" /></Link>
     )
   }
 }
@@ -38,7 +38,7 @@ Logged.muiName = 'IconMenu';
 class Header extends Component {
    constructor(props) {
      super(props);
-     this.state = { open: false, loggedIn: true};
+     this.state = { open: false, loggedIn: Auth._loggedIn() };
      this.handleToggle = this.handleToggle.bind(this);
    }
 

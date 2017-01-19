@@ -1,12 +1,14 @@
 //import react 
 import React from "react";
 import {Col, Card, Row, Input, Button} from "react-materialize";
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+
 //auth function
 import Auth  from "./Auth";
 
 // Helper Functicon
 import helpers from "../utils/Helpers";
+
 //const Login = withRouter(
 
 class Login extends React.Component {
