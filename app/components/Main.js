@@ -44,7 +44,7 @@ class Logged extends Component {
 Logged.muiName = 'IconMenu';
 
 //define class
-class Main extends React.Component {
+class Main extends Component {
    constructor(props) {
     super(props);
     this.state = { open: false, loggedIn: Auth._loggedIn() };
@@ -91,7 +91,7 @@ class Main extends React.Component {
     return (
 
       <div className="mainContainer">
-         <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} {iconElementRight={<Login />}} />
+         <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<Login />} />
            <Drawer containerStyle={{height: 'calc(100% - 64px)', top: 64}}
                    docked={false}
                    openDrawerOffset={0.2} // 20% gap on the right side of drawer
@@ -107,14 +107,14 @@ class Main extends React.Component {
                    open={this.state.open}
                    onRequestChange={(open) => this.setState({open})}
                    >
-
-
-             <Link to="/dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
-             <Link to="/schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
-             <Link to="/timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
-             <Link to="/register"><MenuItem onTouchTap={this.handleClose}>Register</MenuItem></Link>
-             <Link to="/login"><MenuItem onTouchTap={this.handleClose}>Login</MenuItem></Link>
-             <Link to="/logout"><MenuItem onTouchTap={this.handleClose}>Logout</MenuItem></Link>
+             {this.state.loggedIn ? (
+             <Link to="logout"><MenuItem onTouchTap={this.handleClose}>SignOut</MenuItem></Link>
+             ) : (
+             <Link to="login"><MenuItem onTouchTap={this.handleClose}>SignIn</MenuItem></Link>      
+             )}
+             <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
+             <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
+             <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
            </Drawer>
           {this.props.children}
       </div>
@@ -125,6 +125,5 @@ class Main extends React.Component {
 
 // Export the componen back for use in other files
 export default Main;
-
 
 

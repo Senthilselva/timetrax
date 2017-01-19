@@ -19,6 +19,7 @@ const helpers = {
 	    return axios.post("/user/create", userInfo);
 	},
 
+	//gets all the schedule for the user the user is got from localStorage
 	_getSchedule: () => {
 		var vEmail =localStorage.getItem('userName');
 		console.log("get Schedule"+vEmail);
@@ -37,12 +38,20 @@ const helpers = {
 		return axios.post("/timesheet/create", newTimeSheet);
 	},
 
-	_updateTimecard:(uId, jId, time) => {
-		console.log("_updateTimecard "+uId+" "+jId+ " "+ time)
+	_updateTimecard:(cardId, time) => {
+		console.log("_updateTimecard "+cardId+ " "+ time)
 		return axios.post("/timesheet/update", 
-			{ userId:uId,
-			  jobId:jId,
+			{ cardId:cardId,
 			  clockOut:time })
+	},
+
+	//gets all the finished jobs for the user the user is got from localStorage
+	_getTimeSheets: () => {
+		var vEmail =localStorage.getItem('userName');
+		console.log("get Schedule"+vEmail);
+
+		//calling the controller and returing the value
+		return axios.get("/timesheet/user/"+vEmail );
 	}
 
 }
