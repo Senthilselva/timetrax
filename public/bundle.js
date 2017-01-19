@@ -35441,6 +35441,23 @@
 	              return _this4.setState({ open: open });
 	            }
 	          },
+	          this.state.loggedIn ? _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: 'logout' },
+	            _react2.default.createElement(
+	              _materialUi.MenuItem,
+	              { onTouchTap: this.handleClose },
+	              'SignOut'
+	            )
+	          ) : _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: 'login' },
+	            _react2.default.createElement(
+	              _materialUi.MenuItem,
+	              { onTouchTap: this.handleClose },
+	              'SignIn'
+	            )
+	          ),
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: 'dashboard' },
