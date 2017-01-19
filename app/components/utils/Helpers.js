@@ -37,11 +37,10 @@ const helpers = {
 		return axios.post("/timesheet/create", newTimeSheet);
 	},
 
-	_updateTimecard:(uId, jId, time) => {
-		console.log("_updateTimecard "+uId+" "+jId+ " "+ time)
+	_updateTimecard:(cardId, time) => {
+		console.log("_updateTimecard "+cardId+ " "+ time)
 		return axios.post("/timesheet/update", 
-			{ userId:uId,
-			  jobId:jId,
+			{ cardId:cardId,
 			  clockOut:time })
 	}
 

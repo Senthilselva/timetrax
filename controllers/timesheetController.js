@@ -27,20 +27,20 @@ router.post("/create", function(req,res){
 router.post("/update", function(req,res){
   console.log("inside time sheet update");
   console.log(JSON.stringify(req.body));
-  var userId= req.body.userId;
-  var jobId = req.body.jobId;
+  
+  var cardId = req.body.cardId;
   var clockOut = new Date(req.body.clockOut);
 
-  models.Timesheet.update({
-    clockedOut : clockOut
-  }, {
-    where: {
-      JobId : jobId,
-      UserId : userId
-      }
-  }).then(function(data,err){
+    models.Timesheet.update({
+      clockedOut : clockOut
+    }, {
+      where: {
+       id : cardId
+        }
+    }).then(function(data,err){
     console.log("updated")
-    console.log(JSON.stringify(data))
+    console.log(JSON.stringify(data));
+      res.json(data)
   })
 
   });

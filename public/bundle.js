@@ -68935,10 +68935,9 @@
 			return _axios2.default.post("/timesheet/create", newTimeSheet);
 		},
 	
-		_updateTimecard: function _updateTimecard(uId, jId, time) {
-			console.log("_updateTimecard " + uId + " " + jId + " " + time);
-			return _axios2.default.post("/timesheet/update", { userId: uId,
-				jobId: jId,
+		_updateTimecard: function _updateTimecard(cardId, time) {
+			console.log("_updateTimecard " + cardId + " " + time);
+			return _axios2.default.post("/timesheet/update", { cardId: cardId,
 				clockOut: time });
 		}
 	
@@ -75309,8 +75308,14 @@
 	        _react2.default.createElement(
 	          "p",
 	          null,
-	          "Hello! ",
-	          userData.firstName
+	          "Hello!"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          userData.firstName,
+	          " ",
+	          userData.lastName
 	        ),
 	        this.state.clockInId == 0 ? _react2.default.createElement(_Scheduletable2.default, { _getScheduleClockInId: this._getScheduleClockInId }) : _react2.default.createElement(_Timecard2.default, { clockInId: this.state.clockInId })
 	      );
@@ -75395,7 +75400,7 @@
 	  }, {
 	    key: '_onClockIn',
 	    value: function _onClockIn(event) {
-	      console.log("on Clock In  " + JSON.stringify(event.target.value));
+	      console.log("on Clock In   " + JSON.stringify(event.target.value));
 	      this.props._getScheduleClockInId(event.target.value);
 	    }
 	  }, {
@@ -75543,11 +75548,9 @@
 	
 			_this.state = {
 				timeCard: {},
-	
-				yourEndTime: Date.now(),
-				yourStartTime: Date.now(),
-				jobId: 0,
-				userId: 0
+				cardId: 0,
+				yourEndTime: null,
+				yourStartTime: Date.now()
 			};
 			_this._onClockOut = _this._onClockOut.bind(_this);
 			return _this;
@@ -75557,13 +75560,24 @@
 			key: "_onClockOut",
 			value: function _onClockOut() {
 				console.log("_onClockOut");
-				console.log("User Id " + this.state.userId);
-				console.log("Job Id " + this.state.jobId);
-				this.setState({ endTime: Date.now() });
-				console.log("endTime " + this.state.endTime);
-				_Helpers2.default._updateTimecard(this.state.userId, this.state.jobId, this.state.endTime).then(function (data, err) {
-					console.log(JSON.stringify(data));
-				});
+				console.log("Card Id " + this.state.cardId);
+				this.setState({ yourEndTime: Date.now() });
+				console.log("endTime " + this.state.yourEndTime);
+				//update database
+			}
+	
+			//wrote to see if clocked out then try to reomve the button 
+	
+		}, {
+			key: "componentDidUpdate",
+			value: function componentDidUpdate() {
+				console.log("componentDidUpdate  " + this.state.yourEndTime);
+				//If end date is updated then update database
+				if (this.state.yourEndTime != null) {
+					_Helpers2.default._updateTimecard(this.state.cardId, this.state.yourEndTime).then(function (data, err) {
+						console.log(JSON.stringify(data));
+					});
+				}
 			}
 		}, {
 			key: "componentWillMount",
@@ -75579,11 +75593,15 @@
 					newTimeSheet.clockIn = Date.now();
 					_Helpers2.default._createTimecard(newTimeSheet).then(function (newdata) {
 						//console.log("newSchedule :"+ JSON.stringify(newSchedule));
-						//console.log("New Data :"+ JSON.stringify(newdata));
-						this.setState({ timeCard: newSchedule.data });
-						console.log("back from helper in componentWillMount " + JSON.stringify(this.state.timeCard));
+						console.log("New Data :" + JSON.stringify(newdata));
 	
+						//console.log("back from helper in componentWillMount "
+						//	+ JSON.stringify(this.state.timeCard));
+						this.setState({ timeCard: newSchedule.data });
+						this.setState({ cardId: newdata.data.id });
 						this.setState({ yourStartTime: Date.now() });
+	
+						console.log("Card Id " + this.state.cardId);
 	
 						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
 					}.bind(this));
@@ -75629,10 +75647,16 @@
 						" Started At: ",
 						this.state.yourStartTime
 					),
-					_react2.default.createElement(
+					this.state.yourEndTime == null ? _react2.default.createElement(
 						"button",
 						{ type: "button", onClick: this._onClockOut },
 						"Clock-out"
+					) : _react2.default.createElement(
+						"p",
+						null,
+						" logged out at ",
+						this.state.yourEndTime,
+						" "
 					)
 				);
 			}
