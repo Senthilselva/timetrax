@@ -6,7 +6,6 @@
 node_modules
 npm-debug.log* 
 /client/public/build/
-public/bundle.js
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
