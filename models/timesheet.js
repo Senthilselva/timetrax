@@ -7,15 +7,15 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true    
     },
     clockedInDate: {
-      type: DataTypes.DATEONLY,
+      type: DataTypes.DATE,
       allowNull: false
     },
     clockedIn: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: false
     },
     clockedOut: {
-      type: DataTypes.TIME,
+      type: DataTypes.DATE,
       allowNull: true,
     }
   },
