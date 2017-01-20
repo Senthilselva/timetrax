@@ -13,10 +13,8 @@ class Home extends React.Component {
 
     render() {
 
-    	return ( <div>
-    				<h3> Welcome Time Trax!! </h3>
+    	return ( 
     				<Homecard />
-    			</div>
     			);
 
   	}

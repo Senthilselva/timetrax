@@ -13,7 +13,7 @@ module.exports = {
     Helpers._checkLogin(email,password)
       .then(function(userData,err){
         if(!err){
-        	console.log("handle submit"+userData)
+          //if the user exists set the token
         	this._setToken(userData,password)
           if (cb) cb(true)
         	  this._onChange(true)
@@ -30,14 +30,12 @@ module.exports = {
     return !!localStorage.token
   },
 
+  //sets the local token
 	_setToken(userData){
-		console.log("_setToken"+ JSON.stringify(userData));
 		localStorage.token = Math.random().toString(36).substring(7);
     localStorage.setItem("userName",userData.data.username);
     localStorage.setItem("firstName",userData.data.firstname);
 		localStorage.setItem("lastName",userData.data.lastname);
-		console.log("userName"+userData.data.username);
-		console.log(localStorage);
 	},
 
 	_logout(cb) {

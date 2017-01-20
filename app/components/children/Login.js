@@ -5,11 +5,8 @@ import { withRouter } from 'react-router';
 
 //auth function
 import Auth  from "./Auth";
-
 // Helper Functicon
 import helpers from "../utils/Helpers";
-
-//const Login = withRouter(
 
 class Login extends React.Component {
     constructor(props) {
@@ -27,12 +24,12 @@ class Login extends React.Component {
     _handleSubmit(event) {
         event.preventDefault();
         Auth._login(this.state.email, this.state.password, (loggedIn) => {
-        console.log("logedIn "+ loggedIn);
-        console.log("props_route" + this.props.route);
-
+        
+        //check logged in   
         if (!loggedIn)
           return this.setState({ error: true })
         else {
+            //redirect to the dashboard
             this.props.router.replace('/dashboard');
         }
 
@@ -40,10 +37,9 @@ class Login extends React.Component {
         
     }
 
-
+    //catches the entry into text box
     _handleChange(event) {
         var newState = {};
-        console.log(event.target.id +"   "+event.target.value);
         newState[event.target.id] = event.target.value;
         this.setState(newState);
         

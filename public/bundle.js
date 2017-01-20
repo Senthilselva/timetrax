@@ -68847,7 +68847,7 @@
 	    }
 	    _Helpers2.default._checkLogin(email, password).then(function (userData, err) {
 	      if (!err) {
-	        console.log("handle submit" + userData);
+	        //if the user exists set the token
 	        this._setToken(userData, password);
 	        if (cb) cb(true);
 	        this._onChange(true);
@@ -68862,14 +68862,14 @@
 	    console.log(localStorage.token);
 	    return !!localStorage.token;
 	  },
+	
+	
+	  //sets the local token
 	  _setToken: function _setToken(userData) {
-	    console.log("_setToken" + JSON.stringify(userData));
 	    localStorage.token = Math.random().toString(36).substring(7);
 	    localStorage.setItem("userName", userData.data.username);
 	    localStorage.setItem("firstName", userData.data.firstname);
 	    localStorage.setItem("lastName", userData.data.lastname);
-	    console.log("userName" + userData.data.username);
-	    console.log(localStorage);
 	  },
 	  _logout: function _logout(cb) {
 	    delete localStorage.token;
@@ -70272,11 +70272,8 @@
 	
 	//auth function
 	
-	
 	// Helper Functicon
 	
-	
-	//const Login = withRouter(
 	
 	var Login = function (_React$Component) {
 	    _inherits(Login, _React$Component);
@@ -70303,19 +70300,21 @@
 	
 	            event.preventDefault();
 	            _Auth2.default._login(this.state.email, this.state.password, function (loggedIn) {
-	                console.log("logedIn " + loggedIn);
-	                console.log("props_route" + _this2.props.route);
 	
+	                //check logged in   
 	                if (!loggedIn) return _this2.setState({ error: true });else {
+	                    //redirect to the dashboard
 	                    _this2.props.router.replace('/dashboard');
 	                }
 	            });
 	        }
+	
+	        //catches the entry into text box
+	
 	    }, {
 	        key: "_handleChange",
 	        value: function _handleChange(event) {
 	            var newState = {};
-	            console.log(event.target.id + "   " + event.target.value);
 	            newState[event.target.id] = event.target.value;
 	            this.setState(newState);
 	        }
@@ -75024,16 +75023,7 @@
 	        key: "render",
 	        value: function render() {
 	
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(
-	                    "h3",
-	                    null,
-	                    " Welcome Time Trax!! "
-	                ),
-	                _react2.default.createElement(_Homecard2.default, null)
-	            );
+	            return _react2.default.createElement(_Homecard2.default, null);
 	        }
 	    }]);
 	
@@ -75075,7 +75065,7 @@
 	    _Card.Card,
 	    null,
 	    _react2.default.createElement(_Card.CardHeader, {
-	      title: 'Time Trax',
+	      title: 'WELCOME',
 	      subtitle: 'Time sheet management system'
 	    }),
 	    _react2.default.createElement(
@@ -75085,12 +75075,7 @@
 	      },
 	      _react2.default.createElement('img', { src: '/assects/images/poolpic.jpg' })
 	    ),
-	    _react2.default.createElement(_Card.CardTitle, { title: 'Card title', subtitle: 'Card subtitle' }),
-	    _react2.default.createElement(
-	      _Card.CardText,
-	      null,
-	      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi. Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque. Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.'
-	    )
+	    _react2.default.createElement(_Card.CardTitle, { title: 'Company Name', subtitle: '' })
 	  );
 	};
 	
@@ -75157,7 +75142,6 @@
 	  _createClass(Dashboard, [{
 	    key: "_getScheduleClockInId",
 	    value: function _getScheduleClockInId(id) {
-	      console.log("_getScheduleClockInId " + id);
 	      this.setState({ clockInId: id });
 	      console.log("_getScheduleClockInId " + this.state.clockInId);
 	    }
@@ -75165,7 +75149,6 @@
 	    key: "render",
 	    value: function render() {
 	      var userData = _Auth2.default._getData();
-	
 	      return _react2.default.createElement(
 	        "div",
 	        null,
@@ -75599,7 +75582,7 @@
 		_createClass(Timesheet, [{
 			key: "componentWillMount",
 			value: function componentWillMount() {
-				console.log("componentWillMount");
+	
 				_Helpers2.default._getTimeSheets().then(function (userData, err) {
 					this.setState({ timeSheets: userData.data });
 				}.bind(this));
@@ -75617,7 +75600,7 @@
 					_react2.default.createElement(
 						"p",
 						null,
-						" Timseheets "
+						" Time Sheets "
 					),
 					_react2.default.createElement(
 						"p",

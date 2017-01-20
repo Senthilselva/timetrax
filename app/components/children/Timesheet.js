@@ -14,7 +14,7 @@ class Timesheet extends React.Component {
 	}
 
 	componentWillMount() {
-  		console.log("componentWillMount")
+  	
   		Helpers._getTimeSheets()
       		.then(function(userData,err){
         	this.setState({timeSheets:userData.data});
@@ -29,7 +29,7 @@ class Timesheet extends React.Component {
 	    var that =this;
 		return(
 			<div>
-				<p> Timseheets </p>
+				<p> Time Sheets </p>
 				<p>{this.state.userData.firstName} {this.state.userData.lastName}</p>
 				<table>
         			<tr>
