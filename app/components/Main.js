@@ -10,7 +10,7 @@ import Auth  from "./children/Auth";
 
 injectTapEventPlugin();
 
-class LoginLink extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.muiName = 'FlatButton';

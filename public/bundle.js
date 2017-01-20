@@ -35281,19 +35281,19 @@
 	
 	(0, _reactTapEventPlugin2.default)();
 	
-	var LoginLink = function (_Component) {
-	  _inherits(LoginLink, _Component);
+	var Login = function (_Component) {
+	  _inherits(Login, _Component);
 	
-	  function LoginLink(props) {
-	    _classCallCheck(this, LoginLink);
+	  function Login(props) {
+	    _classCallCheck(this, Login);
 	
-	    var _this = _possibleConstructorReturn(this, (LoginLink.__proto__ || Object.getPrototypeOf(LoginLink)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
 	
 	    _this.muiName = 'FlatButton';
 	    return _this;
 	  }
 	
-	  _createClass(LoginLink, [{
+	  _createClass(Login, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -35304,7 +35304,7 @@
 	    }
 	  }]);
 	
-	  return LoginLink;
+	  return Login;
 	}(_react.Component);
 	
 	var Logged = function (_Component2) {
