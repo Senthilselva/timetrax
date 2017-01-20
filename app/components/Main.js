@@ -10,7 +10,7 @@ import Header from "./children/Header";
 
 injectTapEventPlugin();
 
-class Login extends Component {
+class LoginLink extends Component {
   constructor(props) {
     super(props);
     this.muiName = 'FlatButton';
