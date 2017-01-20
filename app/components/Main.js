@@ -6,7 +6,7 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Auth  from "./children/Auth";
-import Header from "./children/Header";
+
 
 injectTapEventPlugin();
 
