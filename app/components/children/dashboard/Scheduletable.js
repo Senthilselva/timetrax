@@ -52,21 +52,21 @@ render(){
 
           {this.state.scheduleTables.map(function(id,i){
             return(
-          <tr key={i}> 
-            <td>{id.jobName}</td>
-            <td>{id.startDate}</td>
-            <td>{id.startTime}</td>
-            <td>{id.endTime}</td>
-            <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
-            {/* <td><RaisedButton type="button" value={id.id} 
-            onClick={that._onClockIn.bind(this)} label="Clock In" 
-            primary={true} /> </td> 
-            */}
+              <tr key={i}> 
+                <td>{id.jobName}</td>
+                <td>{id.startDate}</td>
+                <td>{id.startTime}</td>
+                <td>{id.endTime}</td>
+                <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
+                {/* <td><RaisedButton type="button" value={id.id} 
+                onClick={that._onClockIn.bind(this)} label="Clock In" 
+                primary={true} /> </td> 
+                */}
 
-            <td><button type="button" value={id.id} onClick={that._onClockIn} 
-            style={style}>"Clock-in"</button> </td>
-           
-          </tr>
+                <td><button type="button" value={id.id} onClick={that._onClockIn} 
+                style={style}>"Clock-in"</button> </td>
+               
+              </tr>
             );
           })}
         </table>

@@ -32,8 +32,7 @@ class Timecard extends React.Component {
 			Helpers._updateTimecard(this.state.cardId, this.state.yourEndTime)
 				.then(function(data,err){
 			console.log(JSON.stringify(data));
-		})
-
+			})
 		}
 	}
 
@@ -43,7 +42,7 @@ class Timecard extends React.Component {
 		//var vTimecard = Helpers._getOneSchedule(this.props.clockInId);
 		Helpers._getOneSchedule(this.props.clockInId)
 			.then(function(newSchedule){
-				//console.log("llllllllllllllllllllllllll" + JSON.stringify(newSchedule));
+
 			 	var newTimeSheet = {};
 			 	newTimeSheet.JobId= newSchedule.data.JobId;
 			 	newTimeSheet.UserId= newSchedule.data.UserId;
@@ -51,12 +50,12 @@ class Timecard extends React.Component {
 				newTimeSheet.clockIn = Date.now();
 				Helpers._createTimecard(newTimeSheet)
 					.then(function(newdata){
-						//console.log("newSchedule :"+ JSON.stringify(newSchedule));
+						console.log("newSchedule :"+ JSON.stringify(newSchedule));
 						console.log("New Data :"+ JSON.stringify(newdata));
 						
 
-						//console.log("back from helper in componentWillMount "
-						//	+ JSON.stringify(this.state.timeCard));
+						console.log("back from helper in componentWillMount "
+							+ JSON.stringify(this.state.timeCard));
 						this.setState({timeCard : newSchedule.data});
 						this.setState({ cardId : newdata.data.id});
 						this.setState({ yourStartTime : Date.now()});

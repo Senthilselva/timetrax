@@ -75432,18 +75432,17 @@
 				console.log("componentWillMount");
 				//var vTimecard = Helpers._getOneSchedule(this.props.clockInId);
 				_Helpers2.default._getOneSchedule(this.props.clockInId).then(function (newSchedule) {
-					//console.log("llllllllllllllllllllllllll" + JSON.stringify(newSchedule));
+	
 					var newTimeSheet = {};
 					newTimeSheet.JobId = newSchedule.data.JobId;
 					newTimeSheet.UserId = newSchedule.data.UserId;
 	
 					newTimeSheet.clockIn = Date.now();
 					_Helpers2.default._createTimecard(newTimeSheet).then(function (newdata) {
-						//console.log("newSchedule :"+ JSON.stringify(newSchedule));
+						console.log("newSchedule :" + JSON.stringify(newSchedule));
 						console.log("New Data :" + JSON.stringify(newdata));
 	
-						//console.log("back from helper in componentWillMount "
-						//	+ JSON.stringify(this.state.timeCard));
+						console.log("back from helper in componentWillMount " + JSON.stringify(this.state.timeCard));
 						this.setState({ timeCard: newSchedule.data });
 						this.setState({ cardId: newdata.data.id });
 						this.setState({ yourStartTime: Date.now() });
