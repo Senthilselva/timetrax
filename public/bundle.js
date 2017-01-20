@@ -22085,7 +22085,11 @@
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 683);
+	var _Schedule = __webpack_require__(/*! ../components/children/Schedule */ 683);
+	
+	var _Schedule2 = _interopRequireDefault(_Schedule);
+	
+	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 686);
 	
 	var _Timesheet2 = _interopRequireDefault(_Timesheet);
 	
@@ -22123,6 +22127,7 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/register', component: _Register2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _Home2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/dashboard', component: _Dashboard2.default, onEnter: requireAuth }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/schedule', component: _Schedule2.default, onEnter: requireAuth }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/timesheet', component: _Timesheet2.default, onEnter: requireAuth }),
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
 	    )
@@ -35460,7 +35465,7 @@
 	            _react2.default.createElement(
 	              _materialUi.MenuItem,
 	              { onTouchTap: this.handleClose },
-	              'Dashboard'
+	              'Today\'s Schedule'
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -68926,8 +68931,14 @@
 		//gets all the schedule for the user the user is got from localStorage
 		_getSchedule: function _getSchedule() {
 			var vEmail = localStorage.getItem('userName');
-			console.log("get Schedule" + vEmail);
 			return _axios2.default.get("/schedule/user/" + vEmail);
+		},
+	
+		//gets all the schedule for the user the user is got from localStorage
+		_getTodaySchedule: function _getTodaySchedule() {
+			var vEmail = localStorage.getItem('userName');
+			console.log("get Schedule" + vEmail);
+			return _axios2.default.get("/schedule/user/today/" + vEmail);
 		},
 	
 		_getOneSchedule: function _getOneSchedule(id) {
@@ -75239,7 +75250,7 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      console.log(_Helpers2.default);
-	      _Helpers2.default._getSchedule().then(function (userData, err) {
+	      _Helpers2.default._getTodaySchedule().then(function (userData, err) {
 	        this.setState({ scheduleTables: userData.data });
 	      }.bind(this));
 	    } //componentWillMount
@@ -75290,6 +75301,7 @@
 	          _react2.default.createElement('th', null)
 	        ),
 	        this.state.scheduleTables.map(function (id, i) {
+	
 	          return _react2.default.createElement(
 	            'tr',
 	            { key: i },
@@ -75521,6 +75533,434 @@
 
 /***/ },
 /* 683 */
+/*!*********************************************!*\
+  !*** ./app/components/children/Schedule.js ***!
+  \*********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Scheduletable = __webpack_require__(/*! ./schedule/Scheduletable.js */ 684);
+	
+	var _Scheduletable2 = _interopRequireDefault(_Scheduletable);
+	
+	var _Timecard = __webpack_require__(/*! ./schedule/Timecard.js */ 685);
+	
+	var _Timecard2 = _interopRequireDefault(_Timecard);
+	
+	var _Auth = __webpack_require__(/*! ./Auth */ 611);
+	
+	var _Auth2 = _interopRequireDefault(_Auth);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	//auth function
+	
+	
+	var Dashboard = function (_React$Component) {
+	  _inherits(Dashboard, _React$Component);
+	
+	  function Dashboard(props) {
+	    _classCallCheck(this, Dashboard);
+	
+	    var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
+	
+	    _this.state = {
+	      clockInId: 0,
+	      isClockOut: false
+	    };
+	
+	    _this._getScheduleClockInId = _this._getScheduleClockInId.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Dashboard, [{
+	    key: "_getScheduleClockInId",
+	    value: function _getScheduleClockInId(id) {
+	      this.setState({ clockInId: id });
+	      console.log("_getScheduleClockInId " + this.state.clockInId);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var userData = _Auth2.default._getData();
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Hello!"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          userData.firstName,
+	          " ",
+	          userData.lastName
+	        ),
+	        this.state.clockInId == 0 ? _react2.default.createElement(_Scheduletable2.default, { _getScheduleClockInId: this._getScheduleClockInId }) : _react2.default.createElement(_Timecard2.default, { clockInId: this.state.clockInId })
+	      );
+	    }
+	  }]);
+	
+	  return Dashboard;
+	}(_react2.default.Component);
+	
+	// Export the component back for use in other files
+	
+	
+	exports.default = Dashboard;
+
+/***/ },
+/* 684 */
+/*!***********************************************************!*\
+  !*** ./app/components/children/schedule/Scheduletable.js ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _RaisedButton = __webpack_require__(/*! material-ui/RaisedButton */ 544);
+	
+	var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+	
+	var _Helpers = __webpack_require__(/*! ../../utils/Helpers.js */ 612);
+	
+	var _Helpers2 = _interopRequireDefault(_Helpers);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	//import helper file
+	
+	
+	var style = {
+	  margin: 12
+	};
+	
+	var ScheduleTable = function (_React$Component) {
+	  _inherits(ScheduleTable, _React$Component);
+	
+	  function ScheduleTable(props) {
+	    _classCallCheck(this, ScheduleTable);
+	
+	    var _this = _possibleConstructorReturn(this, (ScheduleTable.__proto__ || Object.getPrototypeOf(ScheduleTable)).call(this, props));
+	
+	    _this.state = {
+	      scheduleTables: []
+	    };
+	
+	    _this._onClockIn = _this._onClockIn.bind(_this);
+	    return _this;
+	  } //Constructor
+	
+	
+	  _createClass(ScheduleTable, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      //set all the Scheduled for today
+	      _Helpers2.default._getSchedule().then(function (userData, err) {
+	        this.setState({ scheduleTables: userData.data });
+	      }.bind(this));
+	    } //componentWillMount
+	
+	  }, {
+	    key: '_onClockIn',
+	    value: function _onClockIn(event) {
+	      //console.log("on Clock In   " + JSON.stringify(event.target.value));
+	      this.props._getScheduleClockInId(event.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log(this.state.scheduleTables);
+	      var that = this;
+	
+	      return _react2.default.createElement(
+	        'table',
+	        null,
+	        _react2.default.createElement(
+	          'tr',
+	          null,
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Client'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Date'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Start Time'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'End Time'
+	          ),
+	          _react2.default.createElement(
+	            'th',
+	            null,
+	            'Address'
+	          ),
+	          _react2.default.createElement('th', null)
+	        ),
+	        this.state.scheduleTables.map(function (id, i) {
+	          return _react2.default.createElement(
+	            'tr',
+	            { key: i },
+	            _react2.default.createElement(
+	              'td',
+	              null,
+	              id.jobName
+	            ),
+	            _react2.default.createElement(
+	              'td',
+	              null,
+	              moment(id.startDate).format('L')
+	            ),
+	            _react2.default.createElement(
+	              'td',
+	              null,
+	              moment(id.startTime).format('LT')
+	            ),
+	            _react2.default.createElement(
+	              'td',
+	              null,
+	              moment(id.endTime).format('LT')
+	            ),
+	            _react2.default.createElement(
+	              'td',
+	              null,
+	              id.jobAdd,
+	              ', ',
+	              id.jobCity,
+	              ', ',
+	              id.jobState,
+	              ', ',
+	              id.jobZip,
+	              ' '
+	            )
+	          );
+	        })
+	      );
+	    }
+	  }]);
+	
+	  return ScheduleTable;
+	}(_react2.default.Component); //class defination
+	
+	
+	// Export the componen back for use in other files
+	
+	
+	exports.default = ScheduleTable;
+
+/***/ },
+/* 685 */
+/*!******************************************************!*\
+  !*** ./app/components/children/schedule/Timecard.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Helpers = __webpack_require__(/*! ../../utils/Helpers.js */ 612);
+	
+	var _Helpers2 = _interopRequireDefault(_Helpers);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	//import helper file
+	
+	
+	var Timecard = function (_React$Component) {
+		_inherits(Timecard, _React$Component);
+	
+		function Timecard(props) {
+			_classCallCheck(this, Timecard);
+	
+			var _this = _possibleConstructorReturn(this, (Timecard.__proto__ || Object.getPrototypeOf(Timecard)).call(this, props));
+	
+			_this.state = {
+				timeCard: {},
+				cardId: 0,
+				yourEndTime: null,
+				yourStartTime: Date.now()
+			};
+			_this._onClockOut = _this._onClockOut.bind(_this);
+			return _this;
+		}
+	
+		_createClass(Timecard, [{
+			key: "_onClockOut",
+			value: function _onClockOut() {
+				console.log("_onClockOut");
+				console.log("Card Id " + this.state.cardId);
+				this.setState({ yourEndTime: Date.now() });
+				console.log("endTime " + this.state.yourEndTime);
+				//update database
+			}
+	
+			//wrote to see if clocked out then try to reomve the button 
+	
+		}, {
+			key: "componentDidUpdate",
+			value: function componentDidUpdate() {
+				console.log("componentDidUpdate  " + this.state.yourEndTime);
+				//If end date is updated then update database
+				if (this.state.yourEndTime != null) {
+					_Helpers2.default._updateTimecard(this.state.cardId, this.state.yourEndTime).then(function (data, err) {
+						console.log(JSON.stringify(data));
+					});
+				}
+			}
+		}, {
+			key: "componentWillMount",
+			value: function componentWillMount() {
+				console.log("componentWillMount");
+				//var vTimecard = Helpers._getOneSchedule(this.props.clockInId);
+				_Helpers2.default._getOneSchedule(this.props.clockInId).then(function (newSchedule) {
+	
+					var newTimeSheet = {};
+					newTimeSheet.JobId = newSchedule.data.JobId;
+					newTimeSheet.UserId = newSchedule.data.UserId;
+	
+					newTimeSheet.clockIn = Date.now();
+					_Helpers2.default._createTimecard(newTimeSheet).then(function (newdata) {
+						console.log("newSchedule :" + JSON.stringify(newSchedule));
+						console.log("New Data :" + JSON.stringify(newdata));
+	
+						console.log("back from helper in componentWillMount " + JSON.stringify(this.state.timeCard));
+						this.setState({ timeCard: newSchedule.data });
+						this.setState({ cardId: newdata.data.id });
+						this.setState({ yourStartTime: Date.now() });
+	
+						console.log("Card Id " + this.state.cardId);
+	
+						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
+					}.bind(this));
+				}.bind(this));
+			} //componentWillMount	
+	
+		}, {
+			key: "render",
+			value: function render() {
+	
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(
+						"h1",
+						null,
+						" Timsheets "
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" ",
+						this.props.clockInId,
+						" "
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" Name: ",
+						this.state.timeCard.firstname,
+						" "
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" Job: ",
+						this.state.timeCard.jobname,
+						" "
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" Started On: ",
+						moment(this.state.yourStartTime).format('L')
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" Started At: ",
+						moment(this.state.yourStartTime).format('LT')
+					),
+					this.state.yourEndTime == null ? _react2.default.createElement(
+						"button",
+						{ type: "button", onClick: this._onClockOut },
+						"Clock-out"
+					) : _react2.default.createElement(
+						"p",
+						null,
+						" Logged out at ",
+						moment(this.state.yourEndTime).format('LT'),
+						" "
+					)
+				);
+			}
+		}]);
+	
+		return Timecard;
+	}(_react2.default.Component);
+	
+	exports.default = Timecard;
+
+/***/ },
+/* 686 */
 /*!**********************************************!*\
   !*** ./app/components/children/Timesheet.js ***!
   \**********************************************/

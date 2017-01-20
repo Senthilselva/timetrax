@@ -22,8 +22,14 @@ const helpers = {
 	//gets all the schedule for the user the user is got from localStorage
 	_getSchedule: () => {
 		var vEmail =localStorage.getItem('userName');
-		console.log("get Schedule"+vEmail);
 		return axios.get("/schedule/user/"+vEmail );
+	},
+
+	//gets all the schedule for the user the user is got from localStorage
+	_getTodaySchedule: () => {
+		var vEmail =localStorage.getItem('userName');
+		console.log("get Schedule"+vEmail);
+		return axios.get("/schedule/user/today/"+vEmail );
 	},
 
 	_getOneSchedule: (id) => {

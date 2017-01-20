@@ -62,9 +62,6 @@ router.get('/schedule/:scheduleId', function(req,res) {
     }
   }).then(function(data){
    
-    //console.log(data.Job);
-    //console.log(data.id)
-    //console.log(data.startDate)
     var vSchedule = {};
     vSchedule.id = data.id;
     vSchedule.startDate =data.startDate;
@@ -78,6 +75,56 @@ router.get('/schedule/:scheduleId', function(req,res) {
     
     res.json(vSchedule);
   })
+});
+
+
+router.get('/user/today/:userName', function(req,res) {
+  console.log("inside today Schedule");
+  //console.log(JSON.stringify(req.params));
+    var today = Date.now();
+    //today = moment(today).format("YYYY-MM-DD");
+    models.Schedule.findAll(
+      { include: [
+        { 
+          model : models.User,
+          where: { username: req.params.userName} 
+        },
+        {
+          model:  models.Job 
+        }
+      ] ,
+      where: 
+      { startDate:
+        {
+          $gt: new Date(today)
+         // $lt: new Date(new Date() + 24 * 60 * 60 * 1000)
+        }
+      }
+
+    }).then(function(data){
+    var jobList = [];
+
+    for(var i=0; i< data.length; i++){
+   //moving the needed data to an array
+    var job = {};
+    job.id = data[i].id;
+    console.log(data[i].startDate);
+    job.startDate = moment(data[i].startDate).format('L');
+    console.log(job.startDate);
+    job.startTime = data[i].startTime;
+    job.endTime = data[i].endTime;
+    job.jobName = data[i].Job.name;
+    job.jobAdd = data[i].Job.address;
+    job.jobCity = data[i].Job.city;
+    job.jobState = data[i].Job.state;
+    job.jobZip = data[i].Job.zip;
+    
+
+    jobList.push(job)
+  }
+     res.json(jobList)
+  })
+
 });
 
 module.exports = router;
