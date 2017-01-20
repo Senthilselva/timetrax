@@ -25,8 +25,8 @@ class Dashboard extends React.Component {
     const userData = Auth._getData();
     return (
       <div>
-        <p>Hello!</p>
-        <p>{userData.firstName} {userData.lastName}</p>
+        <p>Hi {userData.firstName}</p>
+        
         {this.state.clockInId == 0 ? (
         <Scheduletable _getScheduleClockInId = {this._getScheduleClockInId} /> 
         ) : (

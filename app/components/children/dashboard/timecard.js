@@ -7,7 +7,7 @@ class Timecard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			timeCard :{},
+			tCard :{},
 			cardId:0,
 			yourEndTime:null,
 			yourStartTime:Date.now()
@@ -55,8 +55,8 @@ class Timecard extends React.Component {
 						
 
 						console.log("back from helper in componentWillMount "
-							+ JSON.stringify(this.state.timeCard));
-						this.setState({timeCard : newSchedule.data});
+							+ JSON.stringify(this.state.tCard));
+						this.setState({tCard : newSchedule.data});
 						this.setState({ cardId : newdata.data.id});
 						this.setState({ yourStartTime : Date.now()});
 						
@@ -74,8 +74,8 @@ class Timecard extends React.Component {
 		<div>
 			<h1> Timsheets </h1>
 			<p> { this.props.clockInId } </p>
-			<p> Name: {this.state.timeCard.firstname} </p>
-			<p> Job: {this.state.timeCard.jobname} </p>
+			<p> Name: {this.state.tCard.firstname} </p>
+			<p> Job: {this.state.tCard.jobname} </p>
 
 			<p> Started On: {moment(this.state.yourStartTime).format('L')}</p>
 			<p> Started At: {moment(this.state.yourStartTime).format('LT')}</p>

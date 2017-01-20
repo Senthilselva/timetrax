@@ -1,7 +1,7 @@
 //import react 
 import React from "react";
 import {Col, Card, Row, Input, Button} from "react-materialize";
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 
 //auth function
 import Auth  from "./Auth";
@@ -53,7 +53,7 @@ class Login extends React.Component {
         <Row>
             <Col m={4}></Col>           
             <Col m={4}>
-                <Card className='white' textClassName='black-text' title='Login' actions={[<a href='/register'>Change Password</a>]}>
+                <Card className='white' textClassName='black-text' title='Login'>
                     <form onSubmit={this._handleSubmit}>
                         <Row>
                             <Input type="email" 
@@ -79,6 +79,9 @@ class Login extends React.Component {
                             {this.state.error && (
                                 <p>Bad login information</p>
                             )}
+                        </Row>
+                        <Row>
+                            <p>Not registered? <Link to="/register">Register Here</Link></p>
                         </Row>
                     </form>
                 </Card> 

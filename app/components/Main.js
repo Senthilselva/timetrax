@@ -7,10 +7,9 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Auth  from "./children/Auth";
 
-
 injectTapEventPlugin();
 
-class Login extends Component {
+class LoginLink extends Component {
   constructor(props) {
     super(props);
     this.muiName = 'FlatButton';
@@ -23,25 +22,21 @@ class Login extends Component {
   }
 }
 
-class Logged extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <IconMenu {...props}
-        iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      >
-        <Link to="/profile"><MenuItem primaryText="Profile" /></Link>
-        <Link to="/logout"><MenuItem primaryText="Logout" /></Link>
-      </IconMenu>    
-    )
-  }
-};
+const PulldownMenu = (props) => (
+  <IconMenu
+    {...props}
+    iconButtonElement={
+      <IconButton><MoreVertIcon /></IconButton>
+    }
+    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+  >
+    <Link to="#"><MenuItem primaryText="My Profile" /></Link>
+    <Link to="/logout"><MenuItem primaryText="Sign out" /></Link>
+  </IconMenu>
+);
 
-Logged.muiName = 'IconMenu';
+PulldownMenu.muiName = 'IconMenu';
 
 //define class
 class Main extends Component {
@@ -64,11 +59,9 @@ class Main extends Component {
   componentWillMount() {
     Auth._onChange = this._updateAuth
     Auth._login()
-    console.log("In Main.js: Augh._loggedIn=" + Auth._loggedIn());
   }
 
   _handleClick(event) {
-    console.log(this.state.loggedIn);
     event.preventDefault();
     Auth._logOut();
     //this.setState(loggedIn,false);
@@ -82,16 +75,14 @@ class Main extends Component {
     this.setState({open: false});
   }
 
-
  _setLogin(newLog){
-    console.log(newLog);
   }
 
  render() {
     return (
 
       <div className="mainContainer">
-         <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<Login />} />
+         <AppBar title="TimeTrax" onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={this.state.loggedIn ? <PulldownMenu /> : <LoginLink />} />
            <Drawer containerStyle={{height: 'calc(100% - 64px)', top: 64}}
                    docked={false}
                    openDrawerOffset={0.2} // 20% gap on the right side of drawer
@@ -107,15 +98,9 @@ class Main extends Component {
                    open={this.state.open}
                    onRequestChange={(open) => this.setState({open})}
                    >
-             {this.state.loggedIn ? (
-             <Link to="logout"><MenuItem onTouchTap={this.handleClose}>SignOut</MenuItem></Link>
-             ) : (
-             <Link to="login"><MenuItem onTouchTap={this.handleClose}>SignIn</MenuItem></Link>      
-             )}
              <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
              <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
              <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
-             <Link to="register"><MenuItem onTouchTap={this.handleClose}>Register</MenuItem></Link>
            </Drawer>
           {this.props.children}
       </div>

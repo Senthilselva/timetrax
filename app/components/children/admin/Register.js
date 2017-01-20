@@ -49,7 +49,7 @@ class Register extends React.Component {
     	<Row>
     		<Col m={4}></Col>	    	
   			<Col m={4}>
-    			<Card className='white' textClassName='black-text' title='Create User' actions={[<a href='/register'>Change Password</a>]}>
+    			<Card className='white' textClassName='black-text' title='Create User'>
     				<form onSubmit={this._handleSubmit}>
     					<Row>
     						<Input type="text" 
@@ -140,7 +140,7 @@ class Register extends React.Component {
                             onChange={this._handleChange}
                             required
                             />
-    						<Button type = "submit"> Login </Button>
+    						<Button type = "submit"> Register </Button>
 						</Row>
     				</form>
 				</Card> 
