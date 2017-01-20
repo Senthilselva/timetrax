@@ -12,7 +12,7 @@ import helpers from "../utils/Helpers";
 //const Login = withRouter(
 
 class Login extends React.Component {
-	constructor(props) {
+    constructor(props) {
     super(props);
 
     this.state = {
@@ -51,16 +51,16 @@ class Login extends React.Component {
 
 
 //render- function
-	render() {
+    render() {
         console.log("in Login");
-    	return (
-    	<Row>
-    		<Col m={4}></Col>	    	
-  			<Col m={4}>
-    			<Card className='white' textClassName='black-text' title='Login' actions={[<a href='/register'>Change Password</a>]}>
-    				<form onSubmit={this._handleSubmit}>
-    					<Row>
-    						<Input type="email" 
+        return (
+        <Row>
+            <Col m={4}></Col>           
+            <Col m={4}>
+                <Card className='white' textClassName='black-text' title='Login' actions={[<a href='/register'>Change Password</a>]}>
+                    <form onSubmit={this._handleSubmit}>
+                        <Row>
+                            <Input type="email" 
                             label="Email" 
                             s={12} 
                             id="email"
@@ -70,7 +70,7 @@ class Login extends React.Component {
                             required 
                             />
 
-    						<Input type="password" 
+                            <Input type="password" 
                             label="Password"
                             id="password" 
                             s={12} 
@@ -79,17 +79,17 @@ class Login extends React.Component {
                             onChange={this._handleChange}
                             />
 
-    						<Button type = "submit"> Login </Button>
+                            <Button type = "submit"> Login </Button>
                             {this.state.error && (
                                 <p>Bad login information</p>
                             )}
-						</Row>
-    				</form>
-				</Card> 
-			</Col>
-		</Row>
-    	);
-	}//render
+                        </Row>
+                    </form>
+                </Card> 
+            </Col>
+        </Row>
+        );
+    }//render
 
 }//React.Component
 //)

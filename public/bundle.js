@@ -22065,27 +22065,27 @@
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
-	var _Login = __webpack_require__(/*! ../components/children/Login */ 633);
+	var _Login = __webpack_require__(/*! ../components/children/Login */ 632);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
-	var _Logout = __webpack_require__(/*! ../components/children/Logout */ 677);
+	var _Logout = __webpack_require__(/*! ../components/children/Logout */ 676);
 	
 	var _Logout2 = _interopRequireDefault(_Logout);
 	
-	var _Register = __webpack_require__(/*! ../components/children/admin/Register */ 678);
+	var _Register = __webpack_require__(/*! ../components/children/admin/Register */ 677);
 	
 	var _Register2 = _interopRequireDefault(_Register);
 	
-	var _Home = __webpack_require__(/*! ../components/children/Home */ 679);
+	var _Home = __webpack_require__(/*! ../components/children/Home */ 678);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
-	var _Dashboard = __webpack_require__(/*! ../components/children/Dashboard */ 681);
+	var _Dashboard = __webpack_require__(/*! ../components/children/Dashboard */ 680);
 	
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 	
-	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 684);
+	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 683);
 	
 	var _Timesheet2 = _interopRequireDefault(_Timesheet);
 	
@@ -35271,10 +35271,6 @@
 	
 	var _Auth2 = _interopRequireDefault(_Auth);
 	
-	var _Header = __webpack_require__(/*! ./children/Header */ 632);
-	
-	var _Header2 = _interopRequireDefault(_Header);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -35285,19 +35281,19 @@
 	
 	(0, _reactTapEventPlugin2.default)();
 	
-	var Login = function (_Component) {
-	  _inherits(Login, _Component);
+	var LoginLink = function (_Component) {
+	  _inherits(LoginLink, _Component);
 	
-	  function Login(props) {
-	    _classCallCheck(this, Login);
+	  function LoginLink(props) {
+	    _classCallCheck(this, LoginLink);
 	
-	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (LoginLink.__proto__ || Object.getPrototypeOf(LoginLink)).call(this, props));
 	
 	    _this.muiName = 'FlatButton';
 	    return _this;
 	  }
 	
-	  _createClass(Login, [{
+	  _createClass(LoginLink, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -35308,7 +35304,7 @@
 	    }
 	  }]);
 	
-	  return Login;
+	  return LoginLink;
 	}(_react.Component);
 	
 	var Logged = function (_Component2) {
@@ -35483,6 +35479,15 @@
 	              _materialUi.MenuItem,
 	              { onTouchTap: this.handleClose },
 	              'Time Sheets'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: 'register' },
+	            _react2.default.createElement(
+	              _materialUi.MenuItem,
+	              { onTouchTap: this.handleClose },
+	              'Register'
 	            )
 	          )
 	        ),
@@ -70227,213 +70232,6 @@
 
 /***/ },
 /* 632 */
-/*!*******************************************!*\
-  !*** ./app/components/children/Header.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 179);
-	
-	var _reactRouter2 = _interopRequireDefault(_reactRouter);
-	
-	var _materialUi = __webpack_require__(/*! material-ui */ 384);
-	
-	var _moreVert = __webpack_require__(/*! material-ui/svg-icons/navigation/more-vert */ 603);
-	
-	var _moreVert2 = _interopRequireDefault(_moreVert);
-	
-	var _close = __webpack_require__(/*! material-ui/svg-icons/navigation/close */ 604);
-	
-	var _close2 = _interopRequireDefault(_close);
-	
-	var _reactTapEventPlugin = __webpack_require__(/*! react-tap-event-plugin */ 605);
-	
-	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
-	
-	var _Auth = __webpack_require__(/*! ./Auth */ 611);
-	
-	var _Auth2 = _interopRequireDefault(_Auth);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	//injectTapEventPlugin();
-	
-	var Login = function (_Component) {
-	  _inherits(Login, _Component);
-	
-	  function Login(props) {
-	    _classCallCheck(this, Login);
-	
-	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
-	
-	    _this.muiName = 'FlatButton';
-	    return _this;
-	  }
-	
-	  _createClass(Login, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: '/login' },
-	        _react2.default.createElement(_materialUi.FlatButton, { label: 'Login' })
-	      );
-	    }
-	  }]);
-	
-	  return Login;
-	}(_react.Component);
-	
-	var Logged = function Logged(props) {
-	  _react2.default.createElement(
-	    _materialUi.IconMenu,
-	    _extends({}, props, {
-	      iconButtonElement: _react2.default.createElement(
-	        _materialUi.IconButton,
-	        null,
-	        _react2.default.createElement(_moreVert2.default, null)
-	      ),
-	      targetOrigin: { horizontal: 'right', vertical: 'top' },
-	      anchorOrigin: { horizontal: 'right', vertical: 'top' }
-	    }),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/profile' },
-	      _react2.default.createElement(_materialUi.MenuItem, { primaryText: 'Profile' })
-	    ),
-	    _react2.default.createElement(
-	      _reactRouter.Link,
-	      { to: '/logout' },
-	      _react2.default.createElement(_materialUi.MenuItem, { primaryText: 'Logout' })
-	    )
-	  );
-	};
-	
-	Logged.muiName = 'IconMenu';
-	
-	var Header = function (_Component2) {
-	  _inherits(Header, _Component2);
-	
-	  function Header(props) {
-	    _classCallCheck(this, Header);
-	
-	    var _this2 = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
-	
-	    _this2.state = { open: false, loggedIn: _Auth2.default._loggedIn() };
-	    _this2.handleToggle = _this2.handleToggle.bind(_this2);
-	    return _this2;
-	  }
-	
-	  _createClass(Header, [{
-	    key: 'handleToggle',
-	    value: function handleToggle() {
-	      this.setState({ open: !this.state.open });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/home' },
-	          _react2.default.createElement(_materialUi.AppBar, { title: 'TimeTrax', onLeftIconButtonTouchTap: this.handleToggle,
-	            iconElementRight: this.state.loggedIn ? _react2.default.createElement(Logged, null) : _react2.default.createElement(Login, null)
-	          })
-	        ),
-	        _react2.default.createElement(
-	          _materialUi.Drawer,
-	          { containerStyle: { height: 'calc(100% - 64px)', top: 64 },
-	            docked: true,
-	            tapToClose: true,
-	            openDrawerOffset: 0.2 // 20% gap on the right side of drawer
-	            , panCloseMask: 0.2,
-	            closedDrawerOffset: -3,
-	            styles: {
-	              main: { paddingLeft: 3 }
-	            },
-	            tweenHandler: function tweenHandler(ratio) {
-	              return {
-	                main: { opacity: (2 - ratio) / 2 }
-	              };
-	            },
-	            width: 200,
-	            open: this.state.open,
-	            onRequestChange: function onRequestChange(open) {
-	              return _this3.setState({ open: open });
-	            }
-	          },
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/dashboard' },
-	            _react2.default.createElement(
-	              _materialUi.MenuItem,
-	              null,
-	              'Dashboard'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/timesheets' },
-	            _react2.default.createElement(
-	              _materialUi.MenuItem,
-	              null,
-	              'Time Sheets'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/schedule' },
-	            _react2.default.createElement(
-	              _materialUi.MenuItem,
-	              null,
-	              'Schedule'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/login' },
-	            _react2.default.createElement(
-	              _materialUi.MenuItem,
-	              null,
-	              'Login'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Header;
-	}(_react.Component);
-	
-	exports.default = Header;
-
-/***/ },
-/* 633 */
 /*!******************************************!*\
   !*** ./app/components/children/Login.js ***!
   \******************************************/
@@ -70451,7 +70249,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactMaterialize = __webpack_require__(/*! react-materialize */ 634);
+	var _reactMaterialize = __webpack_require__(/*! react-materialize */ 633);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 179);
 	
@@ -70594,7 +70392,7 @@
 	exports.default = Login;
 
 /***/ },
-/* 634 */
+/* 633 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/index.js ***!
   \******************************************/
@@ -70607,155 +70405,155 @@
 	});
 	exports.Toast = exports.Tag = exports.Table = exports.Tabs = exports.Tab = exports.Slider = exports.Slide = exports.SideNav = exports.SearchForm = exports.Row = exports.ProgressBar = exports.Preloader = exports.PaginationButton = exports.Pagination = exports.Parallax = exports.OverlayTrigger = exports.Overlay = exports.NavItem = exports.Navbar = exports.Modal = exports.MenuItem = exports.MediaBox = exports.Input = exports.Icon = exports.Footer = exports.Dropdown = exports.CollectionItem = exports.Collection = exports.CollapsibleItem = exports.Collapsible = exports.Col = exports.Chip = exports.CardTitle = exports.CardPanel = exports.Card = exports.Button = exports.Breadcrumb = exports.Badge = undefined;
 	
-	var _Badge = __webpack_require__(/*! ./Badge */ 635);
+	var _Badge = __webpack_require__(/*! ./Badge */ 634);
 	
 	var _Badge2 = _interopRequireDefault(_Badge);
 	
-	var _Breadcrumb = __webpack_require__(/*! ./Breadcrumb */ 637);
+	var _Breadcrumb = __webpack_require__(/*! ./Breadcrumb */ 636);
 	
 	var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
 	
-	var _Button = __webpack_require__(/*! ./Button */ 640);
+	var _Button = __webpack_require__(/*! ./Button */ 639);
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _Card = __webpack_require__(/*! ./Card */ 643);
+	var _Card = __webpack_require__(/*! ./Card */ 642);
 	
 	var _Card2 = _interopRequireDefault(_Card);
 	
-	var _CardPanel = __webpack_require__(/*! ./CardPanel */ 644);
+	var _CardPanel = __webpack_require__(/*! ./CardPanel */ 643);
 	
 	var _CardPanel2 = _interopRequireDefault(_CardPanel);
 	
-	var _CardTitle = __webpack_require__(/*! ./CardTitle */ 645);
+	var _CardTitle = __webpack_require__(/*! ./CardTitle */ 644);
 	
 	var _CardTitle2 = _interopRequireDefault(_CardTitle);
 	
-	var _Chip = __webpack_require__(/*! ./Chip */ 646);
+	var _Chip = __webpack_require__(/*! ./Chip */ 645);
 	
 	var _Chip2 = _interopRequireDefault(_Chip);
 	
-	var _Col = __webpack_require__(/*! ./Col */ 638);
+	var _Col = __webpack_require__(/*! ./Col */ 637);
 	
 	var _Col2 = _interopRequireDefault(_Col);
 	
-	var _Collapsible = __webpack_require__(/*! ./Collapsible */ 647);
+	var _Collapsible = __webpack_require__(/*! ./Collapsible */ 646);
 	
 	var _Collapsible2 = _interopRequireDefault(_Collapsible);
 	
-	var _CollapsibleItem = __webpack_require__(/*! ./CollapsibleItem */ 648);
+	var _CollapsibleItem = __webpack_require__(/*! ./CollapsibleItem */ 647);
 	
 	var _CollapsibleItem2 = _interopRequireDefault(_CollapsibleItem);
 	
-	var _Collection = __webpack_require__(/*! ./Collection */ 649);
+	var _Collection = __webpack_require__(/*! ./Collection */ 648);
 	
 	var _Collection2 = _interopRequireDefault(_Collection);
 	
-	var _CollectionItem = __webpack_require__(/*! ./CollectionItem */ 650);
+	var _CollectionItem = __webpack_require__(/*! ./CollectionItem */ 649);
 	
 	var _CollectionItem2 = _interopRequireDefault(_CollectionItem);
 	
-	var _Dropdown = __webpack_require__(/*! ./Dropdown */ 651);
+	var _Dropdown = __webpack_require__(/*! ./Dropdown */ 650);
 	
 	var _Dropdown2 = _interopRequireDefault(_Dropdown);
 	
-	var _Parallax = __webpack_require__(/*! ./Parallax */ 652);
+	var _Parallax = __webpack_require__(/*! ./Parallax */ 651);
 	
 	var _Parallax2 = _interopRequireDefault(_Parallax);
 	
-	var _Footer = __webpack_require__(/*! ./Footer */ 653);
+	var _Footer = __webpack_require__(/*! ./Footer */ 652);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _Input = __webpack_require__(/*! ./Input */ 655);
+	var _Input = __webpack_require__(/*! ./Input */ 654);
 	
 	var _Input2 = _interopRequireDefault(_Input);
 	
-	var _MediaBox = __webpack_require__(/*! ./MediaBox */ 656);
+	var _MediaBox = __webpack_require__(/*! ./MediaBox */ 655);
 	
 	var _MediaBox2 = _interopRequireDefault(_MediaBox);
 	
-	var _MenuItem = __webpack_require__(/*! ./MenuItem */ 657);
+	var _MenuItem = __webpack_require__(/*! ./MenuItem */ 656);
 	
 	var _MenuItem2 = _interopRequireDefault(_MenuItem);
 	
-	var _Modal = __webpack_require__(/*! ./Modal */ 658);
+	var _Modal = __webpack_require__(/*! ./Modal */ 657);
 	
 	var _Modal2 = _interopRequireDefault(_Modal);
 	
-	var _Navbar = __webpack_require__(/*! ./Navbar */ 661);
+	var _Navbar = __webpack_require__(/*! ./Navbar */ 660);
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _NavItem = __webpack_require__(/*! ./NavItem */ 662);
+	var _NavItem = __webpack_require__(/*! ./NavItem */ 661);
 	
 	var _NavItem2 = _interopRequireDefault(_NavItem);
 	
-	var _Overlay = __webpack_require__(/*! ./Overlay */ 660);
+	var _Overlay = __webpack_require__(/*! ./Overlay */ 659);
 	
 	var _Overlay2 = _interopRequireDefault(_Overlay);
 	
-	var _OverlayTrigger = __webpack_require__(/*! ./OverlayTrigger */ 659);
+	var _OverlayTrigger = __webpack_require__(/*! ./OverlayTrigger */ 658);
 	
 	var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
 	
-	var _Pagination = __webpack_require__(/*! ./Pagination */ 663);
+	var _Pagination = __webpack_require__(/*! ./Pagination */ 662);
 	
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 	
-	var _PaginationButton = __webpack_require__(/*! ./PaginationButton */ 664);
+	var _PaginationButton = __webpack_require__(/*! ./PaginationButton */ 663);
 	
 	var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
 	
-	var _Preloader = __webpack_require__(/*! ./Preloader */ 665);
+	var _Preloader = __webpack_require__(/*! ./Preloader */ 664);
 	
 	var _Preloader2 = _interopRequireDefault(_Preloader);
 	
-	var _ProgressBar = __webpack_require__(/*! ./ProgressBar */ 667);
+	var _ProgressBar = __webpack_require__(/*! ./ProgressBar */ 666);
 	
 	var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
 	
-	var _Row = __webpack_require__(/*! ./Row */ 654);
+	var _Row = __webpack_require__(/*! ./Row */ 653);
 	
 	var _Row2 = _interopRequireDefault(_Row);
 	
-	var _SearchForm = __webpack_require__(/*! ./SearchForm */ 668);
+	var _SearchForm = __webpack_require__(/*! ./SearchForm */ 667);
 	
 	var _SearchForm2 = _interopRequireDefault(_SearchForm);
 	
-	var _SideNav = __webpack_require__(/*! ./SideNav */ 669);
+	var _SideNav = __webpack_require__(/*! ./SideNav */ 668);
 	
 	var _SideNav2 = _interopRequireDefault(_SideNav);
 	
-	var _Slide = __webpack_require__(/*! ./Slide */ 670);
+	var _Slide = __webpack_require__(/*! ./Slide */ 669);
 	
 	var _Slide2 = _interopRequireDefault(_Slide);
 	
-	var _Slider = __webpack_require__(/*! ./Slider */ 671);
+	var _Slider = __webpack_require__(/*! ./Slider */ 670);
 	
 	var _Slider2 = _interopRequireDefault(_Slider);
 	
-	var _Tab = __webpack_require__(/*! ./Tab */ 672);
+	var _Tab = __webpack_require__(/*! ./Tab */ 671);
 	
 	var _Tab2 = _interopRequireDefault(_Tab);
 	
-	var _Tabs = __webpack_require__(/*! ./Tabs */ 673);
+	var _Tabs = __webpack_require__(/*! ./Tabs */ 672);
 	
 	var _Tabs2 = _interopRequireDefault(_Tabs);
 	
-	var _Table = __webpack_require__(/*! ./Table */ 674);
+	var _Table = __webpack_require__(/*! ./Table */ 673);
 	
 	var _Table2 = _interopRequireDefault(_Table);
 	
-	var _Tag = __webpack_require__(/*! ./Tag */ 675);
+	var _Tag = __webpack_require__(/*! ./Tag */ 674);
 	
 	var _Tag2 = _interopRequireDefault(_Tag);
 	
-	var _Toast = __webpack_require__(/*! ./Toast */ 676);
+	var _Toast = __webpack_require__(/*! ./Toast */ 675);
 	
 	var _Toast2 = _interopRequireDefault(_Toast);
 	
@@ -70801,7 +70599,7 @@
 	exports.Toast = _Toast2.default;
 
 /***/ },
-/* 635 */
+/* 634 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Badge.js ***!
   \******************************************/
@@ -70819,7 +70617,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -70856,7 +70654,7 @@
 	exports.default = Badge;
 
 /***/ },
-/* 636 */
+/* 635 */
 /*!*******************************!*\
   !*** ./~/classnames/index.js ***!
   \*******************************/
@@ -70913,7 +70711,7 @@
 
 
 /***/ },
-/* 637 */
+/* 636 */
 /*!***********************************************!*\
   !*** ./~/react-materialize/lib/Breadcrumb.js ***!
   \***********************************************/
@@ -70929,7 +70727,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Col = __webpack_require__(/*! ./Col */ 638);
+	var _Col = __webpack_require__(/*! ./Col */ 637);
 	
 	var _Col2 = _interopRequireDefault(_Col);
 	
@@ -70966,7 +70764,7 @@
 	exports.default = Breadcrumb;
 
 /***/ },
-/* 638 */
+/* 637 */
 /*!****************************************!*\
   !*** ./~/react-materialize/lib/Col.js ***!
   \****************************************/
@@ -70984,11 +70782,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -71057,7 +70855,7 @@
 	exports.default = Col;
 
 /***/ },
-/* 639 */
+/* 638 */
 /*!**********************************************!*\
   !*** ./~/react-materialize/lib/constants.js ***!
   \**********************************************/
@@ -71078,7 +70876,7 @@
 	};
 
 /***/ },
-/* 640 */
+/* 639 */
 /*!*******************************************!*\
   !*** ./~/react-materialize/lib/Button.js ***!
   \*******************************************/
@@ -71098,19 +70896,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _idgen = __webpack_require__(/*! ./idgen */ 642);
+	var _idgen = __webpack_require__(/*! ./idgen */ 641);
 	
 	var _idgen2 = _interopRequireDefault(_idgen);
 	
@@ -71266,7 +71064,7 @@
 	exports.default = Button;
 
 /***/ },
-/* 641 */
+/* 640 */
 /*!*****************************************!*\
   !*** ./~/react-materialize/lib/Icon.js ***!
   \*****************************************/
@@ -71284,11 +71082,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -71348,7 +71146,7 @@
 	exports.default = Icon;
 
 /***/ },
-/* 642 */
+/* 641 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/idgen.js ***!
   \******************************************/
@@ -71374,7 +71172,7 @@
 	}
 
 /***/ },
-/* 643 */
+/* 642 */
 /*!*****************************************!*\
   !*** ./~/react-materialize/lib/Card.js ***!
   \*****************************************/
@@ -71394,11 +71192,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -71528,7 +71326,7 @@
 	exports.default = Card;
 
 /***/ },
-/* 644 */
+/* 643 */
 /*!**********************************************!*\
   !*** ./~/react-materialize/lib/CardPanel.js ***!
   \**********************************************/
@@ -71546,7 +71344,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -71578,7 +71376,7 @@
 	exports.default = CardPanel;
 
 /***/ },
-/* 645 */
+/* 644 */
 /*!**********************************************!*\
   !*** ./~/react-materialize/lib/CardTitle.js ***!
   \**********************************************/
@@ -71598,11 +71396,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -71676,7 +71474,7 @@
 	exports.default = CardTitle;
 
 /***/ },
-/* 646 */
+/* 645 */
 /*!*****************************************!*\
   !*** ./~/react-materialize/lib/Chip.js ***!
   \*****************************************/
@@ -71722,7 +71520,7 @@
 	exports.default = Chip;
 
 /***/ },
-/* 647 */
+/* 646 */
 /*!************************************************!*\
   !*** ./~/react-materialize/lib/Collapsible.js ***!
   \************************************************/
@@ -71742,7 +71540,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -71858,7 +71656,7 @@
 	exports.default = Collapsible;
 
 /***/ },
-/* 648 */
+/* 647 */
 /*!****************************************************!*\
   !*** ./~/react-materialize/lib/CollapsibleItem.js ***!
   \****************************************************/
@@ -71882,11 +71680,11 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -72040,7 +71838,7 @@
 	exports.default = CollapsibleItem;
 
 /***/ },
-/* 649 */
+/* 648 */
 /*!***********************************************!*\
   !*** ./~/react-materialize/lib/Collection.js ***!
   \***********************************************/
@@ -72058,7 +71856,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72141,7 +71939,7 @@
 	exports.default = Collection;
 
 /***/ },
-/* 650 */
+/* 649 */
 /*!***************************************************!*\
   !*** ./~/react-materialize/lib/CollectionItem.js ***!
   \***************************************************/
@@ -72161,7 +71959,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72221,7 +72019,7 @@
 	exports.default = CollectionItem;
 
 /***/ },
-/* 651 */
+/* 650 */
 /*!*********************************************!*\
   !*** ./~/react-materialize/lib/Dropdown.js ***!
   \*********************************************/
@@ -72241,11 +72039,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _idgen = __webpack_require__(/*! ./idgen */ 642);
+	var _idgen = __webpack_require__(/*! ./idgen */ 641);
 	
 	var _idgen2 = _interopRequireDefault(_idgen);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72356,7 +72154,7 @@
 	exports.default = Dropdown;
 
 /***/ },
-/* 652 */
+/* 651 */
 /*!*********************************************!*\
   !*** ./~/react-materialize/lib/Parallax.js ***!
   \*********************************************/
@@ -72374,7 +72172,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72432,7 +72230,7 @@
 	exports.default = Parallax;
 
 /***/ },
-/* 653 */
+/* 652 */
 /*!*******************************************!*\
   !*** ./~/react-materialize/lib/Footer.js ***!
   \*******************************************/
@@ -72452,15 +72250,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Row = __webpack_require__(/*! ./Row */ 654);
+	var _Row = __webpack_require__(/*! ./Row */ 653);
 	
 	var _Row2 = _interopRequireDefault(_Row);
 	
-	var _Col = __webpack_require__(/*! ./Col */ 638);
+	var _Col = __webpack_require__(/*! ./Col */ 637);
 	
 	var _Col2 = _interopRequireDefault(_Col);
 	
@@ -72547,7 +72345,7 @@
 	exports.default = Footer;
 
 /***/ },
-/* 654 */
+/* 653 */
 /*!****************************************!*\
   !*** ./~/react-materialize/lib/Row.js ***!
   \****************************************/
@@ -72563,7 +72361,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72590,7 +72388,7 @@
 	exports.default = Row;
 
 /***/ },
-/* 655 */
+/* 654 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Input.js ***!
   \******************************************/
@@ -72610,19 +72408,19 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _idgen = __webpack_require__(/*! ./idgen */ 642);
+	var _idgen = __webpack_require__(/*! ./idgen */ 641);
 	
 	var _idgen2 = _interopRequireDefault(_idgen);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -72921,7 +72719,7 @@
 	exports.default = Input;
 
 /***/ },
-/* 656 */
+/* 655 */
 /*!*********************************************!*\
   !*** ./~/react-materialize/lib/MediaBox.js ***!
   \*********************************************/
@@ -72939,7 +72737,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -72971,7 +72769,7 @@
 	exports.default = MediaBox;
 
 /***/ },
-/* 657 */
+/* 656 */
 /*!*********************************************!*\
   !*** ./~/react-materialize/lib/MenuItem.js ***!
   \*********************************************/
@@ -72991,7 +72789,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -73053,7 +72851,7 @@
 	exports.default = MenuItem;
 
 /***/ },
-/* 658 */
+/* 657 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Modal.js ***!
   \******************************************/
@@ -73073,15 +72871,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Button = __webpack_require__(/*! ./Button */ 640);
+	var _Button = __webpack_require__(/*! ./Button */ 639);
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _OverlayTrigger = __webpack_require__(/*! ./OverlayTrigger */ 659);
+	var _OverlayTrigger = __webpack_require__(/*! ./OverlayTrigger */ 658);
 	
 	var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
 	
@@ -73209,7 +73007,7 @@
 	exports.default = Modal;
 
 /***/ },
-/* 659 */
+/* 658 */
 /*!***************************************************!*\
   !*** ./~/react-materialize/lib/OverlayTrigger.js ***!
   \***************************************************/
@@ -73227,11 +73025,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Overlay2 = __webpack_require__(/*! ./Overlay */ 660);
+	var _Overlay2 = __webpack_require__(/*! ./Overlay */ 659);
 	
 	var _Overlay3 = _interopRequireDefault(_Overlay2);
 	
-	var _idgen = __webpack_require__(/*! ./idgen */ 642);
+	var _idgen = __webpack_require__(/*! ./idgen */ 641);
 	
 	var _idgen2 = _interopRequireDefault(_idgen);
 	
@@ -73292,7 +73090,7 @@
 	exports.default = OverlayTrigger;
 
 /***/ },
-/* 660 */
+/* 659 */
 /*!********************************************!*\
   !*** ./~/react-materialize/lib/Overlay.js ***!
   \********************************************/
@@ -73415,7 +73213,7 @@
 	exports.default = Overlay;
 
 /***/ },
-/* 661 */
+/* 660 */
 /*!*******************************************!*\
   !*** ./~/react-materialize/lib/Navbar.js ***!
   \*******************************************/
@@ -73435,15 +73233,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Col = __webpack_require__(/*! ./Col */ 638);
+	var _Col = __webpack_require__(/*! ./Col */ 637);
 	
 	var _Col2 = _interopRequireDefault(_Col);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -73560,7 +73358,7 @@
 	exports.default = Navbar;
 
 /***/ },
-/* 662 */
+/* 661 */
 /*!********************************************!*\
   !*** ./~/react-materialize/lib/NavItem.js ***!
   \********************************************/
@@ -73634,7 +73432,7 @@
 	exports.default = NavItem;
 
 /***/ },
-/* 663 */
+/* 662 */
 /*!***********************************************!*\
   !*** ./~/react-materialize/lib/Pagination.js ***!
   \***********************************************/
@@ -73652,15 +73450,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _PaginationButton = __webpack_require__(/*! ./PaginationButton */ 664);
+	var _PaginationButton = __webpack_require__(/*! ./PaginationButton */ 663);
 	
 	var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
 	
@@ -73817,7 +73615,7 @@
 	exports.default = Pagination;
 
 /***/ },
-/* 664 */
+/* 663 */
 /*!*****************************************************!*\
   !*** ./~/react-materialize/lib/PaginationButton.js ***!
   \*****************************************************/
@@ -73833,7 +73631,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -73879,7 +73677,7 @@
 	exports.default = PaginationButton;
 
 /***/ },
-/* 665 */
+/* 664 */
 /*!**********************************************!*\
   !*** ./~/react-materialize/lib/Preloader.js ***!
   \**********************************************/
@@ -73897,11 +73695,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Spinner = __webpack_require__(/*! ./Spinner */ 666);
+	var _Spinner = __webpack_require__(/*! ./Spinner */ 665);
 	
 	var _Spinner2 = _interopRequireDefault(_Spinner);
 	
@@ -73989,7 +73787,7 @@
 	exports.default = Preloader;
 
 /***/ },
-/* 666 */
+/* 665 */
 /*!********************************************!*\
   !*** ./~/react-materialize/lib/Spinner.js ***!
   \********************************************/
@@ -74005,7 +73803,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -74056,7 +73854,7 @@
 	exports.default = Spinner;
 
 /***/ },
-/* 667 */
+/* 666 */
 /*!************************************************!*\
   !*** ./~/react-materialize/lib/ProgressBar.js ***!
   \************************************************/
@@ -74072,7 +73870,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -74113,7 +73911,7 @@
 	exports.default = ProgressBar;
 
 /***/ },
-/* 668 */
+/* 667 */
 /*!***********************************************!*\
   !*** ./~/react-materialize/lib/SearchForm.js ***!
   \***********************************************/
@@ -74129,7 +73927,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
@@ -74164,7 +73962,7 @@
 	exports.default = SearchForm;
 
 /***/ },
-/* 669 */
+/* 668 */
 /*!********************************************!*\
   !*** ./~/react-materialize/lib/SideNav.js ***!
   \********************************************/
@@ -74180,11 +73978,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Icon = __webpack_require__(/*! ./Icon */ 641);
+	var _Icon = __webpack_require__(/*! ./Icon */ 640);
 	
 	var _Icon2 = _interopRequireDefault(_Icon);
 	
-	var _idgen = __webpack_require__(/*! ./idgen */ 642);
+	var _idgen = __webpack_require__(/*! ./idgen */ 641);
 	
 	var _idgen2 = _interopRequireDefault(_idgen);
 	
@@ -74229,7 +74027,7 @@
 	exports.default = SideNav;
 
 /***/ },
-/* 670 */
+/* 669 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Slide.js ***!
   \******************************************/
@@ -74249,11 +74047,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _constants = __webpack_require__(/*! ./constants */ 639);
+	var _constants = __webpack_require__(/*! ./constants */ 638);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
@@ -74354,7 +74152,7 @@
 	exports.default = Slide;
 
 /***/ },
-/* 671 */
+/* 670 */
 /*!*******************************************!*\
   !*** ./~/react-materialize/lib/Slider.js ***!
   \*******************************************/
@@ -74372,7 +74170,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -74468,7 +74266,7 @@
 	exports.default = Slider;
 
 /***/ },
-/* 672 */
+/* 671 */
 /*!****************************************!*\
   !*** ./~/react-materialize/lib/Tab.js ***!
   \****************************************/
@@ -74544,7 +74342,7 @@
 	exports.default = Tab;
 
 /***/ },
-/* 673 */
+/* 672 */
 /*!*****************************************!*\
   !*** ./~/react-materialize/lib/Tabs.js ***!
   \*****************************************/
@@ -74564,15 +74362,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Row = __webpack_require__(/*! ./Row */ 654);
+	var _Row = __webpack_require__(/*! ./Row */ 653);
 	
 	var _Row2 = _interopRequireDefault(_Row);
 	
-	var _Col = __webpack_require__(/*! ./Col */ 638);
+	var _Col = __webpack_require__(/*! ./Col */ 637);
 	
 	var _Col2 = _interopRequireDefault(_Col);
 	
@@ -74682,7 +74480,7 @@
 	exports.default = Tabs;
 
 /***/ },
-/* 674 */
+/* 673 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Table.js ***!
   \******************************************/
@@ -74702,7 +74500,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
@@ -74790,7 +74588,7 @@
 	exports.default = Table;
 
 /***/ },
-/* 675 */
+/* 674 */
 /*!****************************************!*\
   !*** ./~/react-materialize/lib/Tag.js ***!
   \****************************************/
@@ -74806,7 +74604,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Chip = __webpack_require__(/*! ./Chip */ 646);
+	var _Chip = __webpack_require__(/*! ./Chip */ 645);
 	
 	var _Chip2 = _interopRequireDefault(_Chip);
 	
@@ -74828,7 +74626,7 @@
 	exports.default = Tag;
 
 /***/ },
-/* 676 */
+/* 675 */
 /*!******************************************!*\
   !*** ./~/react-materialize/lib/Toast.js ***!
   \******************************************/
@@ -74846,11 +74644,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _classnames = __webpack_require__(/*! classnames */ 636);
+	var _classnames = __webpack_require__(/*! classnames */ 635);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
 	
-	var _Button = __webpack_require__(/*! ./Button */ 640);
+	var _Button = __webpack_require__(/*! ./Button */ 639);
 	
 	var _Button2 = _interopRequireDefault(_Button);
 	
@@ -74908,7 +74706,7 @@
 	exports.default = Toast;
 
 /***/ },
-/* 677 */
+/* 676 */
 /*!*******************************************!*\
   !*** ./app/components/children/Logout.js ***!
   \*******************************************/
@@ -74974,7 +74772,7 @@
 	exports.default = Logout;
 
 /***/ },
-/* 678 */
+/* 677 */
 /*!***************************************************!*\
   !*** ./app/components/children/admin/Register.js ***!
   \***************************************************/
@@ -74992,7 +74790,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactMaterialize = __webpack_require__(/*! react-materialize */ 634);
+	var _reactMaterialize = __webpack_require__(/*! react-materialize */ 633);
 	
 	var _Helpers = __webpack_require__(/*! ../../utils/Helpers */ 612);
 	
@@ -75182,7 +74980,7 @@
 	exports.default = Register;
 
 /***/ },
-/* 679 */
+/* 678 */
 /*!*****************************************!*\
   !*** ./app/components/children/Home.js ***!
   \*****************************************/
@@ -75200,7 +74998,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Homecard = __webpack_require__(/*! ./home/Homecard */ 680);
+	var _Homecard = __webpack_require__(/*! ./home/Homecard */ 679);
 	
 	var _Homecard2 = _interopRequireDefault(_Homecard);
 	
@@ -75248,7 +75046,7 @@
 	exports.default = Home;
 
 /***/ },
-/* 680 */
+/* 679 */
 /*!**************************************************!*\
   !*** ./app/components/children/home/Homecard.js ***!
   \**************************************************/
@@ -75299,7 +75097,7 @@
 	exports.default = HomeCard;
 
 /***/ },
-/* 681 */
+/* 680 */
 /*!**********************************************!*\
   !*** ./app/components/children/Dashboard.js ***!
   \**********************************************/
@@ -75317,11 +75115,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Scheduletable = __webpack_require__(/*! ./dashboard/Scheduletable.js */ 682);
+	var _Scheduletable = __webpack_require__(/*! ./dashboard/Scheduletable.js */ 681);
 	
 	var _Scheduletable2 = _interopRequireDefault(_Scheduletable);
 	
-	var _Timecard = __webpack_require__(/*! ./dashboard/Timecard.js */ 683);
+	var _Timecard = __webpack_require__(/*! ./dashboard/Timecard.js */ 682);
 	
 	var _Timecard2 = _interopRequireDefault(_Timecard);
 	
@@ -75397,7 +75195,7 @@
 	exports.default = Dashboard;
 
 /***/ },
-/* 682 */
+/* 681 */
 /*!************************************************************!*\
   !*** ./app/components/children/dashboard/Scheduletable.js ***!
   \************************************************************/
@@ -75571,7 +75369,7 @@
 	exports.default = ScheduleTable;
 
 /***/ },
-/* 683 */
+/* 682 */
 /*!*******************************************************!*\
   !*** ./app/components/children/dashboard/Timecard.js ***!
   \*******************************************************/
@@ -75719,6 +75517,12 @@
 						" Started On: ",
 						moment(this.state.yourStartTime).format('LT')
 					),
+					_react2.default.createElement(
+						"p",
+						null,
+						" Started At: ",
+						this.state.yourStartTime
+					),
 					this.state.yourEndTime == null ? _react2.default.createElement(
 						"button",
 						{ type: "button", onClick: this._onClockOut },
@@ -75740,7 +75544,7 @@
 	exports.default = Timecard;
 
 /***/ },
-/* 684 */
+/* 683 */
 /*!**********************************************!*\
   !*** ./app/components/children/Timesheet.js ***!
   \**********************************************/

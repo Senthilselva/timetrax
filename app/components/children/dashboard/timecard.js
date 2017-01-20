@@ -77,8 +77,11 @@ class Timecard extends React.Component {
 			<p> { this.props.clockInId } </p>
 			<p> Name: {this.state.timeCard.firstname} </p>
 			<p> Job: {this.state.timeCard.jobname} </p>
+
 			<p> Started On: {moment(this.state.yourStartTime).format('L')}</p>
 			<p> Started On: {moment(this.state.yourStartTime).format('LT')}</p>
+			<p> Started At: {this.state.yourStartTime}</p>
+
 			{this.state.yourEndTime == null ? (
               <button type="button" onClick={this._onClockOut}>Clock-out</button>
             ) : (

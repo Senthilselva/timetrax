@@ -37,7 +37,9 @@ app.use(express.static(process.cwd() + '/public'));
 app.use(methodOverride('_method'))
 
 //allow sessions
-app.use(session({ secret: 'app', cookie: { maxAge: 60000 }}));
+app.use(session({ secret: 'app', 
+    resave: false, saveUninitialized: false,
+	cookie: { maxAge: 60000 }}));
 app.use(cookieParser());
 
 // uncomment after placing your favicon in /public

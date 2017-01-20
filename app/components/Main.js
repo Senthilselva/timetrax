@@ -6,11 +6,11 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Auth  from "./children/Auth";
-import Header from "./children/Header";
+
 
 injectTapEventPlugin();
 
-class Login extends Component {
+class LoginLink extends Component {
   constructor(props) {
     super(props);
     this.muiName = 'FlatButton';
@@ -115,6 +115,7 @@ class Main extends Component {
              <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
              <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
              <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
+             <Link to="register"><MenuItem onTouchTap={this.handleClose}>Register</MenuItem></Link>
            </Drawer>
           {this.props.children}
       </div>
@@ -125,6 +126,5 @@ class Main extends Component {
 
 // Export the componen back for use in other files
 export default Main;
-
 
 

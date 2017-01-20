@@ -6,7 +6,7 @@ var moment =require('moment');
 
 //enter a new record into the timesheet table with out the end time
 router.post("/create", function(req,res){
-	console.log("inside time sheet");
+  console.log("inside time sheet");
   // console.log(JSON.stringify(req.body));
   var newtimesheet = {};
   newtimesheet.JobId = req.body.JobId;
@@ -18,8 +18,8 @@ router.post("/create", function(req,res){
 
   models.Timesheet.create(newtimesheet).then(function(data){
     console.log("created data ")
-  	//console.log(data)
-  	res.json(data)
+    //console.log(data)
+    res.json(data)
   });
   //res.json(req.body);
 })
