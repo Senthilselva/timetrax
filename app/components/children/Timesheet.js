@@ -42,9 +42,9 @@ class Timesheet extends React.Component {
 			            return(
 			          		<tr key={i}> 
 			            		<td>{id.jobName}</td>
-			            		<td>{id.clockedInDate}</td>
-			            		<td>{id.clockIn}</td>
-			            		<td>{id.clockOut}</td>
+			            		<td>{moment(id.clockedInDate).format('L')}</td>
+			            		<td>{moment(id.clockIn).format('LT')}</td>
+			            		<td>{moment(id.clockOut).format('LT')}</td>
 			            	</tr>
 			            );
           			})}

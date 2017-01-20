@@ -78,13 +78,12 @@ class Timecard extends React.Component {
 			<p> Job: {this.state.timeCard.jobname} </p>
 
 			<p> Started On: {moment(this.state.yourStartTime).format('L')}</p>
-			<p> Started On: {moment(this.state.yourStartTime).format('LT')}</p>
-			<p> Started At: {this.state.yourStartTime}</p>
+			<p> Started At: {moment(this.state.yourStartTime).format('LT')}</p>
 
 			{this.state.yourEndTime == null ? (
               <button type="button" onClick={this._onClockOut}>Clock-out</button>
             ) : (
-              <p> logged out at {this.state.yourEndTime} </p>
+              <p> Logged out at {moment(this.state.yourEndTime).format('LT')} </p>
             )}
 		</div>
 		);

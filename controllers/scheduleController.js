@@ -24,9 +24,7 @@ router.get('/user/:userName', function(req,res) {
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
-    // console.log(data[i].startDate+" "+ 
-    //             data[i].startDate+" "+
-    //             data[i].Job.name);
+   //moving the needed data to an array
     var job = {};
     job.id = data[i].id;
     job.startDate = moment(data[i].startDate).format('L');
@@ -37,7 +35,7 @@ router.get('/user/:userName', function(req,res) {
     job.jobCity = data[i].Job.city;
     job.jobState = data[i].Job.state;
     job.jobZip = data[i].Job.zip;
-    console.log(job);
+    
 
     jobList.push(job)
   }
@@ -63,7 +61,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
       'id' : vSchId
     }
   }).then(function(data){
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+   
     //console.log(data.Job);
     //console.log(data.id)
     //console.log(data.startDate)
@@ -77,9 +75,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
     vSchedule.jobname =data.Job.name;
     vSchedule.jobcity =data.Job.city;
     vSchedule.firstname = data.User.firstname;
-    console.log("sent new schedule "+JSON.stringify(vSchedule));
-
-
+    
     res.json(vSchedule);
   })
 });

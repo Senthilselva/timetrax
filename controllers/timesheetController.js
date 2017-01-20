@@ -6,28 +6,20 @@ var moment =require('moment');
 
 //enter a new record into the timesheet table with out the end time
 router.post("/create", function(req,res){
-  console.log("inside time sheet");
-  // console.log(JSON.stringify(req.body));
   var newtimesheet = {};
   newtimesheet.JobId = req.body.JobId;
   newtimesheet.UserId = req.body.UserId;
   newtimesheet.clockedInDate = new Date(req.body.clockIn);
   newtimesheet.clockedIn = new Date(req.body.clockIn);
 
- // console.log(JSON.stringify(newtimesheet));
-
   models.Timesheet.create(newtimesheet).then(function(data){
-    console.log("created data ")
-    //console.log(data)
+    // create a row in the database
     res.json(data)
   });
-  //res.json(req.body);
+ 
 })
 
 router.post("/update", function(req,res){
-  console.log("inside time sheet update");
-  console.log(JSON.stringify(req.body));
-  
   var cardId = req.body.cardId;
   var clockOut = new Date(req.body.clockOut);
 
@@ -38,17 +30,13 @@ router.post("/update", function(req,res){
        id : cardId
         }
     }).then(function(data,err){
-    console.log("updated")
-    console.log(JSON.stringify(data));
+    
       res.json(data)
   })
 
   });
 
 router.get('/user/:userName', function(req,res) {
-  console.log("inside user Timesheets");
-  console.log(JSON.stringify(req.params));
-  //console.log(req);
 
     models.Timesheet.findAll(
 
@@ -63,8 +51,7 @@ router.get('/user/:userName', function(req,res) {
       ]
     }).then(function(data){
     var jobList = [];
-    // console.log(JSON.stringify(data[0]));
-
+    
     for(var i=0; i< data.length; i++){
     // console.log(data[i].startDate+" "+ 
     //             data[i].startDate+" "+
@@ -75,8 +62,6 @@ router.get('/user/:userName', function(req,res) {
     job.clockIn = data[i].clockedIn;
     job.clockOut = data[i].clockedOut;
     job.jobName = data[i].Job.name;
-    
-    console.log(job);
 
     jobList.push(job)
   }

@@ -75247,7 +75247,7 @@
 	  }, {
 	    key: '_onClockIn',
 	    value: function _onClockIn(event) {
-	      console.log("on Clock In   " + JSON.stringify(event.target.value));
+	      //console.log("on Clock In   " + JSON.stringify(event.target.value));
 	      this.props._getScheduleClockInId(event.target.value);
 	    }
 	  }, {
@@ -75301,17 +75301,17 @@
 	            _react2.default.createElement(
 	              'td',
 	              null,
-	              id.startDate
+	              moment(id.startDate).format('L')
 	            ),
 	            _react2.default.createElement(
 	              'td',
 	              null,
-	              id.startTime
+	              moment(id.startTime).format('LT')
 	            ),
 	            _react2.default.createElement(
 	              'td',
 	              null,
-	              id.endTime
+	              moment(id.endTime).format('LT')
 	            ),
 	            _react2.default.createElement(
 	              'td',
@@ -75496,14 +75496,8 @@
 					_react2.default.createElement(
 						"p",
 						null,
-						" Started On: ",
-						moment(this.state.yourStartTime).format('LT')
-					),
-					_react2.default.createElement(
-						"p",
-						null,
 						" Started At: ",
-						this.state.yourStartTime
+						moment(this.state.yourStartTime).format('LT')
 					),
 					this.state.yourEndTime == null ? _react2.default.createElement(
 						"button",
@@ -75512,8 +75506,8 @@
 					) : _react2.default.createElement(
 						"p",
 						null,
-						" logged out at ",
-						this.state.yourEndTime,
+						" Logged out at ",
+						moment(this.state.yourEndTime).format('LT'),
 						" "
 					)
 				);
@@ -75647,17 +75641,17 @@
 								_react2.default.createElement(
 									"td",
 									null,
-									id.clockedInDate
+									moment(id.clockedInDate).format('L')
 								),
 								_react2.default.createElement(
 									"td",
 									null,
-									id.clockIn
+									moment(id.clockIn).format('LT')
 								),
 								_react2.default.createElement(
 									"td",
 									null,
-									id.clockOut
+									moment(id.clockOut).format('LT')
 								)
 							);
 						})

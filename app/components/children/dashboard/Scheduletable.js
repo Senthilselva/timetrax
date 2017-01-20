@@ -30,7 +30,7 @@ componentWillMount() {
 }//componentWillMount
 
 _onClockIn(event) {
-  console.log("on Clock In   " + JSON.stringify(event.target.value));
+  //console.log("on Clock In   " + JSON.stringify(event.target.value));
   this.props._getScheduleClockInId(event.target.value);
 }
 
@@ -54,14 +54,11 @@ render(){
             return(
               <tr key={i}> 
                 <td>{id.jobName}</td>
-                <td>{id.startDate}</td>
-                <td>{id.startTime}</td>
-                <td>{id.endTime}</td>
+                <td>{moment(id.startDate).format('L')}</td>
+                <td>{moment(id.startTime).format('LT')}</td>
+                <td>{moment(id.endTime).format('LT')}</td>
                 <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
-                {/* <td><RaisedButton type="button" value={id.id} 
-                onClick={that._onClockIn.bind(this)} label="Clock In" 
-                primary={true} /> </td> 
-                */}
+              
 
                 <td><button type="button" value={id.id} onClick={that._onClockIn} 
                 style={style}>"Clock-in"</button> </td>
