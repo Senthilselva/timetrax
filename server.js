@@ -30,6 +30,7 @@ var routes = require('./controllers/appController');
 var user_controller = require('./controllers/userController');
 var schedule_controller = require('./controllers/scheduleController');
 var timesheet_controller = require('./controllers/timesheetController');
+
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + '/public'));
 
@@ -63,9 +64,12 @@ app.set('port', process.env.PORT || 3000);
 
 // we sync the models with our db 
 // (thus creating the apropos tables)
-models.sequelize.sync().then(function () {
-	// set our app to listen to the port we set above
-});
+// models.sequelize.sync().then(function () {
+// 	// set our app to listen to the port we set above
+// });
+
+//Initialize the database with test data
+var initdb = require("./seeders/initialize_db.js");
 
  var server = app.listen(app.get('port'), function() {
   	// then save a log of the listening to our debugger.
