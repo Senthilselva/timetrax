@@ -35,7 +35,7 @@ _onClockIn(event) {
 
 render(){
     var that =this;
-
+    console.log ("schedule:", this.state.scheduleTables);
     return (
        <table>
         <tr>
@@ -54,8 +54,8 @@ render(){
               <tr key={i}> 
                 <td>{id.jobName}</td>
                 <td>{moment(id.startDate).format('L')}</td>
-                <td>{moment(id.startTime).format('LT')}</td>
-                <td>{moment(id.endTime).format('LT')}</td>
+                <td>{id.startTime}</td>
+                <td>{id.endTime}</td>
                 <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
               
 

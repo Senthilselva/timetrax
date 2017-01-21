@@ -54,10 +54,12 @@ router.get('/user/:userName', function(req,res) {
     
     for(var i=0; i< data.length; i++){
       var job = {};
+      console.log("Time in: ", data[i].clockedInDate);
+      console.log("Time out: ", data[i].clockedOutDate);
       job.id = data[i].id;
       job.clockedInDate = moment(data[i].clockedInDate).format('L');
-      job.clockIn = data[i].clockedIn;
-      job.clockOut = data[i].clockedOut;
+      job.clockIn = moment(data[i].clockedIn, format("hh:mm"));
+      job.clockOut = moment(data[i].clockedOut, format("hh:mm"));
       job.jobName = data[i].Job.name;
 
       jobList.push(job)

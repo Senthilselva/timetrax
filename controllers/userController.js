@@ -17,8 +17,6 @@ router.post('/create', function(req,res) {
   newUser.salt = salt;
   newUser.password= hashedPassword;
 
-  console.log("going to create user: ", newUser);
-
   models.User.create(newUser).then(function(){
   	}).catch(function(error) {
       console.log("error: ", error);
@@ -29,7 +27,6 @@ router.post('/login',
   //passport.authenticate('local', { failureRedirect: '/login',  successRedirect: '/user/user', failureFlash: false}));
   passport.authenticate('local', { passReqToCallback : true } ),
   function(req, res) {
-     console.log(req.user);
      res.json(req.user);
   });
 
