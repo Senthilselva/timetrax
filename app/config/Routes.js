@@ -13,7 +13,7 @@ import  Home  from "../components/children/Home";
 import  Dashboard  from "../components/children/Dashboard";
 import  Schedule  from "../components/children/dashboard/Scheduletable";
 import  Timesheet  from "../components/children/Timesheet";
-import  Timecard  from "../components/children/dashboard/timecard";
+import  Timecard  from "../components/children/dashboard/Timecard";
 
 //helper to requireLogin
 import Auth from "../components/children/Auth";
@@ -34,8 +34,6 @@ module.exports = (
   <Router history={browserHistory}>
     <Route path="/" component={ Main }>
 
-      {/* If user selects Info or Chat show the appropriate component */}
-      {/* If user selects Info or Chat show the appropriate component */}
       <Route path="/login" component= { Login } />
       <Route path="/logout" component= { Logout } />
       <Route path="/register" component={ Register } />

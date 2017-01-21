@@ -108,8 +108,5 @@ class Main extends Component {
     );
   }
 }
-
 // Export the componen back for use in other files
 export default Main;
-
-

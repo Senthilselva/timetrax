@@ -57,7 +57,6 @@ class Timecard extends React.Component {
 	
 		return(
 		<div>
-			<h1> Timsheets </h1>
 			<p> { this.props.clockInId } </p>
 			<p> Name: {this.state.tCard.firstname} </p>
 			<p> Job: {this.state.tCard.jobname} </p>

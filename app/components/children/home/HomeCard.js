@@ -8,13 +8,6 @@ const HomeCard = () => (
       title="WELCOME"
       subtitle="Time sheet management system"
     />
-
-    <CardMedia
-      overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-    >
-      <img src="/assets/images/poolpic.jpg" />
-    </CardMedia>
-    <CardTitle title="Company Name" subtitle="" />
   
   </Card>
 );
