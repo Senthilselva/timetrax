@@ -8,7 +8,11 @@ const HomeCard = () => (
       title="WELCOME"
       subtitle="Time sheet management system"
     />
-  
+    
+    <CardMedia>
+      <img src="/assects/images/poolpic.jpg" />
+    </CardMedia>
+
   </Card>
 );
 
