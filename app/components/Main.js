@@ -46,7 +46,6 @@ class Main extends Component {
     this.handleClose = this.handleClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this._handleClick = this._handleClick.bind(this);
-    this._setLogin = this._setLogin.bind(this);
     this._updateAuth = this._updateAuth.bind(this);
   }
 
@@ -58,7 +57,6 @@ class Main extends Component {
 
   componentWillMount() {
     Auth._onChange = this._updateAuth
-    Auth._login()
   }
 
   _handleClick(event) {
@@ -72,9 +70,6 @@ class Main extends Component {
 
   handleClose() {
     this.setState({open: false});
-  }
-
- _setLogin(newLog){
   }
 
  render() {

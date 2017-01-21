@@ -4,7 +4,7 @@ import axios from "axios";
 //This files make calls the controller
 const helpers = {
 
-	_checkLogin: (email, password) => {
+	_checkLogin: (email, password) => { 
 	    return axios.post("/user/login", { username: email,
 	                                      password: password });
 	  },

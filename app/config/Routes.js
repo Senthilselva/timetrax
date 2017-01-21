@@ -33,7 +33,6 @@ module.exports = (
  <MuiThemeProvider>
   <Router history={browserHistory}>
     <Route path="/" component={ Main }>
-
       <Route path="/login" component= { Login } />
       <Route path="/logout" component= { Logout } />
       <Route path="/register" component={ Register } />
@@ -44,7 +43,6 @@ module.exports = (
       <Route path="/timesheet" component={Timesheet} onEnter={requireAuth} />
       {/* If user selects any other path... we get the Info Route */}
        <IndexRoute component={ Home } />
-         
     </Route>
   </Router>
 </MuiThemeProvider>

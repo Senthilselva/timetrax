@@ -1,5 +1,6 @@
 //import react 
 import React from "react";
+import Router from "react-router";
 import {Col, Card, Row, Input, Button} from "react-materialize";
 
 // Helper Functicon
@@ -11,8 +12,8 @@ class Register extends React.Component {
 	    super(props);
 
 	    this.state = {
-	    	firstname:"",
-	    	lastname:"",
+	    	firstName:"",
+	    	lastName:"",
 	    	address:"",
 	    	city:"",
 	    	state:"",
@@ -30,13 +31,14 @@ class Register extends React.Component {
     _handleSubmit(event) {
         event.preventDefault();
         helpers._createUser(this.state);
+        //send user to login page
+        this.props.router.replace('/login');
     }
 
     _handleChange(event) {
         var newState = {};
         newState[event.target.id] = event.target.value;
         this.setState(newState);
-        
     }
 
 
@@ -52,9 +54,9 @@ class Register extends React.Component {
     						<Input type="text" 
                             label="First Name" 
                             s={12} 
-                            id="firstname"
+                            id="firstName"
                             name="firstName"
-                            value={this.state.firstname}
+                            value={this.state.firstName}
                             onChange={this._handleChange}
                             required 
                             />
@@ -62,9 +64,9 @@ class Register extends React.Component {
                             <Input type="text" 
                             label="Last Name" 
                             s={12} 
-                            id="lastname"
-                            name="lasstName"
-                            value={this.state.lastname}
+                            id="lastName"
+                            name="lastName"
+                            value={this.state.lastName}
                             onChange={this._handleChange}
                             required 
                             />
@@ -112,7 +114,7 @@ class Register extends React.Component {
                             label="Email" 
                             s={12} 
                             id="username"
-                            name="username"
+                            name="usermame"
                             value={this.state.username}
                             onChange={this._handleChange}
                             required 

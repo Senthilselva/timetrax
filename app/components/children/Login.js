@@ -17,7 +17,7 @@ class Login extends React.Component {
       password:"",
       error: false
     };
-     this._handleChange = this._handleChange.bind(this);
+    this._handleChange = this._handleChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
     }
 
@@ -26,8 +26,10 @@ class Login extends React.Component {
         Auth._login(this.state.email, this.state.password, (loggedIn) => {
         
         //check logged in   
-        if (!loggedIn)
-          return this.setState({ error: true })
+        if (!loggedIn) {
+          return 
+            this.setState({ error: true })
+        }
         else {
             //redirect to the dashboard
             this.props.router.replace('/dashboard');
@@ -42,7 +44,6 @@ class Login extends React.Component {
         var newState = {};
         newState[event.target.id] = event.target.value;
         this.setState(newState);
-        
     }
 
 

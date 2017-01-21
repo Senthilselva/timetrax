@@ -1,7 +1,6 @@
 import React from "react";
 import Scheduletable from "./dashboard/Scheduletable.js"
 import Timecard from "./dashboard/Timecard.js"
-//auth function
 import Auth  from "./Auth";
 
 
@@ -22,6 +21,7 @@ class Dashboard extends React.Component {
 
   render() {
     const userData = Auth._getData();
+    console.log("userData: ", userData);
     return (
       <div>
         <p>Hi {userData.firstName}</p>

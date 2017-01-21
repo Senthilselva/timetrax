@@ -1,8 +1,5 @@
 import React from "react";
-//auth function
-
 import Homecard  from "./home/Homecard";
-
 
 class Home extends React.Component {
 	constructor(props) {
@@ -10,11 +7,9 @@ class Home extends React.Component {
     }
 
     render() {
-
     	return ( 
-    			<Homecard />
-    			);
-
+    		<Homecard />
+    		);
   	}
 }
 

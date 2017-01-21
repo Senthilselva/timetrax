@@ -17,20 +17,20 @@ router.post('/create', function(req,res) {
   newUser.salt = salt;
   newUser.password= hashedPassword;
 
-  	models.User.create(newUser).then(function(){
-  		res.send("Employee Created")
-  	}).catch(function(error) {
-    //req.flash('error', "Please, choose a different username.")
-    res.send("error");
-  })
+  console.log("going to create user: ", newUser);
 
+  models.User.create(newUser).then(function(){
+  	}).catch(function(error) {
+      console.log("error: ", error);
+  })
 });
 
 router.post('/login', 
+  //passport.authenticate('local', { failureRedirect: '/login',  successRedirect: '/user/user', failureFlash: false}));
   passport.authenticate('local', { passReqToCallback : true } ),
-  // passport.authenticate('local', { failureRedirect: '/register' , failureFlash: true}),
   function(req, res) {
-    res.json(req.user);
+     console.log(req.user);
+     res.json(req.user);
   });
 
 
@@ -40,8 +40,13 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
+    console.log("not logged in");
     res.send('not logged in');
 }
+
+router.get('/user', function(req, res) {
+      console.log("router get");
+    });
 
 router.get('/logout', function(req, res) {
         req.logout();

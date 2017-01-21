@@ -3,13 +3,15 @@ import Helpers from "../utils/Helpers";
 module.exports = {
 	
 	_login(email, password, cb) {
-  	cb = arguments[arguments.length - 1]
-
+  	cb = arguments[arguments.length - 1];
+ 
     if (localStorage.token) {
+      console.log("localStorage token")
     	if (cb) cb(true)
-      	this._onChange(true)
+      	this._onChange(true);
       return
     }
+
     Helpers._checkLogin(email,password)
       .then(function(userData,err){
         if(!err){
@@ -18,7 +20,7 @@ module.exports = {
           if (cb) cb(true)
         	  this._onChange(true)
       	} else {
-          console.log("error"+ err)
+          console.log("error: "+ err)
           if (cb) cb(false)
             this._onChange(false)
       	}
@@ -33,8 +35,8 @@ module.exports = {
 	_setToken(userData){
 		localStorage.token = Math.random().toString(36).substring(7);
     localStorage.setItem("userName",userData.data.username);
-    localStorage.setItem("firstName",userData.data.firstname);
-		localStorage.setItem("lastName",userData.data.lastname);
+    localStorage.setItem("firstName",userData.data.firstName);
+		localStorage.setItem("lastName",userData.data.lastName);
 	},
 
 	_logout(cb) {
