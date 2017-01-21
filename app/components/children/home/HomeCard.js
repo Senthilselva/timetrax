@@ -12,7 +12,7 @@ const HomeCard = () => (
     <CardMedia
       overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
     >
-      <img src="/assects/images/poolpic.jpg" />
+      <img src="/assets/images/poolpic.jpg" />
     </CardMedia>
     <CardTitle title="Company Name" subtitle="" />
   
