@@ -23,7 +23,7 @@ constructor(props) {
 
 componentWillMount() {
   console.log(Helpers)
-  Helpers._getSchedule()
+  Helpers._getTodaySchedule()
       .then(function(userData,err){
         this.setState({scheduleTables:userData.data});
       }.bind(this));
@@ -51,6 +51,7 @@ render(){
     
 
           {this.state.scheduleTables.map(function(id,i){
+
             return(
               <tr key={i}> 
                 <td>{id.jobName}</td>

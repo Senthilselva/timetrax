@@ -64,7 +64,6 @@ class Main extends Component {
   _handleClick(event) {
     event.preventDefault();
     Auth._logOut();
-    //this.setState(loggedIn,false);
   }
 
   handleToggle() {
@@ -98,9 +97,10 @@ class Main extends Component {
                    open={this.state.open}
                    onRequestChange={(open) => this.setState({open})}
                    >
-             <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
-             <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
-             <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Time Sheets</MenuItem></Link>
+             <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Today's Schedule</MenuItem></Link>
+             <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>All Schedules</MenuItem></Link>
+             <Link to="timecard"><MenuItem onTouchTap={this.handleClose}>Timecard</MenuItem></Link>
+             <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Timesheets</MenuItem></Link>
            </Drawer>
           {this.props.children}
       </div>
