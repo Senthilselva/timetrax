@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
   
   _getScheduleClockInId(id){    
     this.setState({clockInId:id});
-   console.log("_getScheduleClockInId " + this.state.clockInId)
   }
 
   render() {

@@ -26,7 +26,6 @@ module.exports = {
 	},
 
 	_loggedIn() {
-    console.log(localStorage.token)
     return !!localStorage.token
   },
 

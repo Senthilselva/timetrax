@@ -48,7 +48,6 @@ class Login extends React.Component {
 
 //render- function
     render() {
-        console.log("in Login");
         return (
         <Row>
             <Col m={4}></Col>           

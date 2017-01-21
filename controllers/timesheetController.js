@@ -53,19 +53,16 @@ router.get('/user/:userName', function(req,res) {
     var jobList = [];
     
     for(var i=0; i< data.length; i++){
-    // console.log(data[i].startDate+" "+ 
-    //             data[i].startDate+" "+
-    //             data[i].Job.name);
-    var job = {};
-    job.id = data[i].id;
-    job.clockedInDate = moment(data[i].clockedInDate).format('L');
-    job.clockIn = data[i].clockedIn;
-    job.clockOut = data[i].clockedOut;
-    job.jobName = data[i].Job.name;
+      var job = {};
+      job.id = data[i].id;
+      job.clockedInDate = moment(data[i].clockedInDate).format('L');
+      job.clockIn = data[i].clockedIn;
+      job.clockOut = data[i].clockedOut;
+      job.jobName = data[i].Job.name;
 
-    jobList.push(job)
-  }
-     res.json(jobList)
+      jobList.push(job)
+    }
+    res.json(jobList)
   })
 
 });

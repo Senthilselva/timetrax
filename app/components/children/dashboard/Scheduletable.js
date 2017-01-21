@@ -22,7 +22,6 @@ constructor(props) {
 }//Constructor
 
 componentWillMount() {
-  console.log(Helpers)
   Helpers._getTodaySchedule()
       .then(function(userData,err){
         this.setState({scheduleTables:userData.data});
@@ -35,8 +34,7 @@ _onClockIn(event) {
 }
 
 render(){
-  console.log((this.state.scheduleTables));
-      var that =this;
+    var that =this;
 
     return (
        <table>

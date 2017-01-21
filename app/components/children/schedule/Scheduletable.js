@@ -36,8 +36,7 @@ _onClockIn(event) {
 }
 
 render(){
-  console.log((this.state.scheduleTables));
-      var that =this;
+    var that =this;
 
     return (
        <table>

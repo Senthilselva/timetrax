@@ -25,7 +25,6 @@ class Timesheet extends React.Component {
 
 
 	render() {
-		console.log((this.state.timeSheets));
 	    var that =this;
 		return(
 			<div>

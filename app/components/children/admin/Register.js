@@ -29,14 +29,11 @@ class Register extends React.Component {
 
     _handleSubmit(event) {
         event.preventDefault();
-        console.log("CLICK");
-        console.log(this.state.email + "  "+this.state.password);
         helpers._createUser(this.state);
     }
 
     _handleChange(event) {
         var newState = {};
-        console.log(event.target.id +"   "+event.target.value);
         newState[event.target.id] = event.target.value;
         this.setState(newState);
         

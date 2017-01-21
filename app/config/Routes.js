@@ -19,7 +19,6 @@ import  Timecard  from "../components/children/dashboard/timecard";
 import Auth from "../components/children/Auth";
 
 function requireAuth(nextState, replace) {
-  console.log("requireAuth "+ nextState.location.pathname)
   if (!Auth._loggedIn()) {
     replace({
       pathname: '/login',
