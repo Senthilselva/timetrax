@@ -11,7 +11,7 @@ import  Logout from "../components/children/Logout";
 import  Register  from "../components/children/admin/Register";
 import  Home  from "../components/children/Home";
 import  Dashboard  from "../components/children/Dashboard";
-import  Schedule  from "../components/children/dashboard/Scheduletable";
+import  Schedule  from "../components/children/Schedule";
 import  Timesheet  from "../components/children/Timesheet";
 import  Timecard  from "../components/children/dashboard/Timecard";
 

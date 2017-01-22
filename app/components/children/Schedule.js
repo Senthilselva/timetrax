@@ -1,40 +1,68 @@
 import React from "react";
-import Scheduletable from "./schedule/Scheduletable.js"
-import Timecard from "./schedule/Timecard.js"
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+  from 'material-ui/Table';
 //auth function
 import Auth  from "./Auth";
+import Helpers from '../utils/Helpers.js';
 
 
-class Dashboard extends React.Component {
+class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clockInId : 0,
-      isClockOut : false
-    };
-
-    this._getScheduleClockInId = this._getScheduleClockInId.bind(this);
+       schedules:[],
+        userData:Auth._getData()
+      };
   }
   
-  _getScheduleClockInId(id){    
-    this.setState({clockInId:id});
-  }
+  componentWillMount() {
+    Helpers._getSchedule()
+      .then(function(userData,err){
+        this.setState({schedules:userData.data});
+      }.bind(this));
+  }//componentWillMount
 
-  render() {
-    const userData = Auth._getData();
+  render(){
+    var that =this;
+    console.log ("schedule:", this.state.schedules);
     return (
-      <div>
-        <p>Hello!</p>
-        <p>{userData.firstName} {userData.lastName}</p>
-        {this.state.clockInId == 0 ? (
-        <Scheduletable _getScheduleClockInId = {this._getScheduleClockInId} /> 
-        ) : (
-        <Timecard clockInId = {this.state.clockInId}/>
-        ) }
-      </div>
-    )
+       <table>
+        <TableHeader
+            displaySelectAll={this.state.showCheckboxes}
+            adjustForCheckbox={this.state.showCheckboxes}
+          >
+        <TableRow>
+          <TableHeaderColumn>Client</TableHeaderColumn>
+          <TableHeaderColumn>Date</TableHeaderColumn>
+          <TableHeaderColumn>Start Time</TableHeaderColumn>
+          <TableHeaderColumn>End Time</TableHeaderColumn>
+          <TableHeaderColumn>Address</TableHeaderColumn>
+          <TableHeaderColumn></TableHeaderColumn>
+        </TableRow>
+         </TableHeader>
+    
+         <TableBody
+            displayRowCheckbox={this.state.showCheckboxes}
+            showRowHover={this.state.showRowHover}
+            stripedRows={this.state.stripedRows}
+         >
+          {this.state.schedules.map(function(id,i){
+
+            return(
+              <TableRow key={i}> 
+                <TableRowColumn>{id.jobName}</TableRowColumn>
+                <TableRowColumn>{moment(id.startDate).format('L')}</TableRowColumn>
+                <TableRowColumn>{id.startTime}</TableRowColumn>
+                <TableRowColumn>{id.endTime}</TableRowColumn>
+                <TableRowColumn>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </TableRowColumn>
+              </TableRow>
+            );
+          })}
+          </TableBody>
+        </table>
+    );
   }
 }
 
 // Export the component back for use in other files
-export default Dashboard;
+export default Schedule;

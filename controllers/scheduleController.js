@@ -5,9 +5,9 @@ var path = require('path');
 var moment =require('moment')
 
 router.get('/user/:userName', function(req,res) {
-    models.Schedule.findAll(
-
-      { include: [
+  var today = Date.now();
+    models.Schedule.findAll({ 
+      include: [
         { 
           model : models.User,
           where: { username: req.params.userName} 
@@ -15,7 +15,14 @@ router.get('/user/:userName', function(req,res) {
         {
           model:  models.Job 
         }
-      ]
+      ],
+    where: 
+      { 
+        startDate:
+        {
+          $gt: new Date(today)
+        }
+      }
     }).then(function(data){
     var jobList = [];
 

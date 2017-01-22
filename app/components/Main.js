@@ -94,7 +94,6 @@ class Main extends Component {
                    >
              <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Today's Schedule</MenuItem></Link>
              <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>All Schedules</MenuItem></Link>
-             <Link to="timecard"><MenuItem onTouchTap={this.handleClose}>Timecard</MenuItem></Link>
              <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Timesheets</MenuItem></Link>
            </Drawer>
           {this.props.children}
