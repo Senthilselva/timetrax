@@ -31,12 +31,15 @@ class Timesheet extends React.Component {
 				<p> Time Sheets </p>
 				<p>{this.state.userData.firstName} {this.state.userData.lastName}</p>
 				<table>
+				 <thead>
         			<tr>
           			<th>Client</th>
           			<th>Date</th>
           			<th>Start Time</th>
           			<th>End Time</th>
           			</tr>
+          		  </thead>
+          		  <tbody>	
           			{this.state.timeSheets.map(function(id,i){
 			            return(
 			          		<tr key={i}> 
@@ -47,6 +50,7 @@ class Timesheet extends React.Component {
 			            	</tr>
 			            );
           			})}
+          			</tbody>
         		</table>
 				
         	</div>

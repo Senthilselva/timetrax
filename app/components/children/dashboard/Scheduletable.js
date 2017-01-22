@@ -38,6 +38,7 @@ render(){
     console.log ("schedule:", this.state.scheduleTables);
     return (
        <table>
+        <thead>
         <tr>
           <th>Client</th>
           <th>Date</th>
@@ -46,8 +47,9 @@ render(){
           <th>Address</th>
           <th></th>
         </tr>
+         </thead>
     
-
+          <tbody>
           {this.state.scheduleTables.map(function(id,i){
 
             return(
@@ -65,6 +67,7 @@ render(){
               </tr>
             );
           })}
+          </tbody>
         </table>
     );
 }
