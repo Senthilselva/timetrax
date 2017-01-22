@@ -4,27 +4,27 @@ module.exports = {
 	
 	_login(email, password, cb) {
   	cb = arguments[arguments.length - 1];
- 
     if (localStorage.token) {
       console.log("localStorage token")
     	if (cb) cb(true)
       	this._onChange(true);
       return
     }
-
     Helpers._checkLogin(email,password)
       .then(function(userData,err){
-        if(!err){
+        if(!err || err !="undefined"){
           //if the user exists set the token
         	this._setToken(userData,password)
           if (cb) cb(true)
-        	  this._onChange(true)
+        	  this._onChange(true);
       	} else {
           console.log("error: "+ err)
           if (cb) cb(false)
-            this._onChange(false)
+            this._onChange(false);
       	}
-    }.bind(this));
+    }.bind(this)).catch(function(err){
+          console.log("Zeynep error" + err);
+    });
 	},
 
 	_loggedIn() {

@@ -23,12 +23,25 @@ router.post('/create', function(req,res) {
   })
 });
 
+router.get('/login', function(req, res,error) {
+  //Zeynep
+  res.status(404).json('user is undefined');
+});
+
 router.post('/login', 
-  //passport.authenticate('local', { failureRedirect: '/login',  successRedirect: '/user/user', failureFlash: false}));
-  passport.authenticate('local', { passReqToCallback : true } ),
-  function(req, res) {
-     res.json(req.user);
+  passport.authenticate('local', { failureRedirect: '/user/login'}),
+  function(req, res, error) {
+    res.json(req.user);
   });
+
+
+
+// router.post('/login', 
+//   //passport.authenticate('local', { failureRedirect: '/login',  failureFlash: true}));
+//   passport.authenticate('local', { passReqToCallback : true } ),
+//   function(req, res) {
+//      res.json(req.user);
+//   });
 
 
 function isLoggedIn(req, res, next) {

@@ -32,7 +32,10 @@ class Login extends React.Component {
         }
         else {
             //redirect to the dashboard
-            this.props.router.replace('/dashboard');
+            //Zeynep
+            var userData = Auth._getData();
+            if(userData.firstName != "undefined")
+              this.props.router.replace('/dashboard');
         }
 
       })
