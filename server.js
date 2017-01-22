@@ -18,7 +18,7 @@ var setupPassport = require('./config/passport')(passport),
      app.use(passport.initialize());
      app.use(passport.session());
 
-    
+SALT_WORK_FACTOR = 12;   
 
 var session = require('express-session'); 
 var methodOverride = require('method-override'); // for deletes in express
