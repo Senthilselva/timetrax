@@ -3,6 +3,8 @@ var app = express();
 var sequelize = require('sequelize');
 var db = require('../models');
 var conn = db.sequelize;
+var testpassword = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe9MZSaGfYsXMTxjrgfA9UOJokn5MjUHa"; //testpassword = "test"
+var testsalt = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe";
 
 // =======================================================================
 // PREPARE OUR TABLES 
@@ -16,19 +18,78 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 // =======================================================================
 // ADD Users
 // =======================================================================
-// .then(function(){
-// 	return db.User.create(
-// 	{
-// 		username: "gudiaz",
-// 		password: "test",
-// 		address: "123 Paradise Ln.",
-// 		city:"Heaven",
-// 		state:"NJ",
-// 		zip:"08812",
-// 		email: "gudiaz@optonline.net",
-// 		phone: "(732) 979-7252"
-// 	});
-// })
+.then(function(){
+	return db.User.create(
+	{
+		username: "admin@timetrax.com",
+		role: "admin",
+		firstName: "Admin",
+		lastName: "User",
+		password: testpassword,
+		salt: testsalt,
+		address: "123 Paradise Ln.",
+		city:"Heaven",
+		state:"NJ",
+		zip:"08812",
+		email: "admin@timetrax.com",
+		phone: "(732) 979-7252",
+		ssn: "000-00-0000"
+	});
+})
+.then(function(){
+	return db.User.create(
+	{
+		username: "gudiaz@optonline.net",
+		role: "employee",
+		firstName: "Graciela",
+		lastName: "Diaz",
+		password: testpassword,
+		salt: testsalt,
+		address: "123 Paradise Ln.",
+		city:"Heaven",
+		state:"NJ",
+		zip:"08812",
+		email: "gudiaz@optonline.net",
+		phone: "(732) 979-7252",
+		ssn: "111-22-3333"
+	});
+})
+.then(function(){
+	return db.User.create(
+	{
+		username: "odcikin@msn.com",
+		role: "employee",
+		firstName: "Zeynep",
+		lastName: "Ozdemir",
+		password: testpassword,
+		salt: testsalt,
+		address: "123 Paradise Ln.",
+		city:"Heaven",
+		state:"NJ",
+		zip:"06512",
+		email: "odcikin@msn.com",
+		phone: "(609) 216-0011",
+		ssn: "222-33-4444"
+	});
+})
+.then(function(){
+	return db.User.create(
+	{
+		username: "senthilselvak@gmail.com",
+		role: "employee",
+		firstName: "Senthil",
+		lastName: "Selvakumar",
+		password: testpassword,
+		salt: testsalt,
+		address: "123 Paradise Ln.",
+		city:"Heaven",
+		state:"NJ",
+		zip:"08817",
+		email: "senthilselvak@gmail.com",
+		phone: "(201) 993-2892",
+		ssn: "333-44-5555"
+	});
+})
 // =======================================================================
 // ADD Company Info 
 // =======================================================================
@@ -339,5 +400,3 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		clockedOut: "19:25:00"
 	});
 })
-
-

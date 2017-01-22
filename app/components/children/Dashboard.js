@@ -21,6 +21,8 @@ class Dashboard extends React.Component {
 
   render() {
     const userData = Auth._getData();
+    console.log("User Data: ", userData);
+    
     return (
       <div>
         <p>Hi {userData.firstName}</p>
