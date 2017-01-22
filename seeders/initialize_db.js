@@ -270,7 +270,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "3",
 		startDate: "2017-01-23",
 		startTime: "10:00:00",
 		endTime: "14:00:00"
@@ -280,7 +280,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "2",
+		JobId: "4",
 		startDate: "2017-01-23",
 		startTime: "15:00:00",
 		endTime: "18:00:00"
@@ -290,7 +290,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "3",
 		startDate: "2017-01-24",
 		startTime: "10:00:00",
 		endTime: "14:00:00"
@@ -300,7 +300,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "2",
+		JobId: "4",
 		startDate: "2017-01-24",
 		startTime: "15:00:00",
 		endTime: "18:00:00"
@@ -321,7 +321,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "4",
-		JobId: "4",
+		JobId: "1",
 		startDate: "2017-01-23",
 		startTime: "13:00:00",
 		endTime: "16:00:00"
@@ -341,7 +341,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "4",
-		JobId: "4",
+		JobId: "2",
 		startDate: "2017-01-24",
 		startTime: "15:00:00",
 		endTime: "18:00:00"
@@ -406,7 +406,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "3",
 		clockedInDate: "2017-01-17",
 		clockedIn: "15:05:00",
 		clockedOut: "19:15:00"
@@ -416,7 +416,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "3",
 		clockedInDate: "2017-01-18",
 		clockedIn: "09:59:00",
 		clockedOut: "14:00:00"
@@ -426,7 +426,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "4",
 		clockedInDate: "2017-01-19",
 		clockedIn: "09:55:00",
 		clockedOut: "14:05:00"
@@ -436,7 +436,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "4",
 		clockedInDate: "2017-01-20",
 		clockedIn: "09:50:00",
 		clockedOut: "14:15:00"
@@ -446,7 +446,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "1",
+		JobId: "3",
 		clockedInDate: "2017-01-20",
 		clockedIn: "15:00:40",
 		clockedOut: "19:25:00"
@@ -467,7 +467,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "4",
-		JobId: "1",
+		JobId: "3",
 		clockedInDate: "2017-01-18",
 		clockedIn: "09:59:00",
 		clockedOut: "14:00:00"
@@ -477,7 +477,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "4",
-		JobId: "1",
+		JobId: "4",
 		clockedInDate: "2017-01-19",
 		clockedIn: "09:55:00",
 		clockedOut: "14:05:00"
@@ -487,7 +487,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "4",
-		JobId: "1",
+		JobId: "3",
 		clockedInDate: "2017-01-20",
 		clockedIn: "09:50:00",
 		clockedOut: "14:15:00"
