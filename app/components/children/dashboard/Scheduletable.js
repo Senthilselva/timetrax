@@ -1,5 +1,8 @@
 import React from 'react';
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
+  from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import IconButton from 'material-ui/IconButton';
 
 //import helper file
 import Helpers from '../../utils/Helpers.js';
@@ -15,6 +18,9 @@ constructor(props) {
   super(props);
 
   this.state = {
+    showCheckboxes:false,
+    showRowHover:false,
+    stripedRows:false,
     scheduleTables:[]
   };
 
@@ -38,36 +44,41 @@ render(){
     console.log ("schedule:", this.state.scheduleTables);
     return (
        <table>
-        <thead>
-        <tr>
-          <th>Client</th>
-          <th>Date</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-          <th>Address</th>
-          <th></th>
-        </tr>
-         </thead>
+        <TableHeader
+            displaySelectAll={this.state.showCheckboxes}
+            adjustForCheckbox={this.state.showCheckboxes}
+          >
+        <TableRow>
+          <TableHeaderColumn>Client</TableHeaderColumn>
+          <TableHeaderColumn>Date</TableHeaderColumn>
+          <TableHeaderColumn>Start Time</TableHeaderColumn>
+          <TableHeaderColumn>End Time</TableHeaderColumn>
+          <TableHeaderColumn>Address</TableHeaderColumn>
+          <TableHeaderColumn></TableHeaderColumn>
+        </TableRow>
+         </TableHeader>
     
-          <tbody>
+         <TableBody
+            displayRowCheckbox={this.state.showCheckboxes}
+            showRowHover={this.state.showRowHover}
+            stripedRows={this.state.stripedRows}
+         >
           {this.state.scheduleTables.map(function(id,i){
 
             return(
-              <tr key={i}> 
-                <td>{id.jobName}</td>
-                <td>{moment(id.startDate).format('L')}</td>
-                <td>{id.startTime}</td>
-                <td>{id.endTime}</td>
-                <td>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </td>
-              
-
-                <td><button type="button" value={id.id} onClick={that._onClockIn} 
-                style={style}>"Clock-in"</button> </td>
-               
-              </tr>
+              <TableRow key={i}> 
+                <TableRowColumn>{id.jobName}</TableRowColumn>
+                <TableRowColumn>{moment(id.startDate).format('L')}</TableRowColumn>
+                <TableRowColumn>{id.startTime}</TableRowColumn>
+                <TableRowColumn>{id.endTime}</TableRowColumn>
+                <TableRowColumn>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </TableRowColumn>
+                <TableRowColumn>
+                <RaisedButton label="Clock-in" value={id.id} onClick={that._onClockIn} 
+                style={style}/> </TableRowColumn>
+              </TableRow>
             );
           })}
-          </tbody>
+          </TableBody>
         </table>
     );
 }
