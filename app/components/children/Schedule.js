@@ -13,6 +13,32 @@ var today = new Date();
 //alarm, alarm on, alarm off
 const iconStyle = { margin: 12 };
 
+export default class DatePickerControl extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      controlledDate: null,
+    };
+  }
+
+  handleChange = (event, date) => {
+    this.setState({
+      controlledDate: date,
+    });
+  };
+
+  render() {
+    return (
+      <DatePicker
+        hintText="Controlled Date Input"
+        value={this.state.controlledDate}
+        onChange={this.handleChange}
+      />
+    );
+  }
+}
+
 class Schedule extends React.Component {
 	constructor(props) {
         super(props);
@@ -20,10 +46,10 @@ class Schedule extends React.Component {
     	this.state = { 
     		name: userData.firstName,
     		today: today,
-    		scheduleDays:[],
+    		scheduleDays:"",
     		scheduleList:[]
 		}
-		this.handleClockIn = this.handleClockIn.bind(this);
+		this.handlePickDate = this.handlePickDate.bind(this);
   	};
 
 	componentWillMount() {
@@ -37,9 +63,7 @@ class Schedule extends React.Component {
 	    }.bind(this));
 	}
 
- 	handleClockIn(){    
-    	console.log("Clock In");
-  	}
+
 
     render() {
 	   	console.log ("Schedule List:", this.state.scheduleList);
@@ -69,7 +93,8 @@ class Schedule extends React.Component {
 			</CardText>	        	
 	    </Card>
 		<Card>
-		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true} />
+		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}>
+		    </CardHeader>
 		    <CardText expandable={true}>
 				<Table selectable={true}>
 				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>

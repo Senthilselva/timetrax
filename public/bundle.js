@@ -76295,8 +76295,7 @@
 		}, {
 			key: 'render',
 			value: function render() {
-				var that = this;
-				console.log(this.state.timeSheets);
+	
 				return _react2.default.createElement(
 					'div',
 					null,
