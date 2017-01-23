@@ -8,9 +8,9 @@ const styles = {
   floating : {
     position: 'absolute',
     textAlign: 'center',
-    top : 200,
+    top : 250,
     item : {
-        margin: 10
+    margin: 10
     }
    }  
 };
@@ -24,7 +24,7 @@ var ClockPage = React.createClass({
     getInitialState: function () {
         return {
             isPlaying: false,
-            time: this.getMaxTime(),
+            time: 0,
             maxtime: this.getMaxTime(),
             clockintime:new Date()
         };
@@ -33,7 +33,7 @@ var ClockPage = React.createClass({
     timeOver: function() {
         this.setState({
             maxtime: this.getMaxTime(),
-            time: this.getMaxTime(),
+            time: 0,
         });
     },
 
@@ -41,9 +41,9 @@ var ClockPage = React.createClass({
         var _this = this;
         this.state.clockintime = new Date();
         return window.setInterval(function () {
-            if (_this.state.time > 0) {
+            if (_this.state.time < _this.state.maxtime) {
                 _this.setState({
-                    time: _this.state.time-1000
+                    time: _this.state.time+1000
                 });
             } else {
                 _this.timeOver();
@@ -63,7 +63,7 @@ var ClockPage = React.createClass({
 
     handleReset: function() {
         this.setState({
-            time: this.state.maxtime,
+            time: 0,
             isPlaying: false
         });
     },
@@ -100,7 +100,7 @@ var ClockPage = React.createClass({
         return (
         <div className= 'row'>
                 <span> Time in : {this.state.clockintime.toLocaleTimeString()} </span>
-                <Clock time={this.state.time} maxtime={this.state.maxtime} />
+                <Clock time={this.state.time} maxtime={this.state.maxtime} isPlaying={this.state.isPlaying}/>
 
                 <div style={styles.floating}>
                     <span style={styles.floating.item}>

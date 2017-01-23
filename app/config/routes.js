@@ -9,8 +9,10 @@ var App = require("../components/App");
 var Login = require("../components/Login");
 var Signup = require("../components/Signup");
 var Home = require("../components/Home");
-var ClockPage = require('../components/clock/clockPage'); 
-
+var ClockPage = require('../components/clock/clockPage');
+var Stopwatch = require('../components/Stopwatch'); 
+var StopWatchApp = require('../components/StopWatchApp'); 
+var results = [];
 // Export the Routes
 module.exports = (
 
@@ -18,13 +20,13 @@ module.exports = (
   <MuiThemeProvider>
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-
       <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/clock" component={ClockPage} /> 
+      <Route path="/stopwatch" component={Stopwatch} />
+      <Route path="/stopwatchapp" component={StopWatchApp} />
       <IndexRoute component={Home} />
-
     </Route>
   </Router>
   </MuiThemeProvider>

@@ -19782,7 +19782,9 @@
 	var Signup = __webpack_require__(570);
 	var Home = __webpack_require__(571);
 	var ClockPage = __webpack_require__(572);
-
+	var Stopwatch = __webpack_require__(574);
+	var StopWatchApp = __webpack_require__(575);
+	var results = [];
 	// Export the Routes
 	module.exports =
 
@@ -19800,6 +19802,8 @@
 	      _react2.default.createElement(_reactRouter.Route, { path: '/login', component: Login }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: Signup }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/clock', component: ClockPage }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/stopwatch', component: Stopwatch }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/stopwatchapp', component: StopWatchApp }),
 	      _react2.default.createElement(_reactRouter.IndexRoute, { component: Home })
 	    )
 	  )
@@ -31907,6 +31911,16 @@
 	            _reactRouter.Link,
 	            { to: "/clock", className: "btn btn--login btn--nav" },
 	            "Clock"
+	          ),
+	          React.createElement(
+	            _reactRouter.Link,
+	            { to: "/stopwatch", className: "btn btn--login btn--nav" },
+	            "StopWatch"
+	          ),
+	          React.createElement(
+	            _reactRouter.Link,
+	            { to: "/stopWatchapp", className: "btn btn--login btn--nav" },
+	            "StopWatchApp"
 	          )
 	        ),
 	        React.createElement(
@@ -71747,7 +71761,7 @@
 	    floating: {
 	        position: 'absolute',
 	        textAlign: 'center',
-	        top: 200,
+	        top: 250,
 	        item: {
 	            margin: 10
 	        }
@@ -71765,7 +71779,7 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            isPlaying: false,
-	            time: this.getMaxTime(),
+	            time: 0,
 	            maxtime: this.getMaxTime(),
 	            clockintime: new Date()
 	        };
@@ -71774,7 +71788,7 @@
 	    timeOver: function timeOver() {
 	        this.setState({
 	            maxtime: this.getMaxTime(),
-	            time: this.getMaxTime()
+	            time: 0
 	        });
 	    },
 
@@ -71782,9 +71796,9 @@
 	        var _this = this;
 	        this.state.clockintime = new Date();
 	        return window.setInterval(function () {
-	            if (_this.state.time > 0) {
+	            if (_this.state.time < _this.state.maxtime) {
 	                _this.setState({
-	                    time: _this.state.time - 1000
+	                    time: _this.state.time + 1000
 	                });
 	            } else {
 	                _this.timeOver();
@@ -71804,7 +71818,7 @@
 
 	    handleReset: function handleReset() {
 	        this.setState({
-	            time: this.state.maxtime,
+	            time: 0,
 	            isPlaying: false
 	        });
 	    },
@@ -71844,7 +71858,7 @@
 	                this.state.clockintime.toLocaleTimeString(),
 	                ' '
 	            ),
-	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime }),
+	            _react2.default.createElement(Clock, { time: this.state.time, maxtime: this.state.maxtime, isPlaying: this.state.isPlaying }),
 	            _react2.default.createElement(
 	                'div',
 	                { style: styles.floating },
@@ -71886,20 +71900,24 @@
 	        fontSize: 15,
 	        fontWeight: 300,
 	        fontFamily: 'Lato',
-	        width: 80,
+	        width: 60,
 	        textAlign: 'center',
-	        height: 80,
+	        height: 60,
 	        color: 'black',
 	        position: 'relative',
-	        top: 50,
+	        top: 40,
 
 	        circular: {
 	            position: 'absolute !important',
 	            textAlign: 'center',
 	            top: -50,
-	            left: -10
+	            left: 10
+	        },
+	        text: {
+	            left: 110
 	        }
 	    }
+
 	};
 
 	var Clock = _react2.default.createClass({
@@ -71913,7 +71931,7 @@
 	    },
 
 	    getTime: function getTime() {
-	        return moment.utc(this.props.time).format('mm.ss');
+	        return moment.utc(this.props.time).format('HH:mm:ss');
 	    },
 
 	    getPercent: function getPercent() {
@@ -71923,20 +71941,443 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'div',
-	            { style: styles.clock },
-	            this.getTime(),
-	            _react2.default.createElement(
+	            null,
+	            this.props.isPlaying ? _react2.default.createElement(
 	                'div',
-	                { style: styles.clock.circular },
-	                _react2.default.createElement(_CircularProgress2.default, { mode: 'determinate',
-	                    value: this.getPercent(),
-	                    size: 2 })
+	                { style: styles.clock },
+	                _react2.default.createElement(
+	                    'div',
+	                    { style: styles.text },
+	                    this.getTime()
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { style: styles.clock.circular },
+	                    _react2.default.createElement(_CircularProgress2.default, { size: 2 })
+	                )
+	            ) : _react2.default.createElement(
+	                'div',
+	                { style: styles.clock },
+	                this.getTime()
 	            )
 	        );
 	    }
 	});
 
 	module.exports = Clock;
+
+/***/ },
+/* 574 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+
+	var leftPad = function leftPad(width, n) {
+	  if ((n + '').length > width) {
+	    return n;
+	  }
+	  var padding = new Array(width).join('0');
+	  return (padding + n).slice(-width);
+	};
+
+	var Stopwatch = function (_React$Component) {
+	  _inherits(Stopwatch, _React$Component);
+
+	  function Stopwatch(props) {
+	    _classCallCheck(this, Stopwatch);
+
+	    var _this = _possibleConstructorReturn(this, (Stopwatch.__proto__ || Object.getPrototypeOf(Stopwatch)).call(this, props));
+
+	    ["lap", "update", "reset", "toggle"].forEach(function (method) {
+	      _this[method] = _this[method].bind(_this);
+	    });
+
+	    _this.state = _this.initialState = {
+	      isRunning: false,
+	      lapTimes: [],
+	      timeElapsed: 0
+	    };
+	    return _this;
+	  }
+
+	  _createClass(Stopwatch, [{
+	    key: 'toggle',
+	    value: function toggle() {
+	      var _this2 = this;
+
+	      this.setState({ isRunning: !this.state.isRunning }, function () {
+	        _this2.state.isRunning ? _this2.startTimer() : clearInterval(_this2.timer);
+	      });
+	    }
+	  }, {
+	    key: 'lap',
+	    value: function lap() {
+	      var _state = this.state,
+	          lapTimes = _state.lapTimes,
+	          timeElapsed = _state.timeElapsed;
+
+	      this.setState({ lapTimes: lapTimes.concat(timeElapsed) });
+	    }
+	  }, {
+	    key: 'reset',
+	    value: function reset() {
+	      clearInterval(this.timer);
+	      this.setState(this.initialState);
+	    }
+	  }, {
+	    key: 'startTimer',
+	    value: function startTimer() {
+	      this.startTime = Date.now();
+	      this.timer = setInterval(this.update, 10);
+	    }
+	  }, {
+	    key: 'update',
+	    value: function update() {
+	      var delta = Date.now() - this.startTime;
+	      this.setState({ timeElapsed: this.state.timeElapsed + delta });
+	      this.startTime = Date.now();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _state2 = this.state,
+	          isRunning = _state2.isRunning,
+	          lapTimes = _state2.lapTimes,
+	          timeElapsed = _state2.timeElapsed;
+
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(TimeElapsed, { id: 'timer', timeElapsed: timeElapsed }),
+	        React.createElement(
+	          'button',
+	          { onClick: this.toggle },
+	          isRunning ? 'Stop' : 'Start'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Stopwatch;
+	}(React.Component);
+
+	var TimeElapsed = function (_React$Component2) {
+	  _inherits(TimeElapsed, _React$Component2);
+
+	  function TimeElapsed() {
+	    _classCallCheck(this, TimeElapsed);
+
+	    return _possibleConstructorReturn(this, (TimeElapsed.__proto__ || Object.getPrototypeOf(TimeElapsed)).apply(this, arguments));
+	  }
+
+	  _createClass(TimeElapsed, [{
+	    key: 'getUnits',
+	    value: function getUnits() {
+	      var seconds = this.props.timeElapsed / 1000;
+	      return {
+
+	        min: Math.floor(seconds / 60).toString(),
+	        sec: Math.floor(seconds % 60).toString()
+	      };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var units = this.getUnits();
+	      return React.createElement(
+	        'div',
+	        { id: this.props.id },
+	        React.createElement(
+	          'span',
+	          null,
+	          leftPad(2, units.min),
+	          ':'
+	        ),
+	        React.createElement(
+	          'span',
+	          null,
+	          leftPad(2, units.sec)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return TimeElapsed;
+	}(React.Component);
+
+	module.exports = Stopwatch;
+
+/***/ },
+/* 575 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var React = __webpack_require__(1);
+	var classNames = __webpack_require__(576);
+	var initialState = {
+	    start: 0,
+	    lap: 0,
+	    mSecondsElapsedTotal: 0,
+	    mSecondsElapsedLap: 0,
+	    isRunning: false,
+	    results: []
+	};
+	function secondsToString(ms) {
+	    return moment().hour(0).minute(0).second(0).millisecond(ms).format('HH:mm:ss.SSS');
+	}
+	function formatDiff(ms) {
+	    if (ms == 0) {
+	        return '-';
+	    }
+	    if (ms < 0) {
+	        return moment.duration(ms).asSeconds();
+	    } else {
+	        return "+" + moment.duration(ms).asSeconds();
+	    }
+	}
+
+	var StopWatchList = function (_React$Component) {
+	    _inherits(StopWatchList, _React$Component);
+
+	    function StopWatchList() {
+	        _classCallCheck(this, StopWatchList);
+
+	        return _possibleConstructorReturn(this, (StopWatchList.__proto__ || Object.getPrototypeOf(StopWatchList)).apply(this, arguments));
+	    }
+
+	    _createClass(StopWatchList, [{
+	        key: 'render',
+	        value: function render() {
+	            var cx = classNames({
+	                'is-positive': this.props.data.diff > 0 ? true : false,
+	                'is-negative': this.props.data.diff < 0 ? true : false
+	            }),
+	                diff = formatDiff(this.props.data.diff),
+	                lap = secondsToString(this.props.data.lap),
+	                total = secondsToString(this.props.data.total);
+	            return React.createElement(
+	                'tr',
+	                null,
+	                React.createElement(
+	                    'td',
+	                    null,
+	                    this.props.index
+	                ),
+	                React.createElement(
+	                    'td',
+	                    { className: type },
+	                    diff
+	                ),
+	                React.createElement(
+	                    'td',
+	                    null,
+	                    lap
+	                ),
+	                React.createElement(
+	                    'td',
+	                    null,
+	                    total
+	                )
+	            );
+	        }
+	    }]);
+
+	    return StopWatchList;
+	}(React.Component);
+
+	var StopWatchApp = function (_React$Component2) {
+	    _inherits(StopWatchApp, _React$Component2);
+
+	    function StopWatchApp(props) {
+	        _classCallCheck(this, StopWatchApp);
+
+	        var _this2 = _possibleConstructorReturn(this, (StopWatchApp.__proto__ || Object.getPrototypeOf(StopWatchApp)).call(this, props));
+
+	        _this2.state = initialState;
+	        // Bind all methods
+	        _this2.tick = _this2.tick.bind(_this2);
+	        _this2.handleStartAndStop = _this2.handleStartAndStop.bind(_this2);
+	        _this2.handleLap = _this2.handleLap.bind(_this2);
+	        _this2.handleReset = _this2.handleReset.bind(_this2);
+	        return _this2;
+	    }
+
+	    _createClass(StopWatchApp, [{
+	        key: 'tick',
+	        value: function tick() {
+	            var mSecondsElapsedTotal = new Date().getTime() - this.state.start,
+	                mSecondsElapsedLap = new Date().getTime() - this.state.lap;
+
+	            this.setState({ mSecondsElapsedTotal: mSecondsElapsedTotal, mSecondsElapsedLap: mSecondsElapsedLap });
+	        }
+	    }, {
+	        key: 'handleStartAndStop',
+	        value: function handleStartAndStop() {
+	            if (this.state.isRunning) {
+	                this.handleStop();
+	                return;
+	            }
+	            var startValue = this.state.start;
+	            if (this.state.start === 0) {
+	                startValue = new Date().getTime();
+	            }
+	            this.setState({
+	                start: startValue,
+	                isRunning: true,
+	                lap: new Date().getTime()
+	            });
+	            this.interval = setInterval(this.tick.bind(this), 10);
+	        }
+	    }, {
+	        key: 'handleLap',
+	        value: function handleLap() {
+	            if (!this.state.isRunning) {
+	                return;
+	            }
+	            var oldResults = this.state.results,
+	                newLap = {
+	                key: new Date().getTime(),
+	                lap: this.state.mSecondsElapsedLap,
+	                total: this.state.mSecondsElapsedTotal,
+	                diff: 0
+	            };
+	            // Diff
+	            if (this.state.results.length >= 1) {
+	                newLap.diff = newLap.lap - this.state.results[this.state.results.length - 1].lap;
+	            }
+	            // Adding the new lap to the results
+	            var newResults = oldResults.concat([newLap]);
+	            // New lap
+	            this.setState({
+	                lap: new Date().getTime(),
+	                results: newResults
+	            });
+	        }
+	    }, {
+	        key: 'handleStop',
+	        value: function handleStop() {
+	            this.handleLap();
+	            this.setState({ isRunning: false });
+	            clearInterval(this.interval);
+	        }
+	    }, {
+	        key: 'handleReset',
+	        value: function handleReset() {
+	            this.setState(initialState);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var cx = classNames({
+	                'StopWatchApp': true,
+	                'is-running': this.state.isRunning
+	            }),
+	                ms = secondsToString(this.state.mSecondsElapsedTotal),
+	                msLap = secondsToString(this.state.mSecondsElapsedLap),
+	                labelStart = this.state.isRunning ? 'Stop' : 'Start',
+	                results = this.state.results;
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'div',
+	                    { className: 'Time' },
+	                    React.createElement(
+	                        'span',
+	                        { className: 'Time-value' },
+	                        ms
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'Controls' },
+	                    React.createElement(
+	                        'button',
+	                        { className: 'Button', type: 'button', onClick: this.handleStartAndStop },
+	                        labelStart
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return StopWatchApp;
+	}(React.Component);
+
+	module.exports = StopWatchApp;
+
+/***/ },
+/* 576 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);

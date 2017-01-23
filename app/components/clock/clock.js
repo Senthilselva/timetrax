@@ -5,20 +5,21 @@ const styles = {
                 fontSize: 15,
                 fontWeight: 300,
                 fontFamily: 'Lato',
-                width: 80,
+                width: 60,
                 textAlign: 'center',
-                height: 80,
+                height: 60,
                 color: 'black',
                 position: 'relative',
-                top : 50,
+                top : 40,
 
                 circular : {
                     position: 'absolute !important',
                     textAlign: 'center',
                     top : -50,
-                    left : -10
+                    left : 10
                 }
             }
+            
 };
 
 var Clock = React.createClass({
@@ -30,7 +31,7 @@ var Clock = React.createClass({
     },
 
     getTime: function() {
-        return moment.utc(this.props.time).format('mm.ss');
+        return moment.utc(this.props.time).format('HH:mm:ss');
     },
 
     getPercent: function() {
@@ -39,13 +40,18 @@ var Clock = React.createClass({
 
     render: function() {
         return (
-             <div style={styles.clock}>
-                {this.getTime()}
-                 <div style={styles.clock.circular}>
-                    <CircularProgress mode="determinate" 
-                                      value={this.getPercent()} 
-                                      size={2} />
-                </div>
+            <div>
+            {this.props.isPlaying ? (
+                <div style={styles.clock}>
+                     {this.getTime()}
+                   <div style={styles.clock.circular}>
+                    <CircularProgress  size={2} />
+                   </div>
+                </div> ) : (
+                        <div style={styles.clock}>
+                            {this.getTime()}
+                        </div>
+            )}
             </div>
         );
     }
