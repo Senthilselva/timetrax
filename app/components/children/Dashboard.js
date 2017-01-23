@@ -4,6 +4,7 @@ import Scheduletable from "./dashboard/Scheduletable.js"
 import Timecard from "./dashboard/Timecard.js"
 import Overview from "./dashboard/Overview.js"
 import TodaySchedule from "./dashboard/TodaySchedule.js"
+import ClockPage from "./dashboard/ClockPage.js"
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui';
 import Auth  from "./Auth";
@@ -18,7 +19,8 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Overview />
-        <TodaySchedule />       
+        <TodaySchedule />
+        <ClockPage /> 
       </div>
     )
   }
