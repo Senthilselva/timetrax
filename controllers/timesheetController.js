@@ -54,8 +54,6 @@ router.get('/user/:userName', function(req,res) {
     var jobList = [];
     for(var i=0; i< data.length; i++){
       var job = {};
-      console.log("Time in: ", data[i].clockedInDate);
-      console.log("Time out: ", data[i].clockedOutDate);
       job.id = data[i].id;
       job.clockedInDate = data[i].clockedInDate;
       job.clockIn = data[i].clockedIn;

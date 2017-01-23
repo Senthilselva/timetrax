@@ -65,7 +65,10 @@ class TodaySchedule extends React.Component {
     	var clockOutTime = Date.now(); 
     	Helpers._updateTimecard(this.state.cardId, clockOutTime)
 				.then(function(data,err){
-		})
+					this.setState({clockedRow : 0})
+					var tempClock = this.state.disableClock;
+					this.setState({ disableClock : !tempClock });
+		}.bind(this));
 
   	}
   	

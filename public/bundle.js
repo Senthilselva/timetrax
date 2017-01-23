@@ -75662,7 +75662,11 @@
 				console.log("Clock In event : " + event);
 				console.log("Clock In Id  : " + index);
 				var clockOutTime = Date.now();
-				_Helpers2.default._updateTimecard(this.state.cardId, clockOutTime).then(function (data, err) {});
+				_Helpers2.default._updateTimecard(this.state.cardId, clockOutTime).then(function (data, err) {
+					this.setState({ clockedRow: 0 });
+					var tempClock = this.state.disableClock;
+					this.setState({ disableClock: !tempClock });
+				}.bind(this));
 			}
 		}, {
 			key: "render",
@@ -76220,7 +76224,7 @@
   \**********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -76231,6 +76235,8 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _materialUi = __webpack_require__(/*! material-ui */ 384);
 	
 	var _Overview = __webpack_require__(/*! ./dashboard/Overview.js */ 683);
 	
@@ -76255,6 +76261,9 @@
 	//import helper file  
 	
 	
+	//alarm, alarm on, alarm off
+	var iconStyle = { margin: 12 };
+	
 	var Timesheet = function (_React$Component) {
 		_inherits(Timesheet, _React$Component);
 	
@@ -76271,7 +76280,7 @@
 		}
 	
 		_createClass(Timesheet, [{
-			key: "componentWillMount",
+			key: 'componentWillMount',
 			value: function componentWillMount() {
 	
 				_Helpers2.default._getTimeSheets().then(function (userData, err) {
@@ -76282,85 +76291,54 @@
 	
 	
 		}, {
-			key: "render",
+			key: 'render',
 			value: function render() {
 				var that = this;
 				return _react2.default.createElement(
-					"div",
+					'div',
 					null,
 					_react2.default.createElement(_Overview2.default, null),
 					_react2.default.createElement(
-						"p",
+						_materialUi.Card,
 						null,
-						" Time Sheets "
-					),
-					_react2.default.createElement(
-						"p",
-						null,
-						this.state.userData.firstName,
-						" ",
-						this.state.userData.lastName
-					),
-					_react2.default.createElement(
-						"table",
-						null,
+						_react2.default.createElement(_materialUi.CardHeader, { title: 'MM/DD/YYYY', subtitle: 'When expanded, shows all jobs scheduled for that date', actAsExpander: true, showExpandableButton: true }),
 						_react2.default.createElement(
-							"thead",
-							null,
+							_materialUi.CardText,
+							{ expandable: true },
 							_react2.default.createElement(
-								"tr",
-								null,
+								_materialUi.Table,
+								{ selectable: true },
 								_react2.default.createElement(
-									"th",
-									null,
-									"Client"
-								),
-								_react2.default.createElement(
-									"th",
-									null,
-									"Date"
-								),
-								_react2.default.createElement(
-									"th",
-									null,
-									"Start Time"
-								),
-								_react2.default.createElement(
-									"th",
-									null,
-									"End Time"
+									_materialUi.TableBody,
+									{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
+									this.state.timesheets.map(function (row, i) {
+										return _react2.default.createElement(
+											_materialUi.TableRow,
+											{ key: i },
+											_react2.default.createElement(
+												_materialUi.TableRowColumn,
+												null,
+												row.jobName
+											),
+											_react2.default.createElement(
+												_materialUi.TableRowColumn,
+												null,
+												dateFormat(row.startDate, "mm/dd/yyyy")
+											),
+											_react2.default.createElement(
+												_materialUi.TableRowColumn,
+												null,
+												row.startTime
+											),
+											_react2.default.createElement(
+												_materialUi.TableRowColumn,
+												null,
+												row.endTime
+											)
+										);
+									})
 								)
 							)
-						),
-						_react2.default.createElement(
-							"tbody",
-							null,
-							this.state.timeSheets.map(function (id, i) {
-								return _react2.default.createElement(
-									"tr",
-									{ key: i },
-									_react2.default.createElement(
-										"td",
-										null,
-										id.jobName
-									),
-									_react2.default.createElement(
-										"td",
-										null,
-										moment(id.clockedInDate).format('L')
-									),
-									_react2.default.createElement(
-										"td",
-										null,
-										id.clockIn
-									),
-									_react2.default.createElement(
-										"td",
-										null,
-										id.clockOut
-									)
-								);
-							})
 						)
 					)
 				);

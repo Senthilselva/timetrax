@@ -1,10 +1,16 @@
 import React from "react";
+import {Card, CardActions, CardHeader, CardText} from 'material-ui';
+import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
 
 import Overview from "./dashboard/Overview.js"
 
 //import helper file  
 import Helpers from '../utils/Helpers.js';
 import Auth  from "./Auth";
+
+//alarm, alarm on, alarm off
+const iconStyle = { margin: 12 };
+
 
 class Timesheet extends React.Component {
 	constructor(props) {
@@ -32,30 +38,25 @@ class Timesheet extends React.Component {
 		return(
 			<div>
 				<Overview />
-				<p> Time Sheets </p>
-				<p>{this.state.userData.firstName} {this.state.userData.lastName}</p>
-				<table>
-				 <thead>
-        			<tr>
-          			<th>Client</th>
-          			<th>Date</th>
-          			<th>Start Time</th>
-          			<th>End Time</th>
-          			</tr>
-          		  </thead>
-          		  <tbody>	
-          			{this.state.timeSheets.map(function(id,i){
-			            return(
-			          		<tr key={i}> 
-			            		<td>{id.jobName}</td>
-			            		<td>{moment(id.clockedInDate).format('L')}</td>
-			            		<td>{id.clockIn}</td>
-			            		<td>{id.clockOut}</td>
-			            	</tr>
-			            );
-          			})}
-          			</tbody>
-        		</table>
+				<Card>
+		    	  <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true} />
+		    		<CardText expandable={true}>
+					<Table selectable={true}>
+				    	<TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
+				          	{this.state.timesheets.map(function(row, i){
+				            return(
+				              <TableRow key={i}> 
+				                <TableRowColumn>{row.jobName}</TableRowColumn>
+				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
+				                <TableRowColumn>{row.startTime}</TableRowColumn>
+				                <TableRowColumn>{row.endTime}</TableRowColumn>
+				              </TableRow>
+				            );
+				          })}
+				    	</TableBody>
+					</Table>
+					</CardText>
+				</Card>
 				
         	</div>
 		);
