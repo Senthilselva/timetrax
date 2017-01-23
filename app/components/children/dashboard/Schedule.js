@@ -3,6 +3,7 @@ import Auth  from "../Auth";
 import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
+import RaisedButton from 'material-ui/RaisedButton';
 import Helpers from '../../utils/Helpers.js';
 var dateFormat = require('dateformat');
 var today = new Date();
@@ -22,9 +23,9 @@ class Schedule extends React.Component {
 
 	componentWillMount() {
 	  Helpers._getTodaySchedule()
-	      .then(function(userData,err){
+	  	.then(function(userData,err){
 	        this.setState({scheduleList: userData.data});
-	      }.bind(this));
+	    }.bind(this));
 	}
 
  	getScheduleClockInId(id){    
