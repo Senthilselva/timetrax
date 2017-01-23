@@ -38,11 +38,12 @@ class Schedule extends React.Component {
 	    console.log ("schedule length:", this.state.scheduleList.length);
 
     	return ( 
+    	<div>
 	      <Card>
 	        <CardHeader title="Today's Schedule" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
 			{this.state.scheduleList.length == 0 ? (
 		        <CardText>
-		        	No jobs scheduled for today, {dateFormat(this.state.today "dddd, mmmm dS, yyyy")}
+		        	No jobs scheduled for today, {dateFormat(this.state.today, "dddd, mmm dd, yyyy")}
           			<p><Link to="/schedule">View Full Schedule</Link></p>
 		        </CardText>
 
@@ -59,7 +60,7 @@ class Schedule extends React.Component {
 					      </TableRow>
 					    </TableHeader>
 					    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
-					          {this.state.scheduleTables.map(function(id,i){
+					          {this.state.scheduleList.map(function(id, i){
 
 					            return(
 					              <TableRow key={i}> 
@@ -81,7 +82,7 @@ class Schedule extends React.Component {
 			) }
 
 	      </Card>
-
+    	</div>
     	);
   	}
 }
