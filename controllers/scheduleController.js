@@ -56,7 +56,7 @@ router.get('/user/:userName', function(req,res) {
 //Returns a Schedule for a given Id
 router.get('/schedule/:scheduleId', function(req,res) {
   console.log("Returning a Schedule for an Id", req.params);
-  vSchId = req.params.scheduleId;
+  var vSchId = req.params.scheduleId;
 
   models.Schedule.findOne({
     include: [
@@ -68,7 +68,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
         }
       ],
     where: {
-      'id' : vSchId
+      id : vSchId
     }
   }).then(function(data){
    
@@ -91,6 +91,9 @@ router.get('/schedule/:scheduleId', function(req,res) {
 //Returns a User's Schedule for Today
 router.get('/user/today/:userName', function(req,res) {
   console.log("Returning a User's Schedule for Today", req.params);
+  var today = new Date();
+  today = dateFormat(today, "fullDate");
+  console.log("Today's date ------------", today);
 
   models.Schedule.findAll(
     { include: [
@@ -101,9 +104,10 @@ router.get('/user/today/:userName', function(req,res) {
       {
         model:  models.Job 
       }
-    ] ,
-    where: 
-    { startDate: today }
+    ] 
+    //,
+    //where: 
+    //{ startDate: today }
 
   }).then(function(data){
 
@@ -112,9 +116,15 @@ router.get('/user/today/:userName', function(req,res) {
   for(var i=0; i< data.length; i++){
     var job = {};
     job.id = data[i].id;
-    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-    
-    jobList.push(job)
+      job.startTime = data[i].startTime;
+      job.endTime = data[i].endTime;
+      job.jobName = data[i].Job.name;
+      job.jobAdd = data[i].Job.address;
+      job.jobCity = data[i].Job.city;
+      job.jobState = data[i].Job.state;
+      job.jobZip = data[i].Job.zip;
+    job.startDate = dateFormat(data[i].startDate, "fullDate");
+    if( today == job.startDate ) jobList.push(job)
   }
      res.json(jobList)
   })
@@ -144,6 +154,13 @@ router.get('/user/:userName/:searchDate', function(req,res) {
     for(var i=0; i< data.length; i++){
       var job = {};
       job.id = data[i].id;
+      job.startTime = data[i].startTime;
+      job.endTime = data[i].endTime;
+      job.jobName = data[i].Job.name;
+      job.jobAdd = data[i].Job.address;
+      job.jobCity = data[i].Job.city;
+      job.jobState = data[i].Job.state;
+      job.jobZip = data[i].Job.zip;
       job.startDate = dateFormat(data[i].startDate, "isoDateTime");
             
       jobList.push(job)

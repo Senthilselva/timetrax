@@ -336,7 +336,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 // ADD Timesheets 
 // =======================================================================
 // Add Timesheets for User 2 -------------
-.then(function(){
+/*.then(function(){
 	return db.Timesheet.create(
 	{
 		UserId: "2",
@@ -488,4 +488,4 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		clockedOut: "19:25:00"
 	});
 })
-
+*/

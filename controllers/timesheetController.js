@@ -2,7 +2,8 @@ var express = require('express');
 var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
-var moment =require('moment');
+//var moment =require('moment');
+var dateFormat = require('dateformat');
 
 //enter a new record into the timesheet table with out the end time
 router.post("/create", function(req,res){
@@ -10,8 +11,9 @@ router.post("/create", function(req,res){
   newtimesheet.JobId = req.body.JobId;
   newtimesheet.UserId = req.body.UserId;
   newtimesheet.clockedInDate = new Date(req.body.clockIn);
-  newtimesheet.clockedIn = new Date(req.body.clockIn);
 
+  newtimesheet.clockedIn = new Date(req.body.clockIn);
+  newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "hh:MM");
   models.Timesheet.create(newtimesheet).then(function(data){
     // create a row in the database
     res.json(data)

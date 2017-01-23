@@ -30,13 +30,32 @@ class Schedule extends React.Component {
 	    }.bind(this));
 	}
 
- 	handleClockIn(){    
-    	console.log("Clock In");
+ 	handleClockIn(index, event){ 
+ 		event.preventDefault();
+ 		console.log("Clock In event : "+ event)
+    	console.log("Clock In index  : " + index);
+    	Helpers._getOneSchedule(index)
+			.then(function(newSchedule){
+				console.log(newSchedule);
+			 	var newTimeSheet = {};
+			 	newTimeSheet.JobId= newSchedule.data.JobId;
+			 	newTimeSheet.UserId= newSchedule.data.UserId;
+				newTimeSheet.clockIn = Date.now();
+
+				Helpers._createTimecard(newTimeSheet)
+					.then(function(newdata){
+						this.setState({tCard : newSchedule.data});
+						this.setState({ cardId : newdata.data.id});
+						this.setState({ yourStartTime : Date.now()});
+						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
+			 		}.bind(this));
+			
+      	}.bind(this));
   	}
 
     render() {
 	   	console.log ("Today's Schedule:", this.state.scheduleList);
-
+	   	var that = this;
     	return ( 
     	<div>
 	      <Card>
@@ -58,7 +77,7 @@ class Schedule extends React.Component {
 					                <TableRowColumn>{row.jobName}</TableRowColumn>
 					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
 					                <TableRowColumn>
-										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center" >alarm</IconButton>
+										<IconButton onClick={that.handleClockIn.bind(that, row.id)} iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center" >alarm</IconButton>
 										<IconButton iconClassName="material-icons" tooltip="Clock Out" tooltipPosition="top-center" disabled={true}>alarm_off</IconButton>
 					                	<Link to="timecard">
 					                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
