@@ -24,7 +24,7 @@ router.post("/create", function(req,res){
 router.post("/update", function(req,res){
   var cardId = req.body.cardId;
   var clockOut = new Date(req.body.clockOut);
-
+  clockOut = dateFormat(clockOut, "hh:MM");
     models.Timesheet.update({
       clockedOut : clockOut
     }, {

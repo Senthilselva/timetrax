@@ -47,6 +47,7 @@ const helpers = {
 		return axios.post("/timesheet/create", newTimeSheet);
 	},
 
+	//update the timesheet from endtime
 	_updateTimecard:(cardId, time) => {
 		return axios.post("/timesheet/update", 
 			{ cardId:cardId,

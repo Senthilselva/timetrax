@@ -62,6 +62,10 @@ class TodaySchedule extends React.Component {
  		event.preventDefault();
  		console.log("Clock In event : " + event);
     	console.log("Clock In Id  : " + index);
+    	var clockOutTime = Date.now(); 
+    	Helpers._updateTimecard(this.state.cardId, clockOutTime)
+				.then(function(data,err){
+		})
 
   	}
   	

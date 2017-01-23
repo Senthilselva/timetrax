@@ -68909,6 +68909,7 @@
 			return _axios2.default.post("/timesheet/create", newTimeSheet);
 		},
 	
+		//update the timesheet from endtime
 		_updateTimecard: function _updateTimecard(cardId, time) {
 			return _axios2.default.post("/timesheet/update", { cardId: cardId,
 				clockOut: time });
@@ -75660,6 +75661,8 @@
 				event.preventDefault();
 				console.log("Clock In event : " + event);
 				console.log("Clock In Id  : " + index);
+				var clockOutTime = Date.now();
+				_Helpers2.default._updateTimecard(this.state.cardId, clockOutTime).then(function (data, err) {});
 			}
 		}, {
 			key: "render",
