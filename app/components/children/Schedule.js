@@ -41,26 +41,47 @@ class Schedule extends React.Component {
 
     	return ( 
     	<div>
-	      <Card>
+	    <Card>
 	        <CardHeader title="Full Schedule" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
-		        <CardText>
-					<Table selectable={true}>
-					    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
-					          {this.state.scheduleList.map(function(row, i){
+		    <CardText>
+				I want the list below to be grouped by Date and then displayed in an expandable menu for each day that expands to show the jobs for that day
+				<Table selectable={true}>
+				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
+				          {this.state.scheduleList.map(function(row, i){
 
-					            return(
-					              <TableRow key={i}> 
-					                <TableRowColumn>{row.jobName}</TableRowColumn>
-					                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
-					                <TableRowColumn>{row.startTime}</TableRowColumn>
-					                <TableRowColumn>{row.endTime}</TableRowColumn>
-					              </TableRow>
-					            );
-					          })}
-					    </TableBody>
-					</Table>		        	
-		        </CardText>
-	      </Card>
+				            return(
+				              <TableRow key={i}> 
+				                <TableRowColumn>{row.jobName}</TableRowColumn>
+				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
+				                <TableRowColumn>{row.startTime}</TableRowColumn>
+				                <TableRowColumn>{row.endTime}</TableRowColumn>
+				              </TableRow>
+				            );
+				          })}
+				    </TableBody>
+				</Table>				
+			</CardText>	        	
+	    </Card>
+		<Card>
+		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true} />
+		    <CardText expandable={true}>
+				<Table selectable={true}>
+				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
+				          {this.state.scheduleList.map(function(row, i){
+
+				            return(
+				              <TableRow key={i}> 
+				                <TableRowColumn>{row.jobName}</TableRowColumn>
+				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
+				                <TableRowColumn>{row.startTime}</TableRowColumn>
+				                <TableRowColumn>{row.endTime}</TableRowColumn>
+				              </TableRow>
+				            );
+				          })}
+				    </TableBody>
+				</Table>
+			</CardText>
+		</Card>
     	</div>
     	);
   	}

@@ -2,10 +2,11 @@ var express = require('express');
 var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
-var moment =require('moment')
+var dateFormat = require('dateformat');
+var today = new Date();
 
+//Returns all the Jobs for a given User
 router.get('/user/:userName', function(req,res) {
-  var today = Date.now();
     models.Schedule.findAll({ 
       include: [
         { 
@@ -20,33 +21,35 @@ router.get('/user/:userName', function(req,res) {
       { 
         startDate:
         {
-          $gt: new Date(today)
+          $gte: today
         }
-      }
+      },
+    order: 'startDate, startTime'
+
     }).then(function(data){
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
-   //moving the needed data to an array
-    var job = {};
-    job.id = data[i].id;
-    job.startDate = moment(data[i].startDate).format('L');
-    job.startTime = data[i].startTime;
-    job.endTime = data[i].endTime;
-    job.jobName = data[i].Job.name;
-    job.jobAdd = data[i].Job.address;
-    job.jobCity = data[i].Job.city;
-    job.jobState = data[i].Job.state;
-    job.jobZip = data[i].Job.zip;
-    
+      var job = {};
+        job.id = data[i].id;
+        job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+        job.startTime = data[i].startTime;
+        job.endTime = data[i].endTime;
+        job.jobName = data[i].Job.name;
+        job.jobAdd = data[i].Job.address;
+        job.jobCity = data[i].Job.city;
+        job.jobState = data[i].Job.state;
+        job.jobZip = data[i].Job.zip;
+        
 
-    jobList.push(job)
-  }
+        jobList.push(job)
+      }
      res.json(jobList)
   })
 
 });
 
+//Returns a Schedule for a given Id
 router.get('/schedule/:scheduleId', function(req,res) {
   vSchId = req.params.scheduleId;
 
@@ -64,7 +67,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
     }
   }).then(function(data){
    
-    var vSchedule = {};
+  var vSchedule = {};
     vSchedule.id = data.id;
     vSchedule.startDate =data.startDate;
     vSchedule.startTime = data.startTime;
@@ -80,8 +83,8 @@ router.get('/schedule/:scheduleId', function(req,res) {
 });
 
 
+//Returns a User's Schedule
 router.get('/user/today/:userName', function(req,res) {
-    var today = moment(today).format("YYYY-MM-DD");
 
     models.Schedule.findAll(
       { include: [
@@ -93,35 +96,67 @@ router.get('/user/today/:userName', function(req,res) {
           model:  models.Job 
         }
       ] ,
-    where: 
-      { startDate:
-        {
-          $gt: new Date(today)
-         // $lt: new Date(new Date() + 24 * 60 * 60 * 1000)
-        }
-      }
+      where: 
+      { startDate: today }
+
     }).then(function(data){
+
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
-   //moving the needed data to an array
-    var job = {};
-    job.id = data[i].id;
-    job.startDate = moment(data[i].startDate).format('L');
-    job.startTime = data[i].startTime;
-    job.endTime = data[i].endTime;
-    job.jobName = data[i].Job.name;
-    job.jobAdd = data[i].Job.address;
-    job.jobCity = data[i].Job.city;
-    job.jobState = data[i].Job.state;
-    job.jobZip = data[i].Job.zip;
-    
-
-    jobList.push(job)
-  }
-     res.json(jobList)
+      var job = {};
+      job.id = data[i].id;
+      job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+      job.startTime = data[i].startTime;
+      job.endTime = data[i].endTime;
+      job.jobName = data[i].Job.name;
+      job.jobAdd = data[i].Job.address;
+      job.jobCity = data[i].Job.city;
+      job.jobState = data[i].Job.state;
+      job.jobZip = data[i].Job.zip;
+      
+      jobList.push(job)
+    }
+       res.json(jobList)
   })
+});
 
+//Returns a User's Schedule for a given Date
+router.get('/user/:userName/:searchDate', function(req,res) {
+
+    models.Schedule.findAll(
+      { include: [
+        { 
+          model : models.User,
+          where: { username: req.params.userName} 
+        },
+        {
+          model:  models.Job 
+        }
+      ] ,
+      where: 
+      { startDate: req.params.searchDate }
+
+    }).then(function(data){
+
+    var jobList = [];
+
+    for(var i=0; i< data.length; i++){
+      var job = {};
+      job.id = data[i].id;
+      job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+      job.startTime = data[i].startTime;
+      job.endTime = data[i].endTime;
+      job.jobName = data[i].Job.name;
+      job.jobAdd = data[i].Job.address;
+      job.jobCity = data[i].Job.city;
+      job.jobState = data[i].Job.state;
+      job.jobZip = data[i].Job.zip;
+      
+      jobList.push(job)
+    }
+       res.json(jobList)
+  })
 });
 
 module.exports = router;

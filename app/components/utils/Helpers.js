@@ -16,17 +16,21 @@ const helpers = {
 	//gets all the schedule for the user the user is got from localStorage
 	_getSchedule: () => {
 		var vEmail =localStorage.getItem('userName');
-		return axios.get("/schedule/user/"+vEmail );
+		return axios.get("/schedule/user/" + vEmail );
 	},
 
 	//gets all the schedule for the user the user is got from localStorage
 	_getTodaySchedule: () => {
 		var vEmail =localStorage.getItem('userName');
-		return axios.get("/schedule/user/today/"+vEmail );
+		return axios.get("/schedule/user/today/" + vEmail );
 	},
 
 	_getOneSchedule: (id) => {
-		return axios.get("/schedule/schedule/"+id );
+		return axios.get("/schedule/schedule/" + id );
+	}, 
+
+	_getScheduleDate: (date) => {
+		return axios.get("/schedule/user/" + date );
 	}, 
 
 	 //to enter the data into the timesheet table
@@ -46,7 +50,7 @@ const helpers = {
 		var vEmail =localStorage.getItem('userName');
 
 		//calling the controller and returing the value
-		return axios.get("/timesheet/user/"+vEmail );
+		return axios.get("/timesheet/user/" + vEmail );
 	}
 }
 
