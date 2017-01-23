@@ -14,7 +14,7 @@ class Totals extends React.Component {
 	      <Card>
 	        <CardHeader title={this.state.name + "'s Overview"} subtitle="" avatar="assets/images/ic_account_circle_black_24dp_2x.png" />
 	        <CardText>
-	          This section will display a running total for the week
+	          This section will display an overview of total hours worked for the current week. Needs to be worked on.
 	        </CardText>
 	      </Card>
     	);

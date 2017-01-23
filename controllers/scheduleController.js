@@ -20,28 +20,27 @@ router.get('/user/:userName', function(req,res) {
       { 
         startDate:
         {
-          $gt: today
+          $gte: today
         }
       }
     }).then(function(data){
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
-   //moving the needed data to an array
-    var job = {};
-    job.id = data[i].id;
-    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-    job.startTime = data[i].startTime;
-    job.endTime = data[i].endTime;
-    job.jobName = data[i].Job.name;
-    job.jobAdd = data[i].Job.address;
-    job.jobCity = data[i].Job.city;
-    job.jobState = data[i].Job.state;
-    job.jobZip = data[i].Job.zip;
-    
+      var job = {};
+        job.id = data[i].id;
+        job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+        job.startTime = data[i].startTime;
+        job.endTime = data[i].endTime;
+        job.jobName = data[i].Job.name;
+        job.jobAdd = data[i].Job.address;
+        job.jobCity = data[i].Job.city;
+        job.jobState = data[i].Job.state;
+        job.jobZip = data[i].Job.zip;
+        
 
-    jobList.push(job)
-  }
+        jobList.push(job)
+      }
      res.json(jobList)
   })
 
@@ -64,7 +63,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
     }
   }).then(function(data){
    
-    var vSchedule = {};
+  var vSchedule = {};
     vSchedule.id = data.id;
     vSchedule.startDate =data.startDate;
     vSchedule.startTime = data.startTime;
@@ -96,27 +95,25 @@ router.get('/user/today/:userName', function(req,res) {
       { startDate: today }
 
     }).then(function(data){
+
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
-   //moving the needed data to an array
-    var job = {};
-    job.id = data[i].id;
-    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-    job.startTime = data[i].startTime;
-    job.endTime = data[i].endTime;
-    job.jobName = data[i].Job.name;
-    job.jobAdd = data[i].Job.address;
-    job.jobCity = data[i].Job.city;
-    job.jobState = data[i].Job.state;
-    job.jobZip = data[i].Job.zip;
-    
-
-    jobList.push(job)
-  }
-     res.json(jobList)
+      var job = {};
+      job.id = data[i].id;
+      job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+      job.startTime = data[i].startTime;
+      job.endTime = data[i].endTime;
+      job.jobName = data[i].Job.name;
+      job.jobAdd = data[i].Job.address;
+      job.jobCity = data[i].Job.city;
+      job.jobState = data[i].Job.state;
+      job.jobZip = data[i].Job.zip;
+      
+      jobList.push(job)
+    }
+       res.json(jobList)
   })
-
 });
 
 module.exports = router;
