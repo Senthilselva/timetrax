@@ -20,7 +20,7 @@ class Schedule extends React.Component {
     		today: today,
     		scheduleList:[]
 		}
-		this.handleClick = this.handleClick.bind(this);
+		this.handleClockIn = this.handleClockIn.bind(this);
   	};
 
 	componentWillMount() {
@@ -30,14 +30,12 @@ class Schedule extends React.Component {
 	    }.bind(this));
 	}
 
- 	handleClick(){    
-    	console.log("id=", id);
-    	this.setState({clockInId:id});
-	}
+ 	handleClockIn(){    
+    	console.log("Clock In");
+  	}
 
     render() {
-	    var that =this;
-    	console.log ("schedule list:", this.state.scheduleList);
+	   	console.log ("Today's Schedule:", this.state.scheduleList);
 
     	return ( 
     	<div>
@@ -60,7 +58,7 @@ class Schedule extends React.Component {
 					                <TableRowColumn>{row.jobName}</TableRowColumn>
 					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
 					                <TableRowColumn>
-										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center" onClick={this.handleClick}>alarm</IconButton>
+										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center" >alarm</IconButton>
 										<IconButton iconClassName="material-icons" tooltip="Clock Out" tooltipPosition="top-center" disabled={true}>alarm_off</IconButton>
 					                	<Link to="timecard">
 					                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
