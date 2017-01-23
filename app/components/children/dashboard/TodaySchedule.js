@@ -19,6 +19,7 @@ class TodaySchedule extends React.Component {
     		name: userData.firstName,
     		today: today,
     		scheduleList:[],
+    		clockedRow: 0,
     		disableClock:true
 		}
 		this.handleClockIn = this.handleClockIn.bind(this);
@@ -92,12 +93,27 @@ class TodaySchedule extends React.Component {
 										<IconButton onClick={that.handleClockIn.bind(that, row.id)} 
 					            					iconClassName="material-icons" tooltip="Clock In" 
 					            					tooltipPosition="top-center" disabled={!that.state.disableClock} >alarm</IconButton>
-										<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
-					          						iconClassName="material-icons" tooltip="Clock Out" 
-					          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
-					                	<Link to="timecard">
-					                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
-					                	</Link>
+										{/* keeping all clock-out disaled except the one clocked in */}
+										{ that.state.clockedRow == row.id ? (
+										<span>
+											<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
+						          						iconClassName="material-icons" tooltip="Clock Out" 
+						          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
+						                	<Link to="timecard">
+						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
+						                	</Link>
+					                	</span>
+					                	) : (
+					          			<span>
+						          			<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
+						          						iconClassName="material-icons" tooltip="Clock Out" 
+						          						tooltipPosition="top-center" disabled={true}>alarm_off</IconButton>
+						          			{/* <Link to="timecard" onClick={e => e.preventDefault()}>
+						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
+						                	</Link> */}
+					                	</span>
+					          			)}
+					                	
 				                	</TableRowColumn>
 					              </TableRow>
 					            );

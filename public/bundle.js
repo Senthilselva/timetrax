@@ -75616,6 +75616,7 @@
 				name: userData.firstName,
 				today: today,
 				scheduleList: [],
+				clockedRow: 0,
 				disableClock: true
 			};
 			_this.handleClockIn = _this.handleClockIn.bind(_this);
@@ -75723,20 +75724,34 @@
 														tooltipPosition: "top-center", disabled: !that.state.disableClock },
 													"alarm"
 												),
-												_react2.default.createElement(
-													_materialUi.IconButton,
-													{ onClick: that.handleClockOut.bind(that, row.id),
-														iconClassName: "material-icons", tooltip: "Clock Out",
-														tooltipPosition: "top-center", disabled: that.state.disableClock },
-													"alarm_off"
-												),
-												_react2.default.createElement(
-													_reactRouter.Link,
-													{ to: "timecard" },
+												that.state.clockedRow == row.id ? _react2.default.createElement(
+													"span",
+													null,
 													_react2.default.createElement(
-														_materialUi.FontIcon,
-														{ className: "material-icons md-48" },
-														"alarm_on"
+														_materialUi.IconButton,
+														{ onClick: that.handleClockOut.bind(that, row.id),
+															iconClassName: "material-icons", tooltip: "Clock Out",
+															tooltipPosition: "top-center", disabled: that.state.disableClock },
+														"alarm_off"
+													),
+													_react2.default.createElement(
+														_reactRouter.Link,
+														{ to: "timecard" },
+														_react2.default.createElement(
+															_materialUi.FontIcon,
+															{ className: "material-icons md-48" },
+															"alarm_on"
+														)
+													)
+												) : _react2.default.createElement(
+													"span",
+													null,
+													_react2.default.createElement(
+														_materialUi.IconButton,
+														{ onClick: that.handleClockOut.bind(that, row.id),
+															iconClassName: "material-icons", tooltip: "Clock Out",
+															tooltipPosition: "top-center", disabled: true },
+														"alarm_off"
 													)
 												)
 											)
