@@ -176,8 +176,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		startDate: "2017-01-20",
-		startTime: "09:00:00",
-		endTime: "12:00:00"
+		startTime: "09:00",
+		endTime: "12:00"
 	});
 })
 .then(function(){
@@ -186,8 +186,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "2",
 		startDate: "2017-01-20",
-		startTime: "14:00:00",
-		endTime: "18:00:00"
+		startTime: "14:00",
+		endTime: "18:00"
 	});
 })
 .then(function(){
@@ -196,8 +196,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		startDate: "2017-01-21",
-		startTime: "13:00:00",
-		endTime: "18:00:00"
+		startTime: "13:00",
+		endTime: "18:00"
 	});
 })
 .then(function(){
@@ -206,18 +206,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		startDate: today,
-		startTime: "12:30:00",
-		endTime: "18:00:00"
-	});
-})
-.then(function(){
-	return db.Schedule.create(
-	{
-		UserId: "2",
-		JobId: "1",
-		startDate: tomorrow,
-		startTime: "10:00:00",
-		endTime: "12:00:00"
+		startTime: "10:00",
+		endTime: "12:00"
 	});
 })
 .then(function(){
@@ -225,9 +215,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "2",
-		startDate: tomorrow,
-		startTime: "14:00:00",
-		endTime: "16:00:00"
+		startDate: today,
+		startTime: "12:30",
+		endTime: "17:00"
 	});
 })
 .then(function(){
@@ -236,28 +226,18 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "3",
 		startDate: today,
-		startTime: "18:00:00",
-		endTime: "20:00:00"
+		startTime: "18:00",
+		endTime: "20:00"
 	});
 })
 .then(function(){
 	return db.Schedule.create(
 	{
 		UserId: "2",
-		JobId: "2",
+		JobId: "1",
 		startDate: tomorrow,
-		startTime: "10:00:00",
-		endTime: "12:00:00"
-	});
-})
-.then(function(){
-	return db.Schedule.create(
-	{
-		UserId: "2",
-		JobId: "2",
-		startDate: tomorrow,
-		startTime: "14:00:00",
-		endTime: "16:00:00"
+		startTime: "14:00",
+		endTime: "16:00"
 	});
 })
 .then(function(){
@@ -266,8 +246,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "3",
 		startDate: tomorrow,
-		startTime: "18:00:00",
-		endTime: "20:00:00"
+		startTime: "18:00",
+		endTime: "20:00"
 	});
 })
 // Add Schedule for User 3 -------------
@@ -277,8 +257,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "3",
 		startDate: today,
-		startTime: "10:00:00",
-		endTime: "14:00:00"
+		startTime: "10:00",
+		endTime: "14:00"
 	});
 })
 .then(function(){
@@ -287,8 +267,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "4",
 		startDate: today,
-		startTime: "15:00:00",
-		endTime: "18:00:00"
+		startTime: "15:00",
+		endTime: "18:00"
 	});
 })
 .then(function(){
@@ -297,8 +277,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "3",
 		startDate: today,
-		startTime: "10:00:00",
-		endTime: "14:00:00"
+		startTime: "10:00",
+		endTime: "14:00"
 	});
 })
 .then(function(){
@@ -307,8 +287,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "4",
 		startDate: today,
-		startTime: "15:00:00",
-		endTime: "18:00:00"
+		startTime: "15:00",
+		endTime: "18:00"
 	});
 })
 // Add Schedule for User 4 -------------
@@ -318,8 +298,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "4",
 		JobId: "3",
 		startDate: today,
-		startTime: "09:00:00",
-		endTime: "11:00:00"
+		startTime: "09:00",
+		endTime: "11:00"
 	});
 })
 .then(function(){
@@ -328,8 +308,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "4",
 		JobId: "1",
 		startDate: today,
-		startTime: "13:00:00",
-		endTime: "16:00:00"
+		startTime: "13:00",
+		endTime: "16:00"
 	});
 })
 .then(function(){
@@ -338,8 +318,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "4",
 		JobId: "3",
 		startDate: today,
-		startTime: "10:00:00",
-		endTime: "14:00:00"
+		startTime: "10:00",
+		endTime: "14:00"
 	});
 })
 .then(function(){
@@ -348,8 +328,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "4",
 		JobId: "2",
 		startDate: today,
-		startTime: "15:00:00",
-		endTime: "18:00:00"
+		startTime: "15:00",
+		endTime: "18:00"
 	});
 })
 // =======================================================================
@@ -362,8 +342,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		clockedInDate: "2017-01-17",
-		clockedIn: "15:05:00",
-		clockedOut: "19:15:00"
+		clockedIn: "15:05",
+		clockedOut: "19:15"
 	});
 })
 .then(function(){
@@ -372,8 +352,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		clockedInDate: "2017-01-18",
-		clockedIn: "09:59:00",
-		clockedOut: "14:00:00"
+		clockedIn: "09:59",
+		clockedOut: "14:00"
 	});
 })
 .then(function(){
@@ -382,8 +362,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		clockedInDate: "2017-01-19",
-		clockedIn: "09:55:00",
-		clockedOut: "14:05:00"
+		clockedIn: "09:55",
+		clockedOut: "14:05"
 	});
 })
 .then(function(){
@@ -392,8 +372,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		clockedInDate: "2017-01-20",
-		clockedIn: "09:50:00",
-		clockedOut: "14:15:00"
+		clockedIn: "09:50",
+		clockedOut: "14:15"
 	});
 })
 .then(function(){
@@ -402,8 +382,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "2",
 		JobId: "1",
 		clockedInDate: "2017-01-20",
-		clockedIn: "15:00:40",
-		clockedOut: "19:25:00"
+		clockedIn: "15:00",
+		clockedOut: "19:25"
 	});
 })
 // Add Timesheets for User 3 -------------
@@ -413,8 +393,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "3",
 		clockedInDate: "2017-01-17",
-		clockedIn: "15:05:00",
-		clockedOut: "19:15:00"
+		clockedIn: "15:05",
+		clockedOut: "19:15"
 	});
 })
 .then(function(){
@@ -423,8 +403,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "3",
 		clockedInDate: "2017-01-18",
-		clockedIn: "09:59:00",
-		clockedOut: "14:00:00"
+		clockedIn: "09:59",
+		clockedOut: "14:00"
 	});
 })
 .then(function(){
@@ -433,8 +413,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "4",
 		clockedInDate: "2017-01-19",
-		clockedIn: "09:55:00",
-		clockedOut: "14:05:00"
+		clockedIn: "09:55",
+		clockedOut: "14:05"
 	});
 })
 .then(function(){
@@ -443,8 +423,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "4",
 		clockedInDate: "2017-01-20",
-		clockedIn: "09:50:00",
-		clockedOut: "14:15:00"
+		clockedIn: "09:50",
+		clockedOut: "14:15"
 	});
 })
 .then(function(){
@@ -453,7 +433,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "3",
 		JobId: "3",
 		clockedInDate: "2017-01-20",
-		clockedIn: "15:00:40",
+		clockedIn: "15:00:00",
 		clockedOut: "19:25:00"
 	});
 })
@@ -504,7 +484,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		UserId: "4",
 		JobId: "1",
 		clockedInDate: "2017-01-20",
-		clockedIn: "15:00:40",
+		clockedIn: "15:00:00",
 		clockedOut: "19:25:00"
 	});
 })

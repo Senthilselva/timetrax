@@ -3,12 +3,12 @@ import Auth  from "../Auth";
 import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
-import RaisedButton from 'material-ui/RaisedButton';
+import {RaisedButton, FontIcon} from 'material-ui';
 import Helpers from '../../utils/Helpers.js';
 var dateFormat = require('dateformat');
 var today = new Date();
 
-const style = { margin: 12 };
+const iconStyles = { margin: 12 };
 
 class Schedule extends React.Component {
 	constructor(props) {
@@ -19,6 +19,7 @@ class Schedule extends React.Component {
     		today: today,
     		scheduleList:[]
 		}
+		this.handleClockIn = this.handleClockIn.bind(this);
   	};
 
 	componentWillMount() {
@@ -28,7 +29,7 @@ class Schedule extends React.Component {
 	    }.bind(this));
 	}
 
- 	getScheduleClockInId(id){    
+ 	handleClockIn(id){    
     	console.log("id=", id);
     	this.setState({clockInId:id});
 	}
@@ -36,7 +37,6 @@ class Schedule extends React.Component {
     render() {
 	    var that =this;
     	console.log ("schedule list:", this.state.scheduleList);
-	    console.log ("schedule length:", this.state.scheduleList.length);
 
     	return ( 
     	<div>
@@ -50,29 +50,19 @@ class Schedule extends React.Component {
 
 			) : (
 		        <CardText>
-		        	List of jobs 
 					<Table selectable={true}>
-					    <TableHeader adjustForCheckbox={true} displaySelectAll={false} enableSelectAll={false}>
-					      <TableRow>
-					        <TableHeaderColumn>Client</TableHeaderColumn>
-					        <TableHeaderColumn>Date</TableHeaderColumn>
-					        <TableHeaderColumn>Start</TableHeaderColumn>
-					        <TableHeaderColumn>Finish</TableHeaderColumn>
-					      </TableRow>
-					    </TableHeader>
 					    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
-					          {this.state.scheduleList.map(function(id, i){
+					          {this.state.scheduleList.map(function(row, i){
 
 					            return(
 					              <TableRow key={i}> 
-					                <TableRowColumn>{id.jobName}</TableRowColumn>
-					                <TableRowColumn>{dateFormat(id.startDate, "isoDateTime")}</TableRowColumn>
-					                <TableRowColumn>{id.startTime}</TableRowColumn>
-					                <TableRowColumn>{id.endTime}</TableRowColumn>
-					                <TableRowColumn>{id.jobAdd}, {id.jobCity}, {id.jobState}, {id.jobZip} </TableRowColumn>
+					                <TableRowColumn>{row.jobName}</TableRowColumn>
+					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
 					                <TableRowColumn>
-					                <RaisedButton label="Clock-in" value={id.id} onClick={that._onClockIn} 
-					                style={style}/> </TableRowColumn>
+					                	<Link to="timecard">
+					                		<FontIcon className="material-icons md-48">alarm</FontIcon>
+					                	</Link>
+				                	</TableRowColumn>
 					              </TableRow>
 					            );
 					          })}
