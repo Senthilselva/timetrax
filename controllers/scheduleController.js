@@ -22,7 +22,9 @@ router.get('/user/:userName', function(req,res) {
         {
           $gte: today
         }
-      }
+      },
+    order: 'startDate, startTime'
+
     }).then(function(data){
     var jobList = [];
 
