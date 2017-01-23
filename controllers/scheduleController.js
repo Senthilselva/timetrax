@@ -5,28 +5,32 @@ var path = require('path');
 var dateFormat = require('dateformat');
 var today = new Date();
 
+console.log("============================");
+
 //Returns all the Jobs for a given User
 router.get('/user/:userName', function(req,res) {
-    models.Schedule.findAll({ 
-      include: [
-        { 
-          model : models.User,
-          where: { username: req.params.userName} 
-        },
-        {
-          model:  models.Job 
-        }
-      ],
-    where: 
-      { 
-        startDate:
-        {
-          $gte: today
-        }
-      },
-    order: 'startDate, startTime'
+  console.log("Returning all the Jobs for a given User", req.params);
 
-    }).then(function(data){
+  models.Schedule.findAll({ 
+    include: [
+      { 
+        model : models.User,
+        where: { username: req.params.userName} 
+      },
+      {
+        model:  models.Job 
+      }
+    ],
+  where: 
+    { 
+      startDate:
+      {
+        $gte: today
+      }
+    },
+  order: 'startDate, startTime'
+
+  }).then(function(data){
     var jobList = [];
 
     for(var i=0; i< data.length; i++){
@@ -51,6 +55,7 @@ router.get('/user/:userName', function(req,res) {
 
 //Returns a Schedule for a given Id
 router.get('/schedule/:scheduleId', function(req,res) {
+  console.log("Returning a Schedule for an Id", req.params);
   vSchId = req.params.scheduleId;
 
   models.Schedule.findOne({
@@ -85,52 +90,54 @@ router.get('/schedule/:scheduleId', function(req,res) {
 
 //Returns a User's Schedule for Today
 router.get('/user/today/:userName', function(req,res) {
+  console.log("Returning a User's Schedule for Today", req.params);
 
-    models.Schedule.findAll(
-      { include: [
-        { 
-          model : models.User,
-          where: { username: req.params.userName} 
-        },
-        {
-          model:  models.Job 
-        }
-      ] ,
-      where: 
-      { startDate: today }
+  models.Schedule.findAll(
+    { include: [
+      { 
+        model : models.User,
+        where: { username: req.params.userName} 
+      },
+      {
+        model:  models.Job 
+      }
+    ] ,
+    where: 
+    { startDate: today }
 
-    }).then(function(data){
+  }).then(function(data){
 
-    var jobList = [];
+  var jobList = [];
 
-    for(var i=0; i< data.length; i++){
-      var job = {};
-      job.id = data[i].id;
-      job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-      
-      jobList.push(job)
-    }
-       res.json(jobList)
+  for(var i=0; i< data.length; i++){
+    var job = {};
+    job.id = data[i].id;
+    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
+    
+    jobList.push(job)
+  }
+     res.json(jobList)
   })
 });
 
 //Returns a User's Schedule for a given Date
-router.get('/user/:userName/:searchDate', function(req,res) {
+router.get('/user/:userName/:searchDate', function(req,res) {   
+  console.log("Returning a User's Schedule for a given Date", req.params);
 
-    models.Schedule.findAll(
-      { include: [
-        { 
-          model : models.User,
-          where: { username: req.params.userName} 
-        },
-        {
-          model:  models.Job 
-        }
-      ] ,
-      where: 
-      { startDate: req.params.searchDate }
+  models.Schedule.findAll(
+    { include: [
+      { 
+        model : models.User,
+        where: { username: req.params.userName} 
+      },
+      {
+        model:  models.Job 
+      }
+    ] ,
+    where: 
+    { startDate: req.params.searchDate }
 
-    }).then(function(data){
+  }).then(function(data){
 
     var jobList = [];
 
@@ -138,14 +145,7 @@ router.get('/user/:userName/:searchDate', function(req,res) {
       var job = {};
       job.id = data[i].id;
       job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-      job.startTime = data[i].startTime;
-      job.endTime = data[i].endTime;
-      job.jobName = data[i].Job.name;
-      job.jobAdd = data[i].Job.address;
-      job.jobCity = data[i].Job.city;
-      job.jobState = data[i].Job.state;
-      job.jobZip = data[i].Job.zip;
-      
+            
       jobList.push(job)
     }
        res.json(jobList)
