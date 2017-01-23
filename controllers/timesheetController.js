@@ -2,7 +2,7 @@ var express = require('express');
 var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
-//var moment =require('moment');
+var moment =require('moment');
 var dateFormat = require('dateformat');
 
 //enter a new record into the timesheet table with out the end time

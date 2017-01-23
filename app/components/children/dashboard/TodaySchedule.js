@@ -11,7 +11,7 @@ var today = new Date();
 //alarm, alarm on, alarm off
 const iconStyle = { margin: 12 };
 
-class Schedule extends React.Component {
+class TodaySchedule extends React.Component {
 	constructor(props) {
         super(props);
 	    const userData = Auth._getData();
@@ -32,8 +32,8 @@ class Schedule extends React.Component {
 
  	handleClockIn(index, event){ 
  		event.preventDefault();
- 		console.log("Clock In event : "+ event)
-    	console.log("Clock In index  : " + index);
+ 		console.log("Clock In event : " + event);
+    	console.log("Clock In Id  : " + index);
     	Helpers._getOneSchedule(index)
 			.then(function(newSchedule){
 				console.log(newSchedule);
@@ -47,7 +47,6 @@ class Schedule extends React.Component {
 						this.setState({tCard : newSchedule.data});
 						this.setState({ cardId : newdata.data.id});
 						this.setState({ yourStartTime : Date.now()});
-						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
 			 		}.bind(this));
 			
       	}.bind(this));
@@ -56,6 +55,7 @@ class Schedule extends React.Component {
     render() {
 	   	console.log ("Today's Schedule:", this.state.scheduleList);
 	   	var that = this;
+
     	return ( 
     	<div>
 	      <Card>
@@ -99,4 +99,4 @@ class Schedule extends React.Component {
 }
 
 // Export the component back for use in other files
-export default Schedule;
+export default TodaySchedule;

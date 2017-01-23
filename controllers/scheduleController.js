@@ -5,7 +5,7 @@ var path = require('path');
 var dateFormat = require('dateformat');
 var today = new Date();
 
-console.log("============================");
+console.log("=====================================================================================================================");
 
 //Returns all the Jobs for a given User
 router.get('/user/:userName', function(req,res) {

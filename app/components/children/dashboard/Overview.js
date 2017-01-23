@@ -2,7 +2,7 @@ import React from "react";
 import Auth  from "../Auth";
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 
-class Totals extends React.Component {
+class Overview extends React.Component {
 	constructor(props) {
         super(props);
 	    const userData = Auth._getData();
@@ -22,4 +22,4 @@ class Totals extends React.Component {
 }
 
 // Export the component back for use in other files
-export default Totals;
+export default Overview;
