@@ -69,7 +69,7 @@ app.set('port', process.env.PORT || 3000);
 // });
 
 //Initialize the database with test data
-//var initdb = require("./seeders/initialize_db.js");
+var initdb = require("./db/init.js");
 
  var server = app.listen(app.get('port'), function() {
   	// then save a log of the listening to our debugger.

@@ -2,10 +2,10 @@ var express = require('express');
 var models  = require('../models');
 var router  = express.Router();
 var path = require('path');
-var moment =require('moment')
+var dateFormat = require('dateformat');
+var today = new Date();
 
 router.get('/user/:userName', function(req,res) {
-  var today = Date.now();
     models.Schedule.findAll({ 
       include: [
         { 
@@ -20,7 +20,7 @@ router.get('/user/:userName', function(req,res) {
       { 
         startDate:
         {
-          $gt: new Date(today)
+          $gt: today
         }
       }
     }).then(function(data){
@@ -30,7 +30,7 @@ router.get('/user/:userName', function(req,res) {
    //moving the needed data to an array
     var job = {};
     job.id = data[i].id;
-    job.startDate = moment(data[i].startDate).format('L');
+    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
     job.startTime = data[i].startTime;
     job.endTime = data[i].endTime;
     job.jobName = data[i].Job.name;
@@ -81,8 +81,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
 
 
 router.get('/user/today/:userName', function(req,res) {
-    var today = Date.now();
-    //today = moment(today).format("YYYY-MM-DD");
+
     models.Schedule.findAll(
       { include: [
         { 
@@ -94,12 +93,7 @@ router.get('/user/today/:userName', function(req,res) {
         }
       ] ,
       where: 
-      { startDate:
-        {
-          $gt: new Date(today)
-         // $lt: new Date(new Date() + 24 * 60 * 60 * 1000)
-        }
-      }
+      { startDate: today }
 
     }).then(function(data){
     var jobList = [];
@@ -108,7 +102,7 @@ router.get('/user/today/:userName', function(req,res) {
    //moving the needed data to an array
     var job = {};
     job.id = data[i].id;
-    job.startDate = moment(data[i].startDate).format('L');
+    job.startDate = dateFormat(data[i].startDate, "isoDateTime");
     job.startTime = data[i].startTime;
     job.endTime = data[i].endTime;
     job.jobName = data[i].Job.name;
