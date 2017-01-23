@@ -76258,6 +76258,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	var dateFormat = __webpack_require__(/*! dateformat */ 685);
+	
 	//import helper file  
 	
 	
@@ -76285,7 +76287,7 @@
 	
 				_Helpers2.default._getTimeSheets().then(function (userData, err) {
 					this.setState({ timeSheets: userData.data });
-					console.log(userData.data);
+					//console.log(timeSheets)
 				}.bind(this));
 			} //componentWillMount
 	
@@ -76294,6 +76296,7 @@
 			key: 'render',
 			value: function render() {
 				var that = this;
+				console.log(this.state.timeSheets);
 				return _react2.default.createElement(
 					'div',
 					null,
@@ -76301,43 +76304,39 @@
 					_react2.default.createElement(
 						_materialUi.Card,
 						null,
-						_react2.default.createElement(_materialUi.CardHeader, { title: 'MM/DD/YYYY', subtitle: 'When expanded, shows all jobs scheduled for that date', actAsExpander: true, showExpandableButton: true }),
+						_react2.default.createElement(_materialUi.CardHeader, { title: 'Time Sheets', subtitle: '', avatar: 'assets/images/ic_schedule_black_24dp_2x.png' }),
 						_react2.default.createElement(
-							_materialUi.CardText,
-							{ expandable: true },
+							_materialUi.Table,
+							{ selectable: true },
 							_react2.default.createElement(
-								_materialUi.Table,
-								{ selectable: true },
-								_react2.default.createElement(
-									_materialUi.TableBody,
-									{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
-									this.state.timesheets.map(function (row, i) {
-										return _react2.default.createElement(
-											_materialUi.TableRow,
-											{ key: i },
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.jobName
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												dateFormat(row.startDate, "mm/dd/yyyy")
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.startTime
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.endTime
-											)
-										);
-									})
-								)
+								_materialUi.TableBody,
+								{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
+								this.state.timeSheets.map(function (row, i) {
+									return _react2.default.createElement(
+										_materialUi.TableRow,
+										{ key: i },
+										_react2.default.createElement(
+											_materialUi.TableRowColumn,
+											null,
+											row.jobName
+										),
+										_react2.default.createElement(
+											_materialUi.TableRowColumn,
+											null,
+											dateFormat(row.startDate, "mm/dd/yyyy")
+										),
+										_react2.default.createElement(
+											_materialUi.TableRowColumn,
+											null,
+											row.clockIn
+										),
+										_react2.default.createElement(
+											_materialUi.TableRowColumn,
+											null,
+											row.clockOut
+										)
+									);
+								})
 							)
 						)
 					)
