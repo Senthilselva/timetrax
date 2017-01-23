@@ -3,11 +3,12 @@ import Auth  from "../Auth";
 import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
-import {RaisedButton, FontIcon} from 'material-ui';
+import {IconButton, FontIcon} from 'material-ui';
 import Helpers from '../../utils/Helpers.js';
 var dateFormat = require('dateformat');
 var today = new Date();
 
+//alarm, alarm on, alarm off
 const iconStyles = { margin: 12 };
 
 class Schedule extends React.Component {
@@ -59,8 +60,10 @@ class Schedule extends React.Component {
 					                <TableRowColumn>{row.jobName}</TableRowColumn>
 					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
 					                <TableRowColumn>
+										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center">alarm</IconButton>
+										<IconButton iconClassName="material-icons" tooltip="Clock Out" tooltipPosition="top-center" disabled={true}>alarm_off</IconButton>
 					                	<Link to="timecard">
-					                		<FontIcon className="material-icons md-48">alarm</FontIcon>
+					                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
 					                	</Link>
 				                	</TableRowColumn>
 					              </TableRow>
