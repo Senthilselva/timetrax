@@ -4,6 +4,7 @@ module.exports = {
 	
 	_login(email, password, cb) {
   	cb = arguments[arguments.length - 1];
+    var that = this;
     if (localStorage.token) {
       console.log("localStorage token")
     	if (cb) cb(true)
@@ -23,7 +24,8 @@ module.exports = {
             this._onChange(false);
       	}
     }.bind(this)).catch(function(err){
-          console.log("Zeynep error" + err);
+          if (cb) cb(false)
+            that._onChange(false);
     });
 	},
 

@@ -27,8 +27,10 @@ class Login extends React.Component {
         
         //check logged in   
         if (!loggedIn) {
-          return 
-            this.setState({ error: true })
+            this.setState({ error: true });
+            this.props.router.replace('/login');
+          // return 
+          //   this.setState({ error: true })
         }
         else {
             //redirect to the dashboard
@@ -36,6 +38,11 @@ class Login extends React.Component {
             var userData = Auth._getData();
             if(userData.firstName != "undefined")
               this.props.router.replace('/dashboard');
+            else {
+              this.setState({ error: true });
+              this.props.router.replace('/login');
+            }  
+            
         }
 
       })
@@ -80,12 +87,15 @@ class Login extends React.Component {
 
                             <Button type = "submit"> Login </Button>
                             {this.state.error && (
-                                <p>Bad login information</p>
+                                <row>
+                                <p><strong style={{color:'red'}}>Incorrect credentials</strong></p>
+                                </row>
                             )}
                         </Row>
                         <Row>
                             <p>Not registered? <Link to="/register">Register Here</Link></p>
                         </Row>
+                     
                     </form>
                 </Card> 
             </Col>
