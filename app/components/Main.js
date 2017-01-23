@@ -92,8 +92,8 @@ class Main extends Component {
                    open={this.state.open}
                    onRequestChange={(open) => this.setState({open})}
                    >
-             <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Today's Schedule</MenuItem></Link>
-             <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>All Schedules</MenuItem></Link>
+             <Link to="dashboard"><MenuItem onTouchTap={this.handleClose}>Dashboard</MenuItem></Link>
+             <Link to="schedule"><MenuItem onTouchTap={this.handleClose}>Schedule</MenuItem></Link>
              <Link to="timesheet"><MenuItem onTouchTap={this.handleClose}>Timesheets</MenuItem></Link>
            </Drawer>
           {this.props.children}

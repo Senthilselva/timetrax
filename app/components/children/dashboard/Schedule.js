@@ -9,7 +9,7 @@ var dateFormat = require('dateformat');
 var today = new Date();
 
 //alarm, alarm on, alarm off
-const iconStyles = { margin: 12 };
+const iconStyle = { margin: 12 };
 
 class Schedule extends React.Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ class Schedule extends React.Component {
     		today: today,
     		scheduleList:[]
 		}
-		this.handleClockIn = this.handleClockIn.bind(this);
+		this.handleClick = this.handleClick.bind(this);
   	};
 
 	componentWillMount() {
@@ -30,7 +30,7 @@ class Schedule extends React.Component {
 	    }.bind(this));
 	}
 
- 	handleClockIn(id){    
+ 	handleClick(){    
     	console.log("id=", id);
     	this.setState({clockInId:id});
 	}
@@ -60,7 +60,7 @@ class Schedule extends React.Component {
 					                <TableRowColumn>{row.jobName}</TableRowColumn>
 					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
 					                <TableRowColumn>
-										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center">alarm</IconButton>
+										<IconButton iconClassName="material-icons" tooltip="Clock In" tooltipPosition="top-center" onClick={this.handleClick}>alarm</IconButton>
 										<IconButton iconClassName="material-icons" tooltip="Clock Out" tooltipPosition="top-center" disabled={true}>alarm_off</IconButton>
 					                	<Link to="timecard">
 					                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
