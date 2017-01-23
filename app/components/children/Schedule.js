@@ -20,6 +20,7 @@ class Schedule extends React.Component {
     	this.state = { 
     		name: userData.firstName,
     		today: today,
+    		scheduleDays:[],
     		scheduleList:[]
 		}
 		this.handleClockIn = this.handleClockIn.bind(this);
@@ -30,6 +31,10 @@ class Schedule extends React.Component {
 	  	.then(function(userData,err){
 	        this.setState({scheduleList: userData.data});
 	    }.bind(this));
+	  Helpers._getScheduleDays()
+	  	.then(function(userData,err){
+	        this.setState({scheduleDays: userData.data});
+	    }.bind(this));
 	}
 
  	handleClockIn(){    
@@ -37,7 +42,8 @@ class Schedule extends React.Component {
   	}
 
     render() {
-	   	console.log ("Full Schedule:", this.state.scheduleList);
+	   	console.log ("Schedule List:", this.state.scheduleList);
+	   	console.log ("Schedule Days:", this.state.scheduleDays);
 
     	return ( 
     	<div>
