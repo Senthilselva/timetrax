@@ -76232,6 +76232,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _Overview = __webpack_require__(/*! ./dashboard/Overview.js */ 683);
+	
+	var _Overview2 = _interopRequireDefault(_Overview);
+	
 	var _Helpers = __webpack_require__(/*! ../utils/Helpers.js */ 612);
 	
 	var _Helpers2 = _interopRequireDefault(_Helpers);
@@ -76248,7 +76252,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	//import helper file
+	//import helper file  
 	
 	
 	var Timesheet = function (_React$Component) {
@@ -76272,6 +76276,7 @@
 	
 				_Helpers2.default._getTimeSheets().then(function (userData, err) {
 					this.setState({ timeSheets: userData.data });
+					console.log(userData.data);
 				}.bind(this));
 			} //componentWillMount
 	
@@ -76283,6 +76288,7 @@
 				return _react2.default.createElement(
 					"div",
 					null,
+					_react2.default.createElement(_Overview2.default, null),
 					_react2.default.createElement(
 						"p",
 						null,

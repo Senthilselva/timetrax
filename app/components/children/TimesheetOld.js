@@ -1,8 +1,6 @@
 import React from "react";
 
-import Overview from "./dashboard/Overview.js"
-
-//import helper file  
+//import helper file
 import Helpers from '../utils/Helpers.js';
 import Auth  from "./Auth";
 
@@ -20,7 +18,6 @@ class Timesheet extends React.Component {
   		Helpers._getTimeSheets()
       		.then(function(userData,err){
         	this.setState({timeSheets:userData.data});
-        	console.log(userData.data)
       	}.bind(this));
 }//componentWillMount
 
@@ -31,7 +28,6 @@ class Timesheet extends React.Component {
 	    var that =this;
 		return(
 			<div>
-				<Overview />
 				<p> Time Sheets </p>
 				<p>{this.state.userData.firstName} {this.state.userData.lastName}</p>
 				<table>

@@ -39,9 +39,8 @@ router.post("/update", function(req,res){
   });
 
 router.get('/user/:userName', function(req,res) {
-
+    console.log("timesheet/userName  :"+req.params.userName )
     models.Timesheet.findAll(
-
       { include: [
         { 
           model : models.User,
@@ -53,17 +52,16 @@ router.get('/user/:userName', function(req,res) {
       ]
     }).then(function(data){
     var jobList = [];
-    
     for(var i=0; i< data.length; i++){
       var job = {};
       console.log("Time in: ", data[i].clockedInDate);
       console.log("Time out: ", data[i].clockedOutDate);
       job.id = data[i].id;
-      job.clockedInDate = moment(data[i].clockedInDate).format('L');
-      job.clockIn = moment(data[i].clockedIn, format("hh:mm"));
-      job.clockOut = moment(data[i].clockedOut, format("hh:mm"));
-      job.jobName = data[i].Job.name;
+      job.clockedInDate = data[i].clockedInDate;
+      job.clockIn = data[i].clockedIn;
+      job.clockOut = data[i].clockedOut;
 
+      job.jobName = data[i].Job.name;
       jobList.push(job)
     }
     res.json(jobList)
