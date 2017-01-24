@@ -75801,6 +75801,8 @@
 	
 	var _Chip2 = _interopRequireDefault(_Chip);
 	
+	var _colors = __webpack_require__(/*! material-ui/styles/colors */ 235);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -75823,6 +75825,11 @@
 	var styles = {
 	  chip: {
 	    margin: 4
+	  },
+	  paper: {
+	    display: 'inline-block',
+	    float: 'left',
+	    margin: '16px 32px 16px 0'
 	  }
 	};
 	
@@ -75890,8 +75897,8 @@
 	      return React.createElement(
 	        _Chip2.default,
 	        {
-	          style: styles.chip
-	        },
+	          style: styles.chip,
+	          backgroundColor: _colors.blue300 },
 	        React.createElement(TimeElapsed, { id: 'timer', timeElapsed: timeElapsed })
 	      );
 	    }

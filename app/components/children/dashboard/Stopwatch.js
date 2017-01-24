@@ -1,5 +1,6 @@
 var React = require("react");
 import Chip from 'material-ui/Chip';
+import {blue300, indigo900} from 'material-ui/styles/colors';
 
 const leftPad = (width, n) => {
   if ((n + '').length > width) {
@@ -12,6 +13,11 @@ const leftPad = (width, n) => {
 const styles = {
   chip: {
     margin: 4
+  },
+  paper: {
+    display: 'inline-block',
+    float: 'left',
+    margin: '16px 32px 16px 0',
   }
 }
 
@@ -55,9 +61,11 @@ class Stopwatch extends React.Component {
     const {isRunning, lapTimes, timeElapsed} = this.state;
     return (
       <Chip
-          style={styles.chip}
-        >
-        <TimeElapsed id="timer" timeElapsed={timeElapsed} />
+        style={styles.chip}
+        backgroundColor={blue300} >
+       
+          <TimeElapsed id="timer" timeElapsed={timeElapsed} />
+       
       </Chip>
     );
   }
