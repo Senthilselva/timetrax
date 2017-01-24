@@ -76324,29 +76324,34 @@
 							)
 						)
 					),
-					_react2.default.createElement(
+					this.state.scheduleDays.length <= 0 ? _react2.default.createElement(
 						_materialUi.Card,
 						null,
-						this.state.scheduleDays.length <= 0 ? _react2.default.createElement(
+						_react2.default.createElement(
 							_materialUi.CardText,
 							null,
 							"No jobs scheduled."
-						) : _react2.default.createElement(
-							"div",
+						)
+					) : _react2.default.createElement(
+						"div",
+						null,
+						_react2.default.createElement(
+							_materialUi.Card,
 							null,
 							this.state.scheduleDays.map(function (row, i) {
 								return _react2.default.createElement(
-									"div",
+									_materialUi.Card,
 									{ key: i },
 									_react2.default.createElement(_materialUi.CardHeader, { title: (0, _dateformat2.default)(row.startDate, "mm/dd/yyyy"), subtitle: "When expanded, shows all jobs scheduled for that date", actAsExpander: true, showExpandableButton: true }),
 									_react2.default.createElement(
 										_materialUi.CardText,
-										null,
+										{ expandable: true },
 										_react2.default.createElement(_SchedulebyDay2.default, { day: row.startDate })
 									)
 								);
 							})
-						)
+						),
+						_react2.default.createElement("br", null)
 					)
 				);
 			}
@@ -76432,7 +76437,7 @@
 					value: function render() {
 							return _react2.default.createElement(
 									_materialUi.Table,
-									null,
+									{ selectable: true },
 									_react2.default.createElement(
 											_materialUi.TableBody,
 											{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },

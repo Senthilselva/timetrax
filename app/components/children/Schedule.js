@@ -70,26 +70,31 @@ class Schedule extends React.Component {
 				</Table>				
 			</CardText>	        	
 	    </Card>
-		<Card>
+		
 			{this.state.scheduleDays.length <= 0 ? ( 
+				<Card>
 				<CardText>
 		        	No jobs scheduled.
 		        </CardText>
+		        </Card>
 		    ): (
 		    <div>
+		    <Card>
 				{this.state.scheduleDays.map(function(row, i){
 					return (
-						<div key = {i}>
+						<Card key = {i}>
 							<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
-		    				<CardText>
-								<SchedulebyDay day = {row.startDate}/>
-							</CardText>
-						</div>
+								<CardText expandable={true}>
+									<SchedulebyDay day = {row.startDate}/>
+								</CardText>
+						</Card>
 					);
 				})}
+			</Card>
+			<br/>
 			</div>
 			)}
-		</Card>
+		
     	</div>
     	);
   	}

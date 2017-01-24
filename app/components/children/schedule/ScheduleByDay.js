@@ -28,7 +28,7 @@ class ScheduleByDay extends React.Component {
 
   	render(){
   		return(
-  			<Table>
+  			<Table selectable={true}>
 				<TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
 				{this.state.scheduleListOfDay.map(function(row, j){
 					return(
