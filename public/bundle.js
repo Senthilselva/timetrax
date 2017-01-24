@@ -22089,7 +22089,7 @@
 	
 	var _Schedule2 = _interopRequireDefault(_Schedule);
 	
-	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 689);
+	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 690);
 	
 	var _Timesheet2 = _interopRequireDefault(_Timesheet);
 	
@@ -76223,6 +76223,10 @@
 	
 	var _SchedulebyDay2 = _interopRequireDefault(_SchedulebyDay);
 	
+	var _Header = __webpack_require__(/*! ./schedule/Header.js */ 689);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
 	var _dateformat = __webpack_require__(/*! dateformat */ 686);
 	
 	var _dateformat2 = _interopRequireDefault(_dateformat);
@@ -76279,51 +76283,7 @@
 				return _react2.default.createElement(
 					"div",
 					null,
-					_react2.default.createElement(
-						_materialUi.Card,
-						null,
-						_react2.default.createElement(_materialUi.CardHeader, { title: "Full Schedule", subtitle: "", avatar: "assets/images/ic_schedule_black_24dp_2x.png" }),
-						_react2.default.createElement(
-							_materialUi.CardText,
-							null,
-							"I want the list below to be grouped by Date and then displayed in an expandable menu for each day that expands to show the jobs for that day",
-							_react2.default.createElement(
-								_materialUi.Table,
-								{ selectable: true },
-								_react2.default.createElement(
-									_materialUi.TableBody,
-									{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
-									this.state.scheduleList.map(function (row, i) {
-	
-										return _react2.default.createElement(
-											_materialUi.TableRow,
-											{ key: i },
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.jobName
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												(0, _dateformat2.default)(row.startDate, "mm/dd/yyyy")
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.startTime
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.endTime
-											)
-										);
-									})
-								)
-							)
-						)
-					),
+					_react2.default.createElement(_Header2.default, null),
 					this.state.scheduleDays.length <= 0 ? _react2.default.createElement(
 						_materialUi.Card,
 						null,
@@ -76511,6 +76471,72 @@
 
 /***/ },
 /* 689 */
+/*!****************************************************!*\
+  !*** ./app/components/children/schedule/Header.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	   value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Auth = __webpack_require__(/*! ../Auth */ 611);
+	
+	var _Auth2 = _interopRequireDefault(_Auth);
+	
+	var _materialUi = __webpack_require__(/*! material-ui */ 384);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Header = function (_React$Component) {
+	   _inherits(Header, _React$Component);
+	
+	   function Header(props) {
+	      _classCallCheck(this, Header);
+	
+	      var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this, props));
+	
+	      var userData = _Auth2.default._getData();
+	      _this.state = { name: userData.firstName };
+	      return _this;
+	   }
+	
+	   _createClass(Header, [{
+	      key: "render",
+	      value: function render() {
+	         return _react2.default.createElement(
+	            _materialUi.Card,
+	            null,
+	            _react2.default.createElement(_materialUi.CardHeader, { title: this.state.name, subtitle: "", avatar: "assets/images/ic_account_circle_black_24dp_2x.png" }),
+	            _react2.default.createElement(_materialUi.CardText, null)
+	         );
+	      }
+	   }]);
+	
+	   return Header;
+	}(_react2.default.Component);
+	
+	// Export the component back for use in other files
+	
+	
+	exports.default = Header;
+
+/***/ },
+/* 690 */
 /*!**********************************************!*\
   !*** ./app/components/children/Timesheet.js ***!
   \**********************************************/

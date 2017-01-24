@@ -6,6 +6,7 @@ import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow,
 import {IconButton, FontIcon} from 'material-ui';
 import Helpers from '../utils/Helpers.js';
 import SchedulebyDay from './schedule/SchedulebyDay.js'
+import Header from './schedule/Header.js'
 import dateFormat from "dateformat";
 
 //var dateFormat = require('dateformat');
@@ -49,7 +50,8 @@ class Schedule extends React.Component {
 
     	return ( 
     	<div>
-	    <Card>
+    	<Header />
+	   {/* <Card>
 	        <CardHeader title="Full Schedule" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
 		    <CardText>
 				I want the list below to be grouped by Date and then displayed in an expandable menu for each day that expands to show the jobs for that day
@@ -70,7 +72,7 @@ class Schedule extends React.Component {
 				</Table>				
 			</CardText>	        	
 	    </Card>
-		
+		*/}
 			{this.state.scheduleDays.length <= 0 ? ( 
 				<Card>
 				<CardText>

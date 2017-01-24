@@ -172,6 +172,8 @@ router.get('/userforday/:userName/:searchDate', function(req,res) {
 });
 
 router.get('/days/user/:userName', function(req,res) {   
+  
+  var dateneeded = dateFormat(req.params.searchDate, "mm-dd-yy");
   console.log("Returning the days User is Schedule", req.params);
   models.Schedule.findAll(
     { include: [
@@ -180,22 +182,25 @@ router.get('/days/user/:userName', function(req,res) {
         where: { username: req.params.userName} 
       }
     ] ,
-    group: 'startDate'
+    where: 
+    { 
+      startDate:
+      {
+        $gte: today
+      }
+    },
+    group: 'startDate',
+
 
   }).then(function(data){
     console.log(JSON.stringify(data));
-
     var dateList = [];
-
     for(var i=0; i< data.length; i++){
-
-      var _date = {} 
-
+      var _date = {}; 
       _date.startDate = dateFormat(data[i].startDate, "isoDateTime");
-            
-      dateList.push(_date)
+      dateList.push(_date);
     }
-       res.json(dateList)
+       res.json(dateList);
   })
 });
 
