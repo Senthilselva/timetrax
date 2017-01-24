@@ -13,31 +13,7 @@ var today = new Date();
 //alarm, alarm on, alarm off
 const iconStyle = { margin: 12 };
 
-export default class DatePickerControl extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      controlledDate: null,
-    };
-  }
-
-  handleChange = (event, date) => {
-    this.setState({
-      controlledDate: date,
-    });
-  };
-
-  render() {
-    return (
-      <DatePicker
-        hintText="Controlled Date Input"
-        value={this.state.controlledDate}
-        onChange={this.handleChange}
-      />
-    );
-  }
-}
 
 class Schedule extends React.Component {
 	constructor(props) {
@@ -49,7 +25,6 @@ class Schedule extends React.Component {
     		scheduleDays:"",
     		scheduleList:[]
 		}
-		this.handlePickDate = this.handlePickDate.bind(this);
   	};
 
 	componentWillMount() {
@@ -93,8 +68,7 @@ class Schedule extends React.Component {
 			</CardText>	        	
 	    </Card>
 		<Card>
-		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}>
-		    </CardHeader>
+		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
 		    <CardText expandable={true}>
 				<Table selectable={true}>
 				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
