@@ -109,9 +109,10 @@ class TodaySchedule extends React.Component {
 											<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
 						          						iconClassName="material-icons" tooltip="Clock Out" 
 						          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
-						                	<Link to="timecard">
+						                	{/*<Link to="timecard">
 						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
-						                	</Link>
+						                	</Link>*/}
+					                		<Stopwatch />
 					                	</span>
 					                	) : (
 					          			<span>
@@ -122,12 +123,7 @@ class TodaySchedule extends React.Component {
 						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
 						                	</Link> */}
 					                	</span>
-					          			)}
-
-					                	<span>
-			                	        	<Stopwatch />
-			                	        </span>
-					                	
+					          			)}	
 				                	</TableRowColumn>
 					              </TableRow>
 					            );

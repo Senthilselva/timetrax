@@ -1,4 +1,5 @@
 var React = require("react");
+import Chip from 'material-ui/Chip';
 
 const leftPad = (width, n) => {
   if ((n + '').length > width) {
@@ -8,25 +9,31 @@ const leftPad = (width, n) => {
   return (padding + n).slice(-width);
 };
 
+const styles = {
+  chip: {
+    margin: 4
+  }
+}
+
 class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
     
-    ["lap", "update", "reset", "toggle"].forEach((method) => {
+    ["lap", "update", "reset"].forEach((method) => {
       this[method] = this[method].bind(this);
     });
 
     this.state = this.initialState = {
-      isRunning: false,
+      isRunning: true,
       lapTimes: [],
       timeElapsed: 0,
     };
   }
-  toggle() {
-    this.setState({isRunning: !this.state.isRunning}, () => {
+  
+  componentWillMount() {
       this.state.isRunning ? this.startTimer() : clearInterval(this.timer)
-    });
   }
+
   lap() {
     const {lapTimes, timeElapsed} = this.state;
     this.setState({lapTimes: lapTimes.concat(timeElapsed)});
@@ -47,12 +54,11 @@ class Stopwatch extends React.Component {
   render() {
     const {isRunning, lapTimes, timeElapsed} = this.state;
     return (
-      <div>
+      <Chip
+          style={styles.chip}
+        >
         <TimeElapsed id="timer" timeElapsed={timeElapsed} />
-        <button onClick={this.toggle}>
-          {isRunning ? 'Stop' : 'Start'}
-        </button>
-      </div>
+      </Chip>
     );
   }
 }
