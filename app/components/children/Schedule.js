@@ -5,6 +5,7 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
 import {IconButton, FontIcon} from 'material-ui';
 import Helpers from '../utils/Helpers.js';
+import SchedulebyDay from './schedule/SchedulebyDay.js'
 import dateFormat from "dateformat";
 
 //var dateFormat = require('dateformat');
@@ -44,6 +45,7 @@ class Schedule extends React.Component {
     render() {
 	   	console.log ("Schedule List:", this.state.scheduleList);
 	   	console.log ("Schedule Days:", this.state.scheduleDays);
+	   	var that = this;
 
     	return ( 
     	<div>
@@ -78,9 +80,9 @@ class Schedule extends React.Component {
 				{this.state.scheduleDays.map(function(row, i){
 					return (
 						<div key = {i}>
-		    				<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
-							<CardText expandable={true}>
-								new component goes here
+							<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
+		    				<CardText>
+								<SchedulebyDay day = {row.startDate}/>
 							</CardText>
 						</div>
 					);

@@ -35,10 +35,10 @@ const helpers = {
 		return axios.get("/schedule/days/user/" + userName );
 	}, 
 
-	_getScheduleList: (date) => {
+	_getScheduleForTheDay: (date) => {
 		var userName = localStorage.getItem('userName');
 
-		return axios.get("/schedule/user/" + userName + "/" + date );
+		return axios.get("/schedule/userforday/" + userName + "/" + date );
 	}, 
 
 	 //to enter the data into the timesheet table

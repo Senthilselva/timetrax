@@ -22089,7 +22089,7 @@
 	
 	var _Schedule2 = _interopRequireDefault(_Schedule);
 	
-	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 688);
+	var _Timesheet = __webpack_require__(/*! ../components/children/Timesheet */ 689);
 	
 	var _Timesheet2 = _interopRequireDefault(_Timesheet);
 	
@@ -68897,10 +68897,10 @@
 			return _axios2.default.get("/schedule/days/user/" + userName);
 		},
 	
-		_getScheduleList: function _getScheduleList(date) {
+		_getScheduleForTheDay: function _getScheduleForTheDay(date) {
 			var userName = localStorage.getItem('userName');
 	
-			return _axios2.default.get("/schedule/user/" + userName + "/" + date);
+			return _axios2.default.get("/schedule/userforday/" + userName + "/" + date);
 		},
 	
 		//to enter the data into the timesheet table
@@ -76219,6 +76219,10 @@
 	
 	var _Helpers2 = _interopRequireDefault(_Helpers);
 	
+	var _SchedulebyDay = __webpack_require__(/*! ./schedule/SchedulebyDay.js */ 688);
+	
+	var _SchedulebyDay2 = _interopRequireDefault(_SchedulebyDay);
+	
 	var _dateformat = __webpack_require__(/*! dateformat */ 686);
 	
 	var _dateformat2 = _interopRequireDefault(_dateformat);
@@ -76270,6 +76274,7 @@
 			value: function render() {
 				console.log("Schedule List:", this.state.scheduleList);
 				console.log("Schedule Days:", this.state.scheduleDays);
+				var that = this;
 	
 				return _react2.default.createElement(
 					"div",
@@ -76336,8 +76341,8 @@
 									_react2.default.createElement(_materialUi.CardHeader, { title: (0, _dateformat2.default)(row.startDate, "mm/dd/yyyy"), subtitle: "When expanded, shows all jobs scheduled for that date", actAsExpander: true, showExpandableButton: true }),
 									_react2.default.createElement(
 										_materialUi.CardText,
-										{ expandable: true },
-										"new component goes here"
+										null,
+										_react2.default.createElement(_SchedulebyDay2.default, { day: row.startDate })
 									)
 								);
 							})
@@ -76357,6 +76362,150 @@
 
 /***/ },
 /* 688 */
+/*!***********************************************************!*\
+  !*** ./app/components/children/schedule/SchedulebyDay.js ***!
+  \***********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Auth = __webpack_require__(/*! ../Auth */ 611);
+	
+	var _Auth2 = _interopRequireDefault(_Auth);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 179);
+	
+	var _materialUi = __webpack_require__(/*! material-ui */ 384);
+	
+	var _Helpers = __webpack_require__(/*! ../../utils/Helpers.js */ 612);
+	
+	var _Helpers2 = _interopRequireDefault(_Helpers);
+	
+	var _dateformat = __webpack_require__(/*! dateformat */ 686);
+	
+	var _dateformat2 = _interopRequireDefault(_dateformat);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ScheduleByDay = function (_React$Component) {
+			_inherits(ScheduleByDay, _React$Component);
+	
+			function ScheduleByDay(props) {
+					_classCallCheck(this, ScheduleByDay);
+	
+					var _this = _possibleConstructorReturn(this, (ScheduleByDay.__proto__ || Object.getPrototypeOf(ScheduleByDay)).call(this, props));
+	
+					var userData = _Auth2.default._getData();
+					_this.state = {
+							scheduleListOfDay: []
+					};
+					return _this;
+			}
+	
+			_createClass(ScheduleByDay, [{
+					key: "componentWillMount",
+					value: function componentWillMount() {
+							console.log("hihihih " + this.props.day);
+	
+							_Helpers2.default._getScheduleForTheDay(this.props.day).then(function (userData, err) {
+									this.setState({ scheduleListOfDay: userData.data });
+							}.bind(this));
+					}
+			}, {
+					key: "render",
+					value: function render() {
+							return _react2.default.createElement(
+									_materialUi.Table,
+									null,
+									_react2.default.createElement(
+											_materialUi.TableBody,
+											{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
+											this.state.scheduleListOfDay.map(function (row, j) {
+													return _react2.default.createElement(
+															_materialUi.TableRow,
+															{ key: j },
+															_react2.default.createElement(
+																	_materialUi.TableRowColumn,
+																	null,
+																	row.jobName
+															),
+															_react2.default.createElement(
+																	_materialUi.TableRowColumn,
+																	null,
+																	(0, _dateformat2.default)(row.startDate, "mm/dd/yyyy")
+															),
+															_react2.default.createElement(
+																	_materialUi.TableRowColumn,
+																	null,
+																	row.startTime
+															),
+															_react2.default.createElement(
+																	_materialUi.TableRowColumn,
+																	null,
+																	row.endTime
+															)
+													);
+											})
+									)
+							);
+					}
+			}]);
+	
+			return ScheduleByDay;
+	}(_react2.default.Component);
+	
+	// Export the component back for use in other files
+	
+	
+	exports.default = ScheduleByDay;
+	
+	/*
+	<Table>
+					   				<TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
+					   				 <TableRow>
+					   				 	Hello
+					   				 </TableRow>
+										{/* {that.state.scheduleList.map(function(rowTable, j){
+					          				{ row.startDate == that.state.scheduleList.startDate ? (
+					            				<div> 
+					            					return(
+					              						<TableRow key={j}> 
+					                						<TableRowColumn>{row.jobName}</TableRowColumn>
+					                						<TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
+					                						<TableRowColumn>{row.startTime}</TableRowColumn>
+					                						<TableRowColumn>{row.endTime}</TableRowColumn>
+					              						</TableRow>
+					            					);
+					            				</div>
+					          				) : (<span> </span>
+					          				)
+					          					
+					          				}
+					          			})}
+										
+
+					    			</TableBody>
+									</Table>
+									*/
+
+/***/ },
+/* 689 */
 /*!**********************************************!*\
   !*** ./app/components/children/Timesheet.js ***!
   \**********************************************/

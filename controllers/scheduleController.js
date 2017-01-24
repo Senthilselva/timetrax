@@ -131,7 +131,7 @@ router.get('/user/today/:userName', function(req,res) {
 });
 
 //Returns a User's Schedule for a given Date
-router.get('/user/:userName/:searchDate', function(req,res) {   
+router.get('/userforday/:userName/:searchDate', function(req,res) {   
   console.log("Returning a User's Schedule for a given Date", req.params);
 
   models.Schedule.findAll(
@@ -150,6 +150,7 @@ router.get('/user/:userName/:searchDate', function(req,res) {
   }).then(function(data){
 
     var jobList = [];
+    var dateneeded = dateFormat(req.params.searchDate, "mm-dd-yy");
 
     for(var i=0; i< data.length; i++){
       var job = {};
@@ -161,10 +162,11 @@ router.get('/user/:userName/:searchDate', function(req,res) {
       job.jobCity = data[i].Job.city;
       job.jobState = data[i].Job.state;
       job.jobZip = data[i].Job.zip;
-      job.startDate = dateFormat(data[i].startDate, "isoDateTime");
-            
+      job.startDate = dateFormat(data[i].startDate, "mm-dd-yy");
+           
       jobList.push(job)
     }
+      //console.log(jobList)
        res.json(jobList)
   })
 });
