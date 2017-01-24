@@ -76085,10 +76085,9 @@
 			_this.state = {
 				name: userData.firstName,
 				today: today,
-				scheduleDays: [],
+				scheduleDays: "",
 				scheduleList: []
 			};
-			_this.handleClockIn = _this.handleClockIn.bind(_this);
 			return _this;
 		}
 	
@@ -76101,11 +76100,6 @@
 				_Helpers2.default._getScheduleDays().then(function (userData, err) {
 					this.setState({ scheduleDays: userData.data });
 				}.bind(this));
-			}
-		}, {
-			key: "handleClockIn",
-			value: function handleClockIn() {
-				console.log("Clock In");
 			}
 		}, {
 			key: "render",
