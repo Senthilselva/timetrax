@@ -36,7 +36,6 @@ class Schedule extends React.Component {
 	  	.then(function(userData,err){
 	        this.setState({scheduleDays: userData.data});
 	    }.bind(this));
-
 	}
 
 
@@ -69,24 +68,24 @@ class Schedule extends React.Component {
 			</CardText>	        	
 	    </Card>
 		<Card>
-			{this.state.scheduleDays.length <= 0 ? ( 
-				<CardText>
-		        	No jobs scheduled.
-		        </CardText>
-		    ): (
-		    <div>
-				{this.state.scheduleDays.map(function(row, i){
-					return (
-						<div key = {i}>
-		    				<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
-							<CardText expandable={true}>
-								new component goes here
-							</CardText>
-						</div>
-					);
-				})}
-			</div>
-			)}
+		    <CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
+		    <CardText expandable={true}>
+				<Table selectable={true}>
+				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
+				          {this.state.scheduleList.map(function(row, i){
+
+				            return(
+				              <TableRow key={i}> 
+				                <TableRowColumn>{row.jobName}</TableRowColumn>
+				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
+				                <TableRowColumn>{row.startTime}</TableRowColumn>
+				                <TableRowColumn>{row.endTime}</TableRowColumn>
+				              </TableRow>
+				            );
+				          })}
+				    </TableBody>
+				</Table>
+			</CardText>
 		</Card>
     	</div>
     	);

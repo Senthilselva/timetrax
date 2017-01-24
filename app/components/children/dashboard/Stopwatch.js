@@ -1,6 +1,6 @@
 var React = require("react");
 import Chip from 'material-ui/Chip';
-import {blue300, indigo900} from 'material-ui/styles/colors';
+import {blue200, indigo900} from 'material-ui/styles/colors';
 
 const leftPad = (width, n) => {
   if ((n + '').length > width) {
@@ -62,7 +62,7 @@ class Stopwatch extends React.Component {
     return (
       <Chip
         style={styles.chip}
-        backgroundColor={blue300} >
+        backgroundColor={blue200} >
        
           <TimeElapsed id="timer" timeElapsed={timeElapsed} />
        

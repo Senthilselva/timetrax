@@ -169,4 +169,33 @@ router.get('/user/:userName/:searchDate', function(req,res) {
   })
 });
 
+router.get('/days/user/:userName', function(req,res) {   
+  console.log("Returning the days User is Schedule", req.params);
+  models.Schedule.findAll(
+    { include: [
+      { 
+        model : models.User,
+        where: { username: req.params.userName} 
+      }
+    ] ,
+    group: 'startDate'
+
+  }).then(function(data){
+    console.log(JSON.stringify(data));
+
+    var dateList = [];
+
+    for(var i=0; i< data.length; i++){
+
+      var _date = {} 
+
+      _date.startDate = dateFormat(data[i].startDate, "isoDateTime");
+            
+      dateList.push(_date)
+    }
+       res.json(dateList)
+  })
+});
+
+
 module.exports = router;

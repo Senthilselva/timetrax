@@ -68894,7 +68894,7 @@
 		_getScheduleDays: function _getScheduleDays() {
 			var userName = localStorage.getItem('userName');
 	
-			return _axios2.default.get("/schedule/user/" + userName);
+			return _axios2.default.get("/schedule/days/user/" + userName);
 		},
 	
 		_getScheduleList: function _getScheduleList(date) {
@@ -75898,7 +75898,7 @@
 	        _Chip2.default,
 	        {
 	          style: styles.chip,
-	          backgroundColor: _colors.blue300 },
+	          backgroundColor: _colors.blue200 },
 	        React.createElement(TimeElapsed, { id: 'timer', timeElapsed: timeElapsed })
 	      );
 	    }
@@ -76322,45 +76322,25 @@
 					_react2.default.createElement(
 						_materialUi.Card,
 						null,
-						_react2.default.createElement(_materialUi.CardHeader, { title: "MM/DD/YYYY", subtitle: "When expanded, shows all jobs scheduled for that date", actAsExpander: true, showExpandableButton: true }),
-						_react2.default.createElement(
+						this.state.scheduleDays.length <= 0 ? _react2.default.createElement(
 							_materialUi.CardText,
-							{ expandable: true },
-							_react2.default.createElement(
-								_materialUi.Table,
-								{ selectable: true },
-								_react2.default.createElement(
-									_materialUi.TableBody,
-									{ displayRowCheckbox: false, showRowHover: true, stripedRows: false },
-									this.state.scheduleList.map(function (row, i) {
-	
-										return _react2.default.createElement(
-											_materialUi.TableRow,
-											{ key: i },
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.jobName
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												(0, _dateformat2.default)(row.startDate, "mm/dd/yyyy")
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.startTime
-											),
-											_react2.default.createElement(
-												_materialUi.TableRowColumn,
-												null,
-												row.endTime
-											)
-										);
-									})
-								)
-							)
+							null,
+							"No jobs scheduled."
+						) : _react2.default.createElement(
+							"div",
+							null,
+							this.state.scheduleDays.map(function (row, i) {
+								return _react2.default.createElement(
+									"div",
+									{ key: i },
+									_react2.default.createElement(_materialUi.CardHeader, { title: (0, _dateformat2.default)(row.startDate, "mm/dd/yyyy"), subtitle: "When expanded, shows all jobs scheduled for that date", actAsExpander: true, showExpandableButton: true }),
+									_react2.default.createElement(
+										_materialUi.CardText,
+										{ expandable: true },
+										"new component goes here"
+									)
+								);
+							})
 						)
 					)
 				);
