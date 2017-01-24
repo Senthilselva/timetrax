@@ -4,7 +4,9 @@ import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
 import {IconButton, FontIcon} from 'material-ui';
+import Stopwatch from "./Stopwatch.js"
 import Helpers from '../../utils/Helpers.js';
+
 var dateFormat = require('dateformat');
 var today = new Date();
 
@@ -38,6 +40,7 @@ class TodaySchedule extends React.Component {
  		event.preventDefault();
  		console.log("Clock In event : " + event);
     	console.log("Clock In Id  : " + index);
+
     	Helpers._getOneSchedule(index)
 			.then(function(newSchedule){
 				console.log(newSchedule);
@@ -100,7 +103,7 @@ class TodaySchedule extends React.Component {
 										<IconButton onClick={that.handleClockIn.bind(that, row.id)} 
 					            					iconClassName="material-icons" tooltip="Clock In" 
 					            					tooltipPosition="top-center" disabled={!that.state.disableClock} >alarm</IconButton>
-										{/* keeping all clock-out disaled except the one clocked in */}
+										{/* keeping all clock-out disabled except the one clocked in */}
 										{ that.state.clockedRow == row.id ? (
 										<span>
 											<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
@@ -120,6 +123,10 @@ class TodaySchedule extends React.Component {
 						                	</Link> */}
 					                	</span>
 					          			)}
+
+					                	<span>
+			                	        	<Stopwatch />
+			                	        </span>
 					                	
 				                	</TableRowColumn>
 					              </TableRow>
