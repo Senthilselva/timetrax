@@ -126,7 +126,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"07921",
 		contactName: "Donald Trump",
 		contactPhone: "(908) 470-4400",
-		contactEmail: "djtrump@trump.com"
+		contactEmail: "djtrump@trump.com",
+		lat: 40.6531250,
+		lng: -74.6954990
 	});
 })
 .then(function(){
@@ -139,7 +141,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"07040",
 		contactName: "Mark Crisafi",
 		contactPhone: "(973) 762-0215",
-		contactEmail: "markcrisafi@maplewoodcc.com"
+		contactEmail: "markcrisafi@maplewoodcc.com",
+		lat: 40.7282100,
+		lng: -74.2754750
 	});
 })
 .then(function(){
@@ -152,7 +156,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"07921",
 		contactName: "Tommie",
 		contactPhone: "(908) 439-2123",
-		contactEmail: "tommie@fiddlerscc.com"
+		contactEmail: "tommie@fiddlerscc.com",
+		lat: 40.6363610,
+		lng: -74.7127110
 	});
 })
 .then(function(){
@@ -165,7 +171,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"07069",
 		contactName: "Mark",
 		contactPhone: "(908) 322-8825",
-		contactEmail: "mark@brookhill.com"
+		contactEmail: "mark@brookhill.com",
+		lat: 40.6605510,
+		lng: -74.4332900
 	});
 })
 .then(function(){
@@ -178,7 +186,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"08812",
 		contactName: "Gracie Diaz",
 		contactPhone: "(732) 979-7252",
-		contactEmail: "gudiaz@optonline.net"
+		contactEmail: "gudiaz@optonline.net",
+		lat: 40.6040430,
+		lng: -74.4963000
 	});
 })
 .then(function(){
@@ -191,7 +201,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"08820",
 		contactName: "Senthil Selvakumar",
 		contactPhone: "(732) 634-2018",
-		contactEmail: "senthilselvak@gmail.com"
+		contactEmail: "senthilselvak@gmail.com",
+		lat: 40.5828630,
+		lng: -74.3498990
 	});
 })
 .then(function(){
@@ -204,7 +216,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		zip:"08536",
 		contactName: "Zeynep Ozdemir",
 		contactPhone: "(609) 716-0688",
-		contactEmail: "odcikin@msn.com"
+		contactEmail: "odcikin@msn.com",
+		lat: 40.3284670,
+		lng: -74.5616890
 	});
 })
 // =======================================================================
