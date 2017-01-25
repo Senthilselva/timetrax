@@ -30,21 +30,12 @@ class Timesheet extends React.Component {
       	}.bind(this));
 }//componentWillMount
 
-
-
-
 	render() {
 	   
 		return(
 			<div>
-				<Overview />
 				<Card>
-	        	<CardHeader title="Time Sheets" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
-		    	  {/*<CardHeader title="MM/DD/YYYY" subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true} />
-		    		
-		    		<CardText expandable={true}>
-		    	  */}
-
+	        		<CardHeader title="Time Sheets" subtitle="Below are your timecards, by date" avatar="assets/images/ic_assignment_black_24dp_2x.png" />
 					<Table selectable={true}>
 				    	<TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
 				          	{this.state.timeSheets.map(function(row, i){
@@ -59,7 +50,6 @@ class Timesheet extends React.Component {
 				          })}
 				    	</TableBody>
 					</Table>
-					{/* </CardText> */}
 				</Card>
 				
         	</div>

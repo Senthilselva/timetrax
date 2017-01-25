@@ -82,7 +82,7 @@ class TodaySchedule extends React.Component {
     	return ( 
     	<div>
 	      <Card>
-	        <CardHeader title="Today's Schedule" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
+	        <CardHeader title="Today's Schedule" subtitle="Below is your schedule for today" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
 			{this.state.scheduleList.length == 0 ? (
 		        <CardText>
 		        	No jobs scheduled for today, {dateFormat(this.state.today, "dddd, mmm dd, yyyy")}

@@ -15,8 +15,6 @@ var today = new Date();
 //alarm, alarm on, alarm off
 const iconStyle = { margin: 12 };
 
-
-
 class Schedule extends React.Component {
 	constructor(props) {
         super(props);
@@ -24,16 +22,11 @@ class Schedule extends React.Component {
     	this.state = { 
     		name: userData.firstName,
     		today: today,
-    		scheduleDays:"",
-    		scheduleList:[]
+    		scheduleDays:[]
 		}
   	};
 
 	componentWillMount() {
-	  Helpers._getSchedule()
-	  	.then(function(userData,err){
-	        this.setState({scheduleList: userData.data});
-	    }.bind(this));
 	  Helpers._getScheduleDays()
 	  	.then(function(userData,err){
 	        this.setState({scheduleDays: userData.data});
@@ -41,43 +34,17 @@ class Schedule extends React.Component {
 
 	}
 
-
-
     render() {
-	   	console.log ("Schedule List:", this.state.scheduleList);
-	   	console.log ("Schedule Days:", this.state.scheduleDays);
 	   	var that = this;
 
     	return ( 
     	<div>
-    	<Header />
-	   {/* <Card>
-	        <CardHeader title="Full Schedule" subtitle="" avatar="assets/images/ic_schedule_black_24dp_2x.png" />
-		    <CardText>
-				I want the list below to be grouped by Date and then displayed in an expandable menu for each day that expands to show the jobs for that day
-				<Table selectable={true}>
-				    <TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
-				          {this.state.scheduleList.map(function(row, i){
-
-				            return(
-				              <TableRow key={i}> 
-				                <TableRowColumn>{row.jobName}</TableRowColumn>
-				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
-				                <TableRowColumn>{row.startTime}</TableRowColumn>
-				                <TableRowColumn>{row.endTime}</TableRowColumn>
-				              </TableRow>
-				            );
-				          })}
-				    </TableBody>
-				</Table>				
-			</CardText>	        	
-	    </Card>
-		*/}
+    		<Header />
 			{this.state.scheduleDays.length <= 0 ? ( 
 				<Card>
-				<CardText>
-		        	No jobs scheduled.
-		        </CardText>
+					<CardText>
+			        	No jobs are scheduled for you at this time
+			        </CardText>
 		        </Card>
 		    ): (
 		    <div>
@@ -85,7 +52,7 @@ class Schedule extends React.Component {
 				{this.state.scheduleDays.map(function(row, i){
 					return (
 						<Card key = {i}>
-							<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="When expanded, shows all jobs scheduled for that date" actAsExpander={true} showExpandableButton={true}/>
+							<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="You have x jobs scheduled for this day" actAsExpander={true} showExpandableButton={true}/>
 								<CardText expandable={true}>
 									<SchedulebyDay day = {row.startDate}/>
 								</CardText>

@@ -5,10 +5,10 @@ import FlatButton from 'material-ui/FlatButton';
 const HomeCard = () => (
   <Card>
     <CardHeader
-      subtitle="Time sheet management system"
+      subtitle="GPS Enabled Time Tracking System"
     />
     <CardMedia>
-      <img src="/assets/images/poolpic.jpg" />
+      <img src="/assets/images/poolpic.jpg"/>
     </CardMedia>
   </Card>
 );
