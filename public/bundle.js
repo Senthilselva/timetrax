@@ -75491,6 +75491,10 @@
 	
 	var _materialUi = __webpack_require__(/*! material-ui */ 384);
 	
+	var _Paper = __webpack_require__(/*! material-ui/Paper */ 432);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
 	var _Stopwatch = __webpack_require__(/*! ./Stopwatch.js */ 685);
 	
 	var _Stopwatch2 = _interopRequireDefault(_Stopwatch);
@@ -75517,6 +75521,14 @@
 	//alarm, alarm on, alarm off
 	var iconStyle = { margin: 12 };
 	
+	var style = {
+		height: 25,
+		width: 200,
+		margin: 20,
+		textAlign: 'center',
+		display: 'inline-block'
+	};
+	
 	var TodaySchedule = function (_React$Component) {
 		_inherits(TodaySchedule, _React$Component);
 	
@@ -75532,12 +75544,13 @@
 				scheduleList: [],
 				clockedRow: 0,
 				disableClock: true,
-				//distanceBetween:0,
+				distanceBetween: 0,
 				cardId: 0,
 				tCard: "" //this Id is the Id of the timesheet database
 			};
 			_this.handleClockIn = _this.handleClockIn.bind(_this);
 			_this.handleClockOut = _this.handleClockOut.bind(_this);
+			_this.setDistanceBetween = _this.setDistanceBetween.bind(_this);
 	
 			return _this;
 		}
@@ -75585,6 +75598,12 @@
 			value: function shouldComponentUpdate() {
 				console.log("shouldComponentUpdate  distance " + this.state.distanceBetween);
 				return true;
+			}
+		}, {
+			key: "setDistanceBetween",
+			value: function setDistanceBetween(dist) {
+				dist = Math.floor(dist);
+				this.setState({ distanceBetween: dist });
 			}
 		}, {
 			key: "handleClockOut",
@@ -75665,16 +75684,27 @@
 												that.state.clockedRow == row.id ? _react2.default.createElement(
 													"span",
 													null,
-													_react2.default.createElement(
-														_materialUi.IconButton,
-														{ onClick: that.handleClockOut.bind(that, row.id),
-															iconClassName: "material-icons", tooltip: "Clock Out",
-															tooltipPosition: "top-center", disabled: that.state.disableClock },
-														"alarm_off"
-													),
-													_react2.default.createElement(_Stopwatch2.default, null),
-													_react2.default.createElement(_Distance2.default, { longitude: that.state.tCard.joblng,
-														latitude: that.state.tCard.joblat })
+													that.state.distanceBetween < 2 ? _react2.default.createElement(
+														"span",
+														null,
+														_react2.default.createElement(
+															_materialUi.IconButton,
+															{ onClick: that.handleClockOut.bind(that, row.id),
+																iconClassName: "material-icons", tooltip: "Clock Out",
+																tooltipPosition: "top-center", disabled: that.state.disableClock },
+															"alarm_off"
+														),
+														_react2.default.createElement(_Stopwatch2.default, null),
+														_react2.default.createElement(_Distance2.default, { longitude: that.state.tCard.joblng,
+															latitude: that.state.tCard.joblat,
+															setDistanceBetween: that.setDistanceBetween })
+													) : _react2.default.createElement(
+														_Paper2.default,
+														{ style: style, zDepth: 1 },
+														"You are ",
+														Math.floor(that.state.distanceBetween),
+														" Kilometers away "
+													)
 												) : _react2.default.createElement(
 													"span",
 													null,
@@ -75900,7 +75930,7 @@
   \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -75911,8 +75941,6 @@
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _materialUi = __webpack_require__(/*! material-ui */ 384);
 	
 	var _Paper = __webpack_require__(/*! material-ui/Paper */ 432);
 	
@@ -75956,7 +75984,7 @@
 	  }
 	
 	  _createClass(Distance, [{
-	    key: 'componentWillMount',
+	    key: "componentWillMount",
 	    value: function componentWillMount() {
 	      console.log(this.props.longitude);
 	      var lon2 = this.props.longitude;
@@ -75983,19 +76011,20 @@
 	          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	          var d = R * c; // Distance in km
 	          console.log(d);
+	          this.props.setDistanceBetween(d);
 	          this.setState({ dis: d });
 	        }.bind(this));
 	      }
 	    }
 	  }, {
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
 	        _Paper2.default,
 	        { style: style, zDepth: 1 },
-	        'You are ',
+	        "You are ",
 	        Math.floor(this.state.dis),
-	        ' Kilometers away '
+	        " Kilometers away "
 	      );
 	    }
 	  }]);

@@ -1,5 +1,4 @@
 import React from "react";
-import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import Paper from 'material-ui/Paper';
 
 /** Converts numeric degrees to radians */
@@ -53,6 +52,7 @@ class Distance extends React.Component {
   				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   				var d = R * c; // Distance in km
   				console.log (d)
+  				this.props.setDistanceBetween(d)
   				this.setState({dis : d})
         	}.bind(this));
         }

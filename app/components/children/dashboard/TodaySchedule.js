@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
 import {IconButton, FontIcon} from 'material-ui';
+import Paper from 'material-ui/Paper';
 import Stopwatch from "./Stopwatch.js"
 import Distance from "./Distance.js"
 import Helpers from '../../utils/Helpers.js';
@@ -13,6 +14,15 @@ var today = new Date();
 
 //alarm, alarm on, alarm off
 const iconStyle = { margin: 12 };
+
+const style = {
+  height: 25,
+  width: 200,
+  margin: 20,
+  textAlign: 'center',
+  display: 'inline-block',
+};
+
 
 class TodaySchedule extends React.Component {
 	constructor(props) {
@@ -24,12 +34,13 @@ class TodaySchedule extends React.Component {
     		scheduleList:[],
     		clockedRow: 0,
     		disableClock:true,
-    		//distanceBetween:0,
+    		distanceBetween:0,
     		cardId:0,
     		tCard:"" //this Id is the Id of the timesheet database
 		}
 		this.handleClockIn = this.handleClockIn.bind(this);
 		this.handleClockOut = this.handleClockOut.bind(this);
+		this.setDistanceBetween = this.setDistanceBetween.bind(this);
 
   	};
 
@@ -79,6 +90,11 @@ class TodaySchedule extends React.Component {
   		return true;
   	}
 
+  	setDistanceBetween(dist){
+  		dist=Math.floor(dist)
+  		this.setState({distanceBetween: dist});
+  	}
+
   	handleClockOut(index, event){ 
  		event.preventDefault();
  		console.log("Clock In event : " + event);
@@ -124,12 +140,21 @@ class TodaySchedule extends React.Component {
 										{/* keeping all clock-out disabled except the one clocked in */}
 										{ that.state.clockedRow == row.id ? (
 										<span>
-											<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
+											{/* Check for distance */}
+											{that.state.distanceBetween < 2 ? (
+											<span>
+												<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
 						          						iconClassName="material-icons" tooltip="Clock Out" 
 						          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
-					                		<Stopwatch />
-					                		<Distance longitude = {that.state.tCard.joblng}
-					                			  	  latitude = {that.state.tCard.joblat} />
+					                			<Stopwatch />
+					                			<Distance longitude = {that.state.tCard.joblng}
+					                			  	  latitude = {that.state.tCard.joblat} 
+					                			  	  setDistanceBetween = {that.setDistanceBetween} />
+					                		</span>
+					                		) : (
+					                		<Paper style={style} zDepth={1}>
+       												You are {Math.floor(that.state.distanceBetween)} Kilometers away </Paper>
+					                		)}
 					                	</span>
 					                	) : (
 					          			<span>
