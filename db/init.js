@@ -8,8 +8,10 @@ var testpassword = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe9MZSaGfYsXMTxjrgfA9UOJokn5MjUHa
 var testsalt = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe";
 var today = new Date();
 var tomorrow = new Date(today);
+var thenextday = new Date(today);
 
 tomorrow.setDate(tomorrow.getDate() + 1);
+thenextday.setDate(thenextday.getDate() + 2);
 
 // =======================================================================
 // PREPARE OUR TABLES 
@@ -244,7 +246,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "1",
-		startDate: today.format(),
+		startDate: today,
 		startTime: "10:00",
 		endTime: "12:00"
 	});
@@ -254,7 +256,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "2",
-		startDate: today.format(),
+		startDate: today,
 		startTime: "12:30",
 		endTime: "17:00"
 	});
@@ -264,7 +266,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "3",
-		startDate: today.format(),
+		startDate: today,
 		startTime: "18:00",
 		endTime: "20:00"
 	});
@@ -274,7 +276,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "1",
-		startDate: tomorrow.format(),
+		startDate: tomorrow,
 		startTime: "14:00",
 		endTime: "16:00"
 	});
@@ -284,7 +286,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "3",
-		startDate: tomorrow.format(),
+		startDate: tomorrow,
 		startTime: "18:00",
 		endTime: "20:00"
 	});
@@ -294,7 +296,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "1",
-		startDate: tomorrow.format(),
+		startDate: tomorrow,
 		startTime: "14:00",
 		endTime: "16:00"
 	});
@@ -304,7 +306,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "3",
-		startDate: tomorrow.format(),
+		startDate: tomorrow,
 		startTime: "18:00",
 		endTime: "20:00"
 	});
@@ -314,7 +316,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "1",
-		startDate: thenextday.format(),
+		startDate: thenextday,
 		startTime: "10:00",
 		endTime: "12:00"
 	});
@@ -324,7 +326,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "2",
-		startDate: thenextday.format(),
+		startDate: thenextday,
 		startTime: "12:30",
 		endTime: "17:00"
 	});
@@ -334,7 +336,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "1",
 		JobId: "3",
-		startDate: thenextday.format(),
+		startDate: thenextday,
 		startTime: "18:00",
 		endTime: "20:00"
 	});
