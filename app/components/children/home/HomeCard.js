@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 const HomeCard = () => (
   <Card>
     <CardHeader
-      title="Time Trax"
       subtitle="Time sheet management system"
     />
     <CardMedia>

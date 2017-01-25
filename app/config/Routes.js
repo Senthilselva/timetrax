@@ -13,7 +13,6 @@ import  Home  from "../components/children/Home";
 import  Dashboard  from "../components/children/Dashboard";
 import  Schedule  from "../components/children/Schedule";
 import  Timesheet  from "../components/children/Timesheet";
-import  Timecard  from "../components/children/dashboard/Timecard";
 
 //helper to requireLogin
 import Auth from "../components/children/Auth";
@@ -39,7 +38,6 @@ module.exports = (
       <Route path="/home" component={Home} />
       <Route path="/dashboard" component={Dashboard} onEnter={requireAuth} />
       <Route path="/schedule" component={Schedule} onEnter={requireAuth} />
-      <Route path="/timecard" component={Timecard} onEnter={requireAuth} />
       <Route path="/timesheet" component={Timesheet} onEnter={requireAuth} />
       {/* If user selects any other path... we get the Info Route */}
        <IndexRoute component={ Home } />

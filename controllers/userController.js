@@ -6,8 +6,7 @@ var path = require('path');
 
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
-var setupPassport = require('../config/passport'),
-    flash = require('connect-flash');
+var setupPassport = require('../config/passport');
 
 router.post('/create', function(req,res) {
   var newUser = req.body
@@ -33,16 +32,6 @@ router.post('/login',
   function(req, res, error) {
     res.json(req.user);
   });
-
-
-
-// router.post('/login', 
-//   //passport.authenticate('local', { failureRedirect: '/login',  failureFlash: true}));
-//   passport.authenticate('local', { passReqToCallback : true } ),
-//   function(req, res) {
-//      res.json(req.user);
-//   });
-
 
 function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on 

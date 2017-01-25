@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-import Scheduletable from "./dashboard/Scheduletable.js"
-import Timecard from "./dashboard/Timecard.js"
 import Overview from "./dashboard/Overview.js"
 import TodaySchedule from "./dashboard/TodaySchedule.js"
 import {Card, CardActions, CardHeader, CardText} from 'material-ui';
