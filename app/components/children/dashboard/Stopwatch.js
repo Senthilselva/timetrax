@@ -37,15 +37,19 @@ class Stopwatch extends React.Component {
   }
   
   componentWillMount() {
-      this.state.isRunning ? this.startTimer() : clearInterval(this.timer)
+      this.state.isRunning ? this.startTimer() : this.reset()
   }
-
+  
+  componentWillUnmount () {
+    console.log("umount...............");
+    this.reset();
+  }
   lap() {
     const {lapTimes, timeElapsed} = this.state;
     this.setState({lapTimes: lapTimes.concat(timeElapsed)});
   }
   reset() {
-    clearInterval(this.timer);
+    clearInterval(this.timer); 
     this.setState(this.initialState);
   }
   startTimer() {
