@@ -75,7 +75,7 @@ class TimeElapsed extends React.Component {
   getUnits() {
     const seconds = this.props.timeElapsed / 1000;
     return {
-      
+      hr: Math.floor(seconds / 3600).toString(),
       min: Math.floor(seconds / 60).toString(),
       sec: Math.floor(seconds % 60).toString(),
     };
@@ -84,6 +84,7 @@ class TimeElapsed extends React.Component {
     const units = this.getUnits();
     return (
       <div id={this.props.id}>
+        <span>{leftPad(2, units.hr)}:</span>
         <span>{leftPad(2, units.min)}:</span>
         <span>{leftPad(2, units.sec)}</span>
       </div>
