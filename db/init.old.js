@@ -2,14 +2,22 @@ var express = require('express');
 var app = express();
 var sequelize = require('sequelize');
 var db = require('../models');
+var moment =require('moment');
 
 var conn = db.sequelize;
 var testpassword = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe9MZSaGfYsXMTxjrgfA9UOJokn5MjUHa"; //testpassword = "test"
 var testsalt = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe";
-var today = new Date();
-var tomorrow = new Date(today);
 
-tomorrow.setDate(tomorrow.getDate() + 1);
+var today = moment();
+var tomorrow = moment().add(1, 'days');
+var thenextday = moment().add(2, 'days');
+
+console.log("============================================================================================");
+console.log("----- Initializing database: " );
+console.log("today: " + today.format());
+console.log("tomorrow: " + tomorrow.format());
+console.log("thenextday: " + thenextday.format());
+console.log("============================================================================================");
 
 // =======================================================================
 // PREPARE OUR TABLES 
@@ -36,7 +44,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		city:"Heaven",
 		state:"NJ",
 		zip:"08812",
-		email: "test@test.com",
+		email: "admin@timetrax.com",
 		phone: "(732) 979-7252",
 		ssn: "000-00-0000"
 	});
@@ -345,37 +353,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "1",
-		startDate: "2017-01-20",
-		startTime: "09:00",
-		endTime: "12:00"
-	});
-})
-.then(function(){
-	return db.Schedule.create(
-	{
-		UserId: "2",
-		JobId: "2",
-		startDate: "2017-01-20",
-		startTime: "14:00",
-		endTime: "18:00"
-	});
-})
-.then(function(){
-	return db.Schedule.create(
-	{
-		UserId: "2",
-		JobId: "1",
-		startDate: "2017-01-21",
-		startTime: "13:00",
-		endTime: "18:00"
-	});
-})
-.then(function(){
-	return db.Schedule.create(
-	{
-		UserId: "2",
-		JobId: "1",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "10:00",
 		endTime: "12:00"
 	});
@@ -385,7 +363,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "2",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "12:30",
 		endTime: "17:00"
 	});
@@ -395,7 +373,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "3",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "18:00",
 		endTime: "20:00"
 	});
@@ -405,7 +383,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "1",
-		startDate: tomorrow,
+		startDate: tomorrow.format(),
 		startTime: "14:00",
 		endTime: "16:00"
 	});
@@ -415,7 +393,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "2",
 		JobId: "3",
-		startDate: tomorrow,
+		startDate: tomorrow.format(),
 		startTime: "18:00",
 		endTime: "20:00"
 	});
@@ -426,7 +404,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "3",
 		JobId: "3",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "10:00",
 		endTime: "14:00"
 	});
@@ -436,7 +414,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "3",
 		JobId: "4",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "15:00",
 		endTime: "18:00"
 	});
@@ -446,7 +424,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "3",
 		JobId: "3",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "10:00",
 		endTime: "14:00"
 	});
@@ -456,7 +434,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "3",
 		JobId: "4",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "15:00",
 		endTime: "18:00"
 	});
@@ -467,7 +445,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "4",
 		JobId: "3",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "09:00",
 		endTime: "11:00"
 	});
@@ -477,7 +455,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "4",
 		JobId: "1",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "13:00",
 		endTime: "16:00"
 	});
@@ -487,7 +465,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "4",
 		JobId: "3",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "10:00",
 		endTime: "14:00"
 	});
@@ -497,7 +475,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "4",
 		JobId: "2",
-		startDate: today,
+		startDate: today.format(),
 		startTime: "15:00",
 		endTime: "18:00"
 	});
