@@ -16,8 +16,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     clockedOut: {
       type: DataTypes.TIME,
-      allowNull: true,
-    }
+      allowNull: true
+    },
+    validEntry: {
+      type: DataTypes.STRING,
+      allowNull:true
+    },
   },
   {
     paranoid: true,

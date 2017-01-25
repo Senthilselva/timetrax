@@ -68910,6 +68910,12 @@
 				clockOut: time });
 		},
 	
+		_updateInvalidTimecard: function _updateInvalidTimecard(cardId, dis) {
+			var _reason = "Clocked in from " + dis + "Km away.";
+			return _axios2.default.post("/timesheet/invalid", { cardId: cardId,
+				reason: _reason });
+		},
+	
 		//gets all the finished jobs for the user the user is got from localStorage
 		_getTimeSheets: function _getTimeSheets() {
 			var vEmail = localStorage.getItem('userName');
@@ -75604,6 +75610,9 @@
 			value: function setDistanceBetween(dist) {
 				dist = Math.floor(dist);
 				this.setState({ distanceBetween: dist });
+				_Helpers2.default._updateInvalidTimecard(this.state.cardId, dist).then(function (data, err) {
+					//need to add a set time out 
+				}.bind(this));
 			}
 		}, {
 			key: "handleClockOut",

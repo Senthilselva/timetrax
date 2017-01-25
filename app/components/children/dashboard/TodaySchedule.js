@@ -93,6 +93,11 @@ class TodaySchedule extends React.Component {
   	setDistanceBetween(dist){
   		dist=Math.floor(dist)
   		this.setState({distanceBetween: dist});
+  		Helpers._updateInvalidTimecard(this.state.cardId,dist)
+  			.then(function(data,err){
+  			//need to add a set time out 
+  			}.bind(this));
+
   	}
 
   	handleClockOut(index, event){ 

@@ -487,7 +487,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "4",
-		JobId: "3",
+		JobId: "6",
 		startDate: today,
 		startTime: "09:00",
 		endTime: "11:00"

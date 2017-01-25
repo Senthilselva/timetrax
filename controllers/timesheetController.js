@@ -51,21 +51,36 @@ router.get('/user/:userName', function(req,res) {
         }
       ]
     }).then(function(data){
-    var jobList = [];
-    for(var i=0; i< data.length; i++){
-      var job = {};
-      job.id = data[i].id;
-      job.clockedInDate = data[i].clockedInDate;
-      job.clockIn = data[i].clockedIn;
-      job.clockOut = data[i].clockedOut;
+      var jobList = [];
+      for(var i=0; i< data.length; i++){
+        var job = {};
+        job.id = data[i].id;
+        job.clockedInDate = data[i].clockedInDate;
+        job.clockIn = data[i].clockedIn;
+        job.clockOut = data[i].clockedOut;
 
-      job.jobName = data[i].Job.name;
-      jobList.push(job)
+        job.jobName = data[i].Job.name;
+        jobList.push(job)
     }
     res.json(jobList)
   })
+});//get('/user/:userName')
 
-});
+router.post('/invalid/', function(req,res){
+  var cardId = req.body.cardId;
+  var newString = req.body.reason;
+
+  models.Timesheet.update({
+    validEntry: newString
+  }, {
+    where: {
+     id : cardId
+    }
+  }).then(function(data,err){
+    res.json(data)
+  })
+
+})//invalid
 
 
 module.exports = router;

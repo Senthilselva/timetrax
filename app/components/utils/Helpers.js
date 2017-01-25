@@ -51,7 +51,14 @@ const helpers = {
 	_updateTimecard:(cardId, time) => {
 		return axios.post("/timesheet/update", 
 			{ cardId:cardId,
-			  clockOut:time })
+			  clockOut:time });
+	},
+
+	_updateInvalidTimecard:(cardId, dis) => {
+		var _reason = "Clocked in from "+dis+"Km away."
+		return axios.post("/timesheet/invalid", 
+			{ cardId:cardId,
+			  reason:_reason });
 	},
 
 	//gets all the finished jobs for the user the user is got from localStorage
