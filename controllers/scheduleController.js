@@ -70,6 +70,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
     }
   }).then(function(data){
    
+  console.log(JSON.stringify(data));
   var vSchedule = {};
     vSchedule.id = data.id;
     vSchedule.startDate =data.startDate;
@@ -79,6 +80,8 @@ router.get('/schedule/:scheduleId', function(req,res) {
     vSchedule.UserId = data.UserId;
     vSchedule.jobname =data.Job.name;
     vSchedule.jobcity =data.Job.city;
+    vSchedule.joblat = data.Job.lat;
+    vSchedule.joblng = data.Job.lng;
     vSchedule.firstname = data.User.firstname;
     
     res.json(vSchedule);

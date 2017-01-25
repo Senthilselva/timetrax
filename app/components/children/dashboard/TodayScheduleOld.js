@@ -5,7 +5,6 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui';
 import {Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui'
 import {IconButton, FontIcon} from 'material-ui';
 import Stopwatch from "./Stopwatch.js"
-import Distance from "./Distance.js"
 import Helpers from '../../utils/Helpers.js';
 
 var dateFormat = require('dateformat');
@@ -23,10 +22,7 @@ class TodaySchedule extends React.Component {
     		today: today,
     		scheduleList:[],
     		clockedRow: 0,
-    		disableClock:true,
-    		//distanceBetween:0,
-    		cardId:0,
-    		tCard:"" //this Id is the Id of the timesheet database
+    		disableClock:true
 		}
 		this.handleClockIn = this.handleClockIn.bind(this);
 		this.handleClockOut = this.handleClockOut.bind(this);
@@ -42,41 +38,27 @@ class TodaySchedule extends React.Component {
 
  	handleClockIn(index, event){ 
  		event.preventDefault();
+ 		console.log("Clock In event : " + event);
+    	console.log("Clock In Id  : " + index);
 
     	Helpers._getOneSchedule(index)
 			.then(function(newSchedule){
-				console.log(newSchedule.database);
-
-				//tCard holds all the information needed to create a time card.
-				this.setState({tCard : newSchedule.data});
-				//GeoLocation._getDistance(this.state.tCard.joblng, this.state.tCard.joblat)
-				//this.setState({distanceBetween : GeoLocation._getDistance(this.state.tCard.joblng, this.state.tCard.joblat) })
-			 	//console.log(this.state.distanceBetween)
-
+				console.log(newSchedule);
 			 	var newTimeSheet = {};
 			 	newTimeSheet.JobId= newSchedule.data.JobId;
 			 	newTimeSheet.UserId= newSchedule.data.UserId;
 				newTimeSheet.clockIn = Date.now();
 
-				//code to check the geoLocation 
-
 				Helpers._createTimecard(newTimeSheet)
 					.then(function(newdata){
-						//this Id is the Id of the timesheet database
+						this.setState({tCard : newSchedule.data});
 						this.setState({ cardId : newdata.data.id});
-						//Clock is used to disable the clockIn buttons once logged in
 						var tempClock = this.state.disableClock;
 						this.setState({ disableClock : !tempClock });
 						this.setState({clockedRow : index })
-
 			 		}.bind(this));
 			
       	}.bind(this));
-  	}
-
-  	shouldComponentUpdate(){
-  		console.log("shouldComponentUpdate  distance " + this.state.distanceBetween)
-  		return true;
   	}
 
   	handleClockOut(index, event){ 
@@ -127,9 +109,10 @@ class TodaySchedule extends React.Component {
 											<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
 						          						iconClassName="material-icons" tooltip="Clock Out" 
 						          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
+						                	{/*<Link to="timecard">
+						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
+						                	</Link>*/}
 					                		<Stopwatch />
-					                		<Distance longitude = {that.state.tCard.joblng}
-					                			  	  latitude = {that.state.tCard.joblat} />
 					                	</span>
 					                	) : (
 					          			<span>
@@ -140,9 +123,7 @@ class TodaySchedule extends React.Component {
 						                		<FontIcon className="material-icons md-48">alarm_on</FontIcon>
 						                	</Link> */}
 					                	</span>
-					                	
 					          			)}	
-					          			
 				                	</TableRowColumn>
 					              </TableRow>
 					            );
