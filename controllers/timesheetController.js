@@ -58,7 +58,7 @@ router.get('/user/:userName', function(req,res) {
         job.clockedInDate = data[i].clockedInDate;
         job.clockIn = data[i].clockedIn;
         job.clockOut = data[i].clockedOut;
-
+        job.reason = data[i].validEntry;
         job.jobName = data[i].Job.name;
         jobList.push(job)
     }

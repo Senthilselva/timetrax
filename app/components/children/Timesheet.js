@@ -45,6 +45,7 @@ class Timesheet extends React.Component {
 				                <TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
 				                <TableRowColumn>{row.clockIn}</TableRowColumn>
 				                <TableRowColumn>{row.clockOut}</TableRowColumn>
+				                <TableRowColumn>{row.reason}</TableRowColumn>
 				              </TableRow>
 				            );
 				          })}

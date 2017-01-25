@@ -76740,6 +76740,11 @@
 											_materialUi.TableRowColumn,
 											null,
 											row.clockOut
+										),
+										_react2.default.createElement(
+											_materialUi.TableRowColumn,
+											null,
+											row.reason
 										)
 									);
 								})
