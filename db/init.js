@@ -7,11 +7,16 @@ var conn = db.sequelize;
 var testpassword = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe9MZSaGfYsXMTxjrgfA9UOJokn5MjUHa"; //testpassword = "test"
 var testsalt = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe";
 var today = new Date();
+console.log(today);
 var tomorrow = new Date(today);
 var thenextday = new Date(today);
 
 tomorrow.setDate(tomorrow.getDate() + 1);
 thenextday.setDate(thenextday.getDate() + 2);
+
+console.log("=============================================================");
+console.log("----- Initializing database - ", today );
+console.log("=============================================================");
 
 // =======================================================================
 // PREPARE OUR TABLES 

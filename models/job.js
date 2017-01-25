@@ -40,13 +40,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       validate: {
         isEmail: true,
+      }
     },
     lat: {
-      type: DECIMAL(10, 8), 
+      type: DataTypes.DECIMAL(10, 8),
       allowNull: true,
-    }
+    },
     lng: {
-      type: DECIMAL(11, 8), 
+      type: DataTypes.DECIMAL(11, 8),
       allowNull: true,
     },
   },

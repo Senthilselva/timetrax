@@ -59,5 +59,5 @@ var initdb = require("./db/init.js");
 
  var server = app.listen(app.get('port'), function() {
   	// then save a log of the listening to our debugger.
-    console.log('Express server listening on port ' + server.address().port);
+    console.log('----- Express server listening on port ' + server.address().port);
   });
