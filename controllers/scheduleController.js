@@ -190,6 +190,9 @@ router.get('/days/user/:userName', function(req,res) {
         $gte: today
       }
     },
+    group: ['startDate'],
+    raw: true
+
 
   }).then(function(data){
     console.log(JSON.stringify(data));

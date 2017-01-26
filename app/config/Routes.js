@@ -18,8 +18,6 @@ import  Timesheet  from "../components/children/Timesheet";
 //helper to requireLogin
 import Auth from "../components/children/Auth";
 
-console.log("Routes.js");
-
 function requireAuth(nextState, replace) {
   if (!Auth._loggedIn()) {
     replace({
