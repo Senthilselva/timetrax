@@ -36,7 +36,7 @@ class TodaySchedule extends React.Component {
     		disableClock:true,
     		distanceBetween:0,
     		cardId:0,
-    		clockIn:"",
+    		clockIn:Date.now(),
     		tCard:"" //this Id is the Id of the timesheet database
 		}
 		this.handleClockIn = this.handleClockIn.bind(this);
@@ -52,6 +52,7 @@ class TodaySchedule extends React.Component {
 			this.setState({clockedRow : localStorage.clockedRow});
 			this.setState({tCard : localStorage.tCard});
 			this.setState({distanceBetween : localStorage.distanceBetween});
+			this.setState({clockIn : localStorage.clockIn});
 		}
 	  	Helpers._getTodaySchedule()
 	  		.then(function(userData,err){
@@ -73,7 +74,7 @@ class TodaySchedule extends React.Component {
 			 	newTimeSheet.JobId= newSchedule.data.JobId;
 			 	newTimeSheet.UserId= newSchedule.data.UserId;
 				newTimeSheet.clockIn = Date.now();
-
+    			localStorage.setItem("clockIn", newTimeSheet.clockIn);
 
 				Helpers._createTimecard(newTimeSheet)
 					.then(function(newdata){
@@ -160,7 +161,7 @@ class TodaySchedule extends React.Component {
 												<IconButton onClick={that.handleClockOut.bind(that, row.id)} 
 						          						iconClassName="material-icons" tooltip="Clock Out" 
 						          						tooltipPosition="top-center" disabled={that.state.disableClock}>alarm_off</IconButton>
-					                			<Stopwatch />
+					                			<Stopwatch clockIn = {that.state.clockIn} />
 					                			<Distance longitude = {that.state.tCard.joblng}
 					                			  	  latitude = {that.state.tCard.joblat} 
 					                			  	  setDistanceBetween = {that.setDistanceBetween} />

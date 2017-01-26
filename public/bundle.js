@@ -75552,7 +75552,7 @@
 				disableClock: true,
 				distanceBetween: 0,
 				cardId: 0,
-				clockIn: "",
+				clockIn: Date.now(),
 				tCard: "" //this Id is the Id of the timesheet database
 			};
 			_this.handleClockIn = _this.handleClockIn.bind(_this);
@@ -75571,6 +75571,7 @@
 					this.setState({ clockedRow: localStorage.clockedRow });
 					this.setState({ tCard: localStorage.tCard });
 					this.setState({ distanceBetween: localStorage.distanceBetween });
+					this.setState({ clockIn: localStorage.clockIn });
 				}
 				_Helpers2.default._getTodaySchedule().then(function (userData, err) {
 					this.setState({ scheduleList: userData.data });
@@ -75591,6 +75592,7 @@
 					newTimeSheet.JobId = newSchedule.data.JobId;
 					newTimeSheet.UserId = newSchedule.data.UserId;
 					newTimeSheet.clockIn = Date.now();
+					localStorage.setItem("clockIn", newTimeSheet.clockIn);
 	
 					_Helpers2.default._createTimecard(newTimeSheet).then(function (newdata) {
 						//this Id is the Id of the timesheet database
@@ -75711,7 +75713,7 @@
 																tooltipPosition: "top-center", disabled: that.state.disableClock },
 															"alarm_off"
 														),
-														_react2.default.createElement(_Stopwatch2.default, null),
+														_react2.default.createElement(_Stopwatch2.default, { clockIn: that.state.clockIn }),
 														_react2.default.createElement(_Distance2.default, { longitude: that.state.tCard.joblng,
 															latitude: that.state.tCard.joblat,
 															setDistanceBetween: that.setDistanceBetween })
@@ -75836,7 +75838,7 @@
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      console.log("umount...............");
+	      //console.log("umount...............");
 	      this.reset();
 	    }
 	  }, {
@@ -75857,7 +75859,7 @@
 	  }, {
 	    key: 'startTimer',
 	    value: function startTimer() {
-	      this.startTime = Date.now();
+	      this.startTime = Date.now() - this.props.clockIn;
 	      this.timer = setInterval(this.update, 10);
 	    }
 	  }, {
