@@ -55,7 +55,7 @@ const helpers = {
 	},
 
 	_updateInvalidTimecard:(cardId, dis) => {
-		var _reason = "Clocked in from "+dis+"Km away."
+		var _reason = "Clocked in from "+dis+"Miles away."
 		return axios.post("/timesheet/invalid", 
 			{ cardId:cardId,
 			  reason:_reason });
