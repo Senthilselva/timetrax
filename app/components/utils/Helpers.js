@@ -35,7 +35,7 @@ const helpers = {
 
 	_getScheduleDays: () => {
 		var userName = localStorage.getItem('userName');
-
+	
 		return axios.get("/schedule/days/user/" + userName );
 	}, 
 

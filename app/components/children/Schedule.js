@@ -27,15 +27,16 @@ class Schedule extends React.Component {
   	};
 
 	componentWillMount() {
-	  Helpers._getScheduleDays()
-	  	.then(function(userData,err){
-	        this.setState({scheduleDays: userData.data});
-	    }.bind(this));
+	 	Helpers._getScheduleDays()
+	  		.then(function(userData,err){
+	        	this.setState({scheduleDays: userData.data});
+	    	}.bind(this));
 
 	}
 
     render() {
 	   	var that = this;
+	   	console.log(this.state.scheduleDays.length, that.state.scheduleDays.length);
 
     	return ( 
     	<div>
