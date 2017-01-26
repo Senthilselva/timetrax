@@ -13,6 +13,10 @@ const helpers = {
 	    return axios.post("/user/create", userInfo);
 	},
 
+	_updateUser: (userInfo) => {
+	    return axios.post("/user/update", userInfo);
+	},
+
 	//gets all the schedule for the user. the user is stored in localStorage
 	_getSchedule: () => {
 		var vEmail = localStorage.getItem('userName');
