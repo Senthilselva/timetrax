@@ -17,8 +17,6 @@ class ScheduleByDay extends React.Component {
   	};
 
   	componentWillMount() {
-  		console.log("hihihih "+ this.props.day)
-
   		Helpers._getScheduleForTheDay(this.props.day)
 	  	.then(function(userData,err){
 	        this.setState({scheduleListOfDay: userData.data});
@@ -49,43 +47,3 @@ class ScheduleByDay extends React.Component {
 
 // Export the component back for use in other files
 export default ScheduleByDay;
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-<Table>
-				   				<TableBody displayRowCheckbox={false} showRowHover={true} stripedRows={false}>
-				   				 <TableRow>
-				   				 	Hello
-				   				 </TableRow>
-									{/* {that.state.scheduleList.map(function(rowTable, j){
-				          				{ row.startDate == that.state.scheduleList.startDate ? (
-				            				<div> 
-				            					return(
-				              						<TableRow key={j}> 
-				                						<TableRowColumn>{row.jobName}</TableRowColumn>
-				                						<TableRowColumn>{dateFormat(row.startDate, "mm/dd/yyyy")}</TableRowColumn>
-				                						<TableRowColumn>{row.startTime}</TableRowColumn>
-				                						<TableRowColumn>{row.endTime}</TableRowColumn>
-				              						</TableRow>
-				            					);
-				            				</div>
-				          				) : (<span> </span>
-				          				)
-				          					
-				          				}
-				          			})}
-									
-
-				    			</TableBody>
-								</Table>
-								*/
