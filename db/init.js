@@ -7,7 +7,7 @@ var conn = db.sequelize;
 var testpassword = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe9MZSaGfYsXMTxjrgfA9UOJokn5MjUHa"; //testpassword = "test"
 var testsalt = "$2a$10$h15NwI.bM/5.3Iy.BHfIoe";
 var today = new Date();
-
+console.log(today);
 var tomorrow = new Date(today);
 var thenextday = new Date(today);
 
@@ -15,7 +15,7 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 thenextday.setDate(thenextday.getDate() + 2);
 
 console.log("=============================================================");
-console.log("----- Initializing database - ", today.toLocaleString() );
+console.log("----- Initializing database - ", today );
 console.log("=============================================================");
 
 // =======================================================================
@@ -226,6 +226,21 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		lng: -74.5616890
 	});
 })
+.then(function(){
+	return db.Job.create(
+	{
+		name: "RBC Pools",
+		address: "300 Artium Dr",
+		city:"Somerset",
+		state:"NJ",
+		zip:"08873",
+		contactName: "Jhon",
+		contactPhone: "(908) 439-2123",
+		contactEmail: "Jhon@RBC.com",
+		lat: 40.5354340,
+		lng: -74.5212870
+	});
+})
 // =======================================================================
 // ADD Schedule 
 // =======================================================================
@@ -284,7 +299,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "1",
-		JobId: "5",
+		JobId: "3",
 		startDate: today,
 		startTime: "18:00",
 		endTime: "20:00"
@@ -304,7 +319,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "1",
-		JobId: "5",
+		JobId: "3",
 		startDate: tomorrow,
 		startTime: "18:00",
 		endTime: "20:00"
@@ -375,7 +390,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "2",
-		JobId: "5",
+		JobId: "2",
 		startDate: "2017-01-20",
 		startTime: "14:00",
 		endTime: "18:00"
@@ -415,7 +430,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "2",
-		JobId: "5",
+		JobId: "3",
 		startDate: today,
 		startTime: "18:00",
 		endTime: "20:00"
@@ -435,7 +450,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "2",
-		JobId: "5",
+		JobId: "3",
 		startDate: tomorrow,
 		startTime: "18:00",
 		endTime: "20:00"
@@ -456,7 +471,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "7",
+		JobId: "4",
 		startDate: today,
 		startTime: "15:00",
 		endTime: "18:00"
@@ -467,7 +482,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "3",
 		JobId: "3",
-		startDate: tomorrow,
+		startDate: today,
 		startTime: "10:00",
 		endTime: "14:00"
 	});
@@ -476,8 +491,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "3",
-		JobId: "7",
-		startDate: tomorrow,
+		JobId: "4",
+		startDate: today,
 		startTime: "15:00",
 		endTime: "18:00"
 	});
@@ -517,63 +532,72 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "4",
-		JobId: "6",
+		JobId: "2",
 		startDate: today,
 		startTime: "15:00",
 		endTime: "18:00"
 	});
 })
+.then(function(){
+	return db.Schedule.create(
+	{
+		UserId: "1",
+		JobId: "8",
+		startDate: today,
+		startTime: "18:00",
+		endTime: "20:00"
+	});
+})
+.then(function(){
+	return db.Schedule.create(
+	{
+		UserId: "2",
+		JobId: "8",
+		startDate: today,
+		startTime: "18:00",
+		endTime: "20:00"
+	});
+})
+.then(function(){
+	return db.Schedule.create(
+	{
+		UserId: "3",
+		JobId: "8",
+		startDate: today,
+		startTime: "18:00",
+		endTime: "20:00"
+	});
+})
+.then(function(){
+	return db.Schedule.create(
+	{
+		UserId: "4",
+		JobId: "8",
+		startDate: today,
+		startTime: "18:00",
+		endTime: "20:00"
+	});
+})
 // =======================================================================
 // ADD Timesheets 
 // =======================================================================
-// Add Timesheets for User 1 -------------
-.then(function(){
-	return db.Timesheet.create(
-	{
-		UserId: "1",
-		JobId: "1",
-		clockedInDate: "2017-01-24",
-		clockedIn: "09:50",
-		clockedOut: "14:15"
-	});
-})
-.then(function(){
-	return db.Timesheet.create(
-	{
-		UserId: "1",
-		JobId: "5",
-		clockedInDate: "2017-01-24",
-		clockedIn: "15:05",
-		clockedOut: "16:15"
-	});
-})
-.then(function(){
-	return db.Timesheet.create(
-	{
-		UserId: "1",
-		JobId: "6",
-		clockedInDate: "2017-01-24",
-		clockedIn: "16:30:00",
-		clockedOut: "18:05:00"
-	});
-})
-.then(function(){
-	return db.Timesheet.create(
-	{
-		UserId: "1",
-		JobId: "7",
-		clockedInDate: "2017-01-24",
-		clockedIn: "18:30:00",
-		clockedOut: "20:05:00"
-	});
-})
 // Add Timesheets for User 2 -------------
+/*.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "2",
+		JobId: "1",
+		clockedInDate: "2017-01-17",
+		clockedIn: "15:05",
+		clockedOut: "19:15"
+	});
+})
 .then(function(){
 	return db.Timesheet.create(
 	{
 		UserId: "2",
 		JobId: "1",
-		clockedInDate: "2017-01-24",
+		clockedInDate: "2017-01-18",
 		clockedIn: "09:59",
 		clockedOut: "14:00"
 	});
@@ -582,10 +606,30 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "2",
-		JobId: "2",
-		clockedInDate: "2017-01-24",
+		JobId: "1",
+		clockedInDate: "2017-01-19",
+		clockedIn: "09:55",
+		clockedOut: "14:05"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "2",
+		JobId: "1",
+		clockedInDate: "2017-01-20",
+		clockedIn: "09:50",
+		clockedOut: "14:15"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "2",
+		JobId: "1",
+		clockedInDate: "2017-01-20",
 		clockedIn: "15:00",
-		clockedOut: "17:25"
+		clockedOut: "19:25"
 	});
 })
 // Add Timesheets for User 3 -------------
@@ -593,8 +637,28 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
-		JobId: "2",
-		clockedInDate: "2017-01-24",
+		JobId: "3",
+		clockedInDate: "2017-01-17",
+		clockedIn: "15:05",
+		clockedOut: "19:15"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "3",
+		JobId: "3",
+		clockedInDate: "2017-01-18",
+		clockedIn: "09:59",
+		clockedOut: "14:00"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "3",
+		JobId: "4",
+		clockedInDate: "2017-01-19",
 		clockedIn: "09:55",
 		clockedOut: "14:05"
 	});
@@ -603,10 +667,20 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "3",
+		JobId: "4",
+		clockedInDate: "2017-01-20",
+		clockedIn: "09:50",
+		clockedOut: "14:15"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "3",
 		JobId: "3",
-		clockedInDate: "2017-01-24",
-		clockedIn: "15:05",
-		clockedOut: "19:15"
+		clockedInDate: "2017-01-20",
+		clockedIn: "15:00:00",
+		clockedOut: "19:25:00"
 	});
 })
 // Add Timesheets for User 4 -------------
@@ -614,10 +688,40 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Timesheet.create(
 	{
 		UserId: "4",
+		JobId: "1",
+		clockedInDate: "2017-01-17",
+		clockedIn: "15:05:00",
+		clockedOut: "19:15:00"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "4",
 		JobId: "3",
-		clockedInDate: "2017-01-24",
+		clockedInDate: "2017-01-18",
 		clockedIn: "09:59:00",
-		clockedOut: "12:00:00"
+		clockedOut: "14:00:00"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "4",
+		JobId: "4",
+		clockedInDate: "2017-01-19",
+		clockedIn: "09:55:00",
+		clockedOut: "14:05:00"
+	});
+})
+.then(function(){
+	return db.Timesheet.create(
+	{
+		UserId: "4",
+		JobId: "3",
+		clockedInDate: "2017-01-20",
+		clockedIn: "09:50:00",
+		clockedOut: "14:15:00"
 	});
 })
 .then(function(){
@@ -625,9 +729,9 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	{
 		UserId: "4",
 		JobId: "1",
-		clockedInDate: "2017-01-24",
-		clockedIn: "15:05:00",
-		clockedOut: "19:15:00"
+		clockedInDate: "2017-01-20",
+		clockedIn: "15:00:00",
+		clockedOut: "19:25:00"
 	});
 })
-
+*/

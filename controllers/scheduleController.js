@@ -5,8 +5,6 @@ var path = require('path');
 var dateFormat = require('dateformat');
 var today = new Date();
 
-console.log("scheduleController");
-
 //Returns all the Jobs for a given User
 router.get('/user/:userName', function(req,res) {
   console.log("Returning all the Jobs for a given User", req.params);
@@ -93,6 +91,7 @@ router.get('/schedule/:scheduleId', function(req,res) {
 
 //Returns a User's Schedule for Today
 router.get('/user/today/:userName', function(req,res) {
+  console.log("Returning a User's Schedule for Today", req.params);
   var today = new Date();
   today = dateFormat(today, "fullDate");
   console.log("Today's date ------------", today);
@@ -106,11 +105,9 @@ router.get('/user/today/:userName', function(req,res) {
       {
         model:  models.Job 
       }
-    ] 
-    //,
-    //where: 
-    //{ startDate: today }
-
+    ]  
+//was not able to capture date with dateFormat and whereclause used if statement in line 
+//line 126
   }).then(function(data){
 
   var jobList = [];
@@ -134,7 +131,7 @@ router.get('/user/today/:userName', function(req,res) {
 
 //Returns a User's Schedule for a given Date
 router.get('/userforday/:userName/:searchDate', function(req,res) {   
-  console.log("Returning a User's Schedule for a given Date", req.params);
+  console.log(" ZZZZZZ Returning a User's Schedule for a given Date", req.params.searchDate);
 
   models.Schedule.findAll(
     { include: [
@@ -174,8 +171,9 @@ router.get('/userforday/:userName/:searchDate', function(req,res) {
 });
 
 router.get('/days/user/:userName', function(req,res) {   
-  console.log("Getting the days User is Scheduled", req.params);
-
+  
+  var dateneeded = dateFormat(req.params.searchDate, "mm-dd-yy");
+  console.log("Returning the days User is Schedule", req.params);
   models.Schedule.findAll(
     { include: [
       { 
@@ -190,8 +188,7 @@ router.get('/days/user/:userName', function(req,res) {
         $gte: today
       }
     },
-    group: ['startDate'],
-    raw: true
+    group: 'startDate',
 
 
   }).then(function(data){
