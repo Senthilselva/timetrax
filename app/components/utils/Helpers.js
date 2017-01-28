@@ -13,11 +13,7 @@ const helpers = {
 	    return axios.post("/user/create", userInfo);
 	},
 
-	_updateUser: (userInfo) => {
-	    return axios.post("/user/update", userInfo);
-	},
-
-	//gets all the schedule for the user. the user is stored in localStorage
+	//gets  all the schedule for the user. the user is stored in localStorage
 	_getSchedule: () => {
 		var vEmail = localStorage.getItem('userName');
 		return axios.get("/schedule/user/" + vEmail );
@@ -35,7 +31,7 @@ const helpers = {
 
 	_getScheduleDays: () => {
 		var userName = localStorage.getItem('userName');
-	
+
 		return axios.get("/schedule/days/user/" + userName );
 	}, 
 
@@ -59,7 +55,7 @@ const helpers = {
 	},
 
 	_updateInvalidTimecard:(cardId, dis) => {
-		var _reason = "Clocked in from "+dis+"Km away."
+		var _reason = "Clocked in from "+dis+"Miles away."
 		return axios.post("/timesheet/invalid", 
 			{ cardId:cardId,
 			  reason:_reason });
@@ -72,6 +68,12 @@ const helpers = {
 		//calling the controller and returing the value
 		return axios.get("/timesheet/user/" + vEmail );
 	}
+
+	//set the total hours worked timesheet
+	// _getTotalHoursWorked: () =>{
+	// 	var vEmail =localStorage.getItem('userName');
+	// 	return axios.get("/timesheet/totalhours/" + vEmail );
+	// }
 }
 
 export default helpers;

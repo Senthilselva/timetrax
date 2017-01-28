@@ -46,7 +46,9 @@ class TodaySchedule extends React.Component {
   	};
 
 	componentWillMount() {
+		console.log(localStorage.cardId);
 		if(localStorage.cardId){
+			console.log("inside------------localStorage.cardId---------componentWillMount  "+localStorage.cardId)
 			this.setState({cardId : localStorage.cardId});
 			this.setState({disableClock : false});
 			this.setState({clockedRow : localStorage.clockedRow});
@@ -75,6 +77,7 @@ class TodaySchedule extends React.Component {
 			 	newTimeSheet.UserId= newSchedule.data.UserId;
 				newTimeSheet.clockIn = Date.now();
     			localStorage.setItem("clockIn", newTimeSheet.clockIn);
+    			this.setState({clockIn : newTimeSheet.clockIn});
 
 				Helpers._createTimecard(newTimeSheet)
 					.then(function(newdata){
@@ -84,24 +87,40 @@ class TodaySchedule extends React.Component {
 						var tempClock = this.state.disableClock;
 						this.setState({ disableClock : !tempClock });
 						this.setState({clockedRow : index })
-
+						
+						//setting all local storage
+						localStorage.setItem("cardId" , this.state.cardId);
+    					localStorage.setItem("clockedRow", this.state.clockedRow);
+    					localStorage.setItem("tCard",this.state.tCard);
+    					localStorage.setItem("distanceBetween", this.state.distanceBetween);
 			 		}.bind(this));
 			
       	}.bind(this));
   	}
 
   	componentWillUnmount() {
+    	if(this.state.cardId != 0){
     	console.log("componentWillUnmount");
-    	localStorage.setItem("cardId" , this.state.cardId);
-    	//localStorage.setItem("disableClock",false);
-    	localStorage.setItem("clockedRow", this.state.clockedRow);
-    	localStorage.setItem("tCard",this.state.tCard);
-    	localStorage.setItem("distanceBetween", this.state.distanceBetween);
+    		
+    		localStorage.setItem("distanceBetween", this.state.distanceBetween);
+
+    		//***************************************
+    		//Attempting to fix the bug 
+    		//moved this code to clock in clock out
+    		//****************************************
+    		// localStorage.setItem("cardId" , this.state.cardId);
+    		// //localStorage.setItem("disableClock",false);
+    		// localStorage.setItem("clockedRow", this.state.clockedRow);
+    		// localStorage.setItem("tCard",this.state.tCard);
+    		// localStorage.setItem("distanceBetween", this.state.distanceBetween);
+    	}
   	}
 
   	setDistanceBetween(dist){
   		dist=Math.floor(dist)
   		this.setState({distanceBetween: dist});
+    	localStorage.setItem("distanceBetween", this.state.distanceBetween);
+
   		Helpers._updateInvalidTimecard(this.state.cardId,dist)
   			.then(function(data,err){
   			//need to add a set time out 
@@ -119,8 +138,18 @@ class TodaySchedule extends React.Component {
 					this.setState({clockedRow : 0})
 					var tempClock = this.state.disableClock;
 					this.setState({ disableClock : !tempClock });
+					
+					//setting all local storage
+						localStorage.setItem("cardId" , 0);
+    					localStorage.setItem("clockedRow", 0);
+    					localStorage.setItem("tCard", 0);
+    					localStorage.setItem("distanceBetween", 0);
+    					delete localStorage.cardId;
+
+    					console.log("handleClockOut --------------localStorage.cardId---"+localStorage.cardId)
+
 		}.bind(this));
-		delete localStorage.cardId;
+		//delete localStorage.cardId;
 
   	}
   	
@@ -165,10 +194,11 @@ class TodaySchedule extends React.Component {
 					                			<Distance longitude = {that.state.tCard.joblng}
 					                			  	  latitude = {that.state.tCard.joblat} 
 					                			  	  setDistanceBetween = {that.setDistanceBetween} />
+					                			
 					                		</span>
 					                		) : (
 					                		<Paper style={style} zDepth={1}>
-       												You are {Math.floor(that.state.distanceBetween)} Kilometers away </Paper>
+       												You are {Math.floor(that.state.distanceBetween)} Miles away </Paper>
 					                		)}
 					                	</span>
 					                	) : (

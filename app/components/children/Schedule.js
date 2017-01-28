@@ -27,17 +27,16 @@ class Schedule extends React.Component {
   	};
 
 	componentWillMount() {
-	 	Helpers._getScheduleDays()
-	  		.then(function(userData,err){
-	        	this.setState({scheduleDays: userData.data});
-	    	}.bind(this));
+	  Helpers._getScheduleDays()
+	  	.then(function(userData,err){
+	        this.setState({scheduleDays: userData.data});
+	    }.bind(this));
 
 	}
 
     render() {
 	   	var that = this;
-	   	console.log(this.state.scheduleDays.length, this.state.scheduleDays);
-
+	   	console.log(this.state.scheduleDays)
     	return ( 
     	<div>
     		<Header />
@@ -53,10 +52,11 @@ class Schedule extends React.Component {
 				{this.state.scheduleDays.map(function(row, i){
 					return (
 						<Card key = {i}>
-							<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} subtitle="You have x jobs scheduled for this day" actAsExpander={true} showExpandableButton={true}/>
-								<CardText expandable={true}>
+							{/*<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} 
+									subtitle="You have x jobs scheduled for this day" actAsExpander={true} showExpandableButton={true}/>
+								<CardText expandable={true}> */}
 									<SchedulebyDay day = {row.startDate}/>
-								</CardText>
+								{/*</CardText>*/}
 						</Card>
 					);
 				})}

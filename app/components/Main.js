@@ -31,7 +31,7 @@ const PulldownMenu = (props) => (
     targetOrigin={{horizontal: 'right', vertical: 'top'}}
     anchorOrigin={{horizontal: 'right', vertical: 'top'}}
   >
-    <Link to="/profile"><MenuItem primaryText="My Profile" /></Link>
+    <Link to="#"><MenuItem primaryText="My Profile" /></Link>
     <Link to="/logout"><MenuItem primaryText="Sign out" /></Link>
   </IconMenu>
 );
