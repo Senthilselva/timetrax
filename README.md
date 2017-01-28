@@ -18,7 +18,6 @@ GPS based time tracker
   
 ### Getting Started In Development
 
-```shell
 npm install
 
 webpack 
