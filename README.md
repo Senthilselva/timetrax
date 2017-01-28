@@ -26,3 +26,13 @@ webpack
 node server
 
 Visit `localhost:3000` in your browser.
+
+## Screenshots
+
+Landing Page:
+
+![Landing Page](images/LandingPage.PNG)
+
+Dashboard:
+
+![Landing Page](images/Dashboard.PNG)
