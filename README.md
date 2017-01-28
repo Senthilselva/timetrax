@@ -31,8 +31,8 @@ Visit `localhost:3000` in your browser.
 
 Landing Page:
 
-![Landing Page](./images/LandingPage.PNG)
+![Landing Page](LandingPage.PNG)
 
 Dashboard:
 
-![Dashboard](./images/Dashboard.PNG)
+![Dashboard](Dashboard.PNG)
