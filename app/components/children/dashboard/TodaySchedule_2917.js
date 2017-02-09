@@ -16,7 +16,7 @@ var today = new Date();
 const iconStyle = { margin: 12 };
 
 const style = {
-  height: 150,
+  height: 25,
   width: 200,
   margin: 20,
   textAlign: 'center',
@@ -103,6 +103,16 @@ class TodaySchedule extends React.Component {
     	console.log("componentWillUnmount");
     		
     		localStorage.setItem("distanceBetween", this.state.distanceBetween);
+
+    		//***************************************
+    		//Attempting to fix the bug 
+    		//moved this code to clock in clock out
+    		//****************************************
+    		// localStorage.setItem("cardId" , this.state.cardId);
+    		// //localStorage.setItem("disableClock",false);
+    		// localStorage.setItem("clockedRow", this.state.clockedRow);
+    		// localStorage.setItem("tCard",this.state.tCard);
+    		// localStorage.setItem("distanceBetween", this.state.distanceBetween);
     	}
   	}
 
@@ -164,11 +174,10 @@ class TodaySchedule extends React.Component {
 					          {this.state.scheduleList.map(function(row, i){
 
 					            return(
-					               <Paper style={style} zDepth={2} key={i}>
-					               <div> 
-					                <div> {row.jobName} </div>
-					                <div> {row.startTime} to {row.endTime} </div>
-					                <div>
+					              <TableRow key={i}> 
+					                <TableRowColumn>{row.jobName}</TableRowColumn>
+					                <TableRowColumn>{row.startTime} to {row.endTime}</TableRowColumn>
+					                <TableRowColumn>
 										<IconButton onClick={that.handleClockIn.bind(that, row.id)} 
 					            					iconClassName="material-icons" tooltip="Clock In" 
 					            					tooltipPosition="top-center" disabled={!that.state.disableClock} >alarm</IconButton>
@@ -188,13 +197,8 @@ class TodaySchedule extends React.Component {
 					                			
 					                		</span>
 					                		) : (
-					                		{/*<div style={style} zDepth={1}>
-       												You are {Math.floor(that.state.distanceBetween)} Miles away </div>
-					                		*/}
-					                		<Distance longitude = {that.state.tCard.joblng}
-					                			  	  latitude = {that.state.tCard.joblat} 
-					                			  	  setDistanceBetween = {that.setDistanceBetween} />
-
+					                		<Paper style={style} zDepth={1}>
+       												You are {Math.floor(that.state.distanceBetween)} Miles away </Paper>
 					                		)}
 					                	</span>
 					                	) : (
@@ -205,9 +209,9 @@ class TodaySchedule extends React.Component {
 					                	</span>
 					                	
 					          			)}	
-					          		</div>
-					          	  </div>	
-				                  </Paper>
+					          			
+				                	</TableRowColumn>
+					              </TableRow>
 					            );
 					          })}
 					    </TableBody>

@@ -11,7 +11,7 @@ if (typeof(Number.prototype.toRad) === "undefined") {
 const style = {
   height: 25,
   width: 200,
-  margin: 20,
+  //margin: 20,
   textAlign: 'center',
   display: 'inline-block',
 };
@@ -28,7 +28,6 @@ class Distance extends React.Component {
   		console.log(this.props.longitude)
   		var lon2 = this.props.longitude;
   		var lat2 = this.props.latitude;
-  		//console.log("hbfkaejwewngewnjn")
   		console.log( lon2 + lat2)
   		var geo=navigator.geolocation;
 
