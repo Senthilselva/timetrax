@@ -55,9 +55,10 @@ class Stopwatch extends React.Component {
   startTimer() {
 
     //this.startTime = Date.now();
-    console.log("this.props.clockIn" + this.props.clockIn)
-    this.startTime = this.props.clockIn;
+    //console.log("this.props.clockIn" + this.props.clockIn)
 
+    this.startTime = localStorage.clockIn;
+    console.log("startTime  "+ this.startTime)
     this.timer = setInterval(this.update, 10);
   }
   update() {

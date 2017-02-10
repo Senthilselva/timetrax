@@ -27,6 +27,7 @@ class Schedule extends React.Component {
   	};
 
 	componentWillMount() {
+		//Get all the days when the user is schedule to work
 	  Helpers._getScheduleDays()
 	  	.then(function(userData,err){
 	        this.setState({scheduleDays: userData.data});
@@ -52,11 +53,8 @@ class Schedule extends React.Component {
 				{this.state.scheduleDays.map(function(row, i){
 					return (
 						<Card key = {i}>
-							{/*<CardHeader title={dateFormat(row.startDate,"mm/dd/yyyy")} 
-									subtitle="You have x jobs scheduled for this day" actAsExpander={true} showExpandableButton={true}/>
-								<CardText expandable={true}> */}
-									<SchedulebyDay day = {row.startDate}/>
-								{/*</CardText>*/}
+							{/*send the date to display the details of the schedule*/}
+							<SchedulebyDay day = {row.startDate}/>
 						</Card>
 					);
 				})}
@@ -64,8 +62,7 @@ class Schedule extends React.Component {
 			<br/>
 			</div>
 			)}
-		
-    	</div>
+		</div>
     	);
   	}
 }

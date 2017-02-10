@@ -1,89 +1,136 @@
 import React from "react";
-
+import {IconButton, FontIcon} from 'material-ui';
+import Stopwatch from "./Stopwatch.js"
 //import helper file
 import Helpers from '../../utils/Helpers.js';
+import GeoLocation from '../../utils/Geolocation.js';
 
 class Timecard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			timeCard :{},
-			cardId:0,
-			yourEndTime:null,
-			yourStartTime:Date.now()
+			newCard : {},
+			isClocked : false
 		};
 		this._onClockOut = this._onClockOut.bind(this);
+		this._onClockIn = this._onClockIn.bind(this);
+		this._findDistance =this._findDistance.bind(this);
 	}
 
-	_onClockOut(){
-		console.log("_onClockOut");
-		console.log("Card Id "+ this.state.cardId)
-		this.setState({yourEndTime : Date.now()})
-		console.log("endTime "+ this.state.yourEndTime)
-		//update database
-		
-	}
+	_onClockIn(){
+		//console.log("_onClockIn")
+		//check the geolocation
+		var geo=navigator.geolocation;
+  		if (!geo) {
+        	alert("Geolocation is not supported by this browser.");
+  		} else {
+  			var that = this
+        	geo.getCurrentPosition(function(position){
+        		var lon2 = position.coords.longitude;
+        		var lat2 = position.coords.latitude;
+        		var distance = this._findDistance(lon2,lat2);
 
-	//wrote to see if clocked out then try to reomve the button 
-	componentDidUpdate(){
-		console.log("componentDidUpdate  "+this.state.yourEndTime);
-		//If end date is updated then update database
-		if(this.state.yourEndTime != null ) {
-			Helpers._updateTimecard(this.state.cardId, this.state.yourEndTime)
-				.then(function(data,err){
-			console.log(JSON.stringify(data));
-		})
+       			//check condition
+        		if(distance > 2){
+        			alert("You are "+ +"Miles away to ClockIn");
+        			alert("ClockIn Once you get Closer");
+        		} else {
+        		//write to the database
+        			var newCard = {};
+				  	newCard.JobId= this.state.timeCard.JobId;
+					newCard.UserId= this.state.timeCard.UserId;
+					newCard.clockIn = Date.now();
+					
+					Helpers._createTimecard(newCard)
+			 		.then(function(newdata){
+			 			//inform Parent
+			 			this.props._handleClockIn(newdata.data, this.props.scheduleId);
+			 			//console.log(JSON.stringify(newdata.data))
+        				//update localstorage
+        				this.setState({ newCard : newdata.data});
+        				this.setState({ isClocked : true });
+        				localStorage.setItem("clockIn" , newCard.clockIn);
+        				
+        			}.bind(this));
 
-		}
+
+        		}
+        	}.bind(this));
+        }
+	}//endclockIn
+
+	//find distance
+
+	_findDistance(lon2,lat2){
+		var lon1 =this.state.timeCard.jobLng;
+  		var lat1 = this.state.timeCard.jobLat;
+  		// ---------------to find the distance between-----------------------
+
+        	var R = 6371; // Radius of the earth in km
+
+  			var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+  			var dLon = (lon2-lon1).toRad(); 
+  			var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        	Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+        	Math.sin(dLon/2) * Math.sin(dLon/2); 
+  
+  			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  			var d = R * c; // Distance in km
+  			d = d*0.621
+  			//console.log (d)
+  			return(Math.floor(d));
+  			
 	}
 
 
 	componentWillMount() {
-		console.log("componentWillMount");
-		//var vTimecard = Helpers._getOneSchedule(this.props.clockInId);
-		Helpers._getOneSchedule(this.props.clockInId)
+		//Get the data from database from jobs table and schedule table
+		Helpers._getOneSchedule(this.props.scheduleId)
 			.then(function(newSchedule){
-				//console.log("llllllllllllllllllllllllll" + JSON.stringify(newSchedule));
-			 	var newTimeSheet = {};
-			 	newTimeSheet.JobId= newSchedule.data.JobId;
-			 	newTimeSheet.UserId= newSchedule.data.UserId;
-			 	
-				newTimeSheet.clockIn = Date.now();
-				Helpers._createTimecard(newTimeSheet)
-					.then(function(newdata){
-						//console.log("newSchedule :"+ JSON.stringify(newSchedule));
-						console.log("New Data :"+ JSON.stringify(newdata));
-						
+				//timeCard holds all the information needed to create a time card.
+				this.setState({timeCard : newSchedule.data});
+				//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
+		}.bind(this))
 
-						//console.log("back from helper in componentWillMount "
-						//	+ JSON.stringify(this.state.timeCard));
-						this.setState({timeCard : newSchedule.data});
-						this.setState({ cardId : newdata.data.id});
-						this.setState({ yourStartTime : Date.now()});
-						
-						console.log("Card Id "+ this.state.cardId)
-						
-						//console.log("after set state in componentWillMount "+ JSON.stringify(vTimecard))
-			 		}.bind(this));
-			
-      	}.bind(this));
+
 	}//componentWillMount	
 
+
+	_onClockOut(){
+		console.log("_onClockOut :" + this.state.newCardId);
+		var clockOutTime = Date.now(); 
+		//update database	
+
+    	Helpers._updateTimecard(this.state.newCard.id, clockOutTime)
+			.then(function(data,err){
+			//inform Parent
+			this.props._handleClockOut(this.props.scheduleId);
+			this.setState({ isClocked : false })
+		}.bind(this));		
+
+
+	}
+
 	render() {
-	
+		var that = this;
+		//console.log(this.state.timeCard);
 		return(
 		<div>
-			<h1> Timsheets </h1>
-			<p> { this.props.clockInId } </p>
-			<p> Name: {this.state.timeCard.firstname} </p>
-			<p> Job: {this.state.timeCard.jobname} </p>
-			<p> Started On: {moment(this.state.yourStartTime).format('L')}</p>
-			<p> Started On: {moment(this.state.yourStartTime).format('LT')}</p>
-			{this.state.yourEndTime == null ? (
-              <button type="button" onClick={this._onClockOut}>Clock-out</button>
-            ) : (
-              <p> logged out at {this.state.yourEndTime} </p>
-            )}
+			<b> {this.state.timeCard.jobName} </b>
+			<div> {this.state.timeCard.startTime} to {this.state.timeCard.endTime} </div>
+			<IconButton onClick={this._onClockIn.bind(this, this.state.timeCard.id)} 
+					            iconClassName="material-icons" tooltip="Clock In" 
+					            tooltipPosition="top-center" disabled={this.state.isClocked} >alarm</IconButton>
+			<IconButton onClick={this._onClockOut.bind(this, this.state.timeCard.id)} 
+					            iconClassName="material-icons" tooltip="Clock Out" 
+					            tooltipPosition="top-center" disabled={!this.state.isClocked} >alarm_off</IconButton>
+			{this.state.isClocked ? (
+				<Stopwatch clockIn = {that.state.newCard.clockedIn} />
+			) : (
+				<div> </div>
+			)}
+
 		</div>
 		);
 	}

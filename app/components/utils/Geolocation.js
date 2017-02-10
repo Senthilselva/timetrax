@@ -19,8 +19,8 @@ _getDistance:(lon2, lat2) =>{
         alert("Geolocation is not supported by this browser.");
   	} else {
         geo.getCurrentPosition(function(position){
-        	lon1 = position.coords.longitude;
-        	lon2 = position.coords.latitude;
+        	lon2 = position.coords.longitude;
+        	lat2 = position.coords.latitude;
 
 // ---------------to find the distance between-----------------------
 

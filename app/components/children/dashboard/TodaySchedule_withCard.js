@@ -144,7 +144,7 @@ class TodaySchedule extends React.Component {
   	}
   	
     render() {
-	   	console.log ("Today's Schedule:", this.state.scheduleList);
+	   	//console.log ("Today's Schedule:", this.state.scheduleList);
 	   	var that = this;
 
     	return ( 

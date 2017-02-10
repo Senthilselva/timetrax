@@ -78,11 +78,12 @@ router.get('/schedule/:scheduleId', function(req,res) {
     vSchedule.endTime = data.endTime;
     vSchedule.JobId = data.JobId;
     vSchedule.UserId = data.UserId;
-    vSchedule.jobname =data.Job.name;
-    vSchedule.jobcity =data.Job.city;
-    vSchedule.joblat = data.Job.lat;
-    vSchedule.joblng = data.Job.lng;
-    vSchedule.firstname = data.User.firstname;
+    vSchedule.jobName =data.Job.name;
+    vSchedule.jobAddress = data.Job.address;
+    vSchedule.jobCity =data.Job.city;
+    vSchedule.jobLat = data.Job.lat;
+    vSchedule.jobLng = data.Job.lng;
+    vSchedule.firstName = data.User.firstname;
     
     res.json(vSchedule);
   })
