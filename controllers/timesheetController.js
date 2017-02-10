@@ -10,9 +10,10 @@ router.post("/create", function(req,res){
   var newtimesheet = {};
   newtimesheet.JobId = req.body.JobId;
   newtimesheet.UserId = req.body.UserId;
-  newtimesheet.clockedInDate = new Date(req.body.clockIn);
+ // newtimesheet.clockedInDate = new Date(req.body.clockIn);
+  newtimesheet.clockedInDate = req.body.clockIn;
 
-  newtimesheet.clockedIn = new Date(req.body.clockIn);
+  newtimesheet.clockedIn = req.body.clockIn;
   newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "HH:MM");
   models.Timesheet.create(newtimesheet).then(function(data){
     // create a row in the database
