@@ -1,5 +1,6 @@
 import React from "react";
 import {IconButton, FontIcon} from 'material-ui';
+import CircularProgress from 'material-ui/CircularProgress';
 import Stopwatch from "./Stopwatch.js"
 //import helper file
 import Helpers from '../../utils/Helpers.js';
@@ -33,24 +34,23 @@ class Timecard extends React.Component {
 
        			//check condition
         		if(distance > 2){
-        			alert("You are "+ +"Miles away to ClockIn");
-        			alert("ClockIn Once you get Closer");
+        			alert("You are not at the location to ClockIn");
         		} else {
-        		//write to the database
+        			//write to the database
         			var newCard = {};
 				  	newCard.JobId= this.state.timeCard.JobId;
 					newCard.UserId= this.state.timeCard.UserId;
 					newCard.clockIn = Date.now();
+        			//update localstorage
+        			localStorage.setItem("clockIn" , newCard.clockIn);
 					
 					Helpers._createTimecard(newCard)
 			 		.then(function(newdata){
 			 			//inform Parent
 			 			this.props._handleClockIn(newdata.data, this.props.scheduleId);
-			 			//console.log(JSON.stringify(newdata.data))
         				//update localstorage
         				this.setState({ newCard : newdata.data});
         				this.setState({ isClocked : true });
-        				localStorage.setItem("clockIn" , newCard.clockIn);
         				
         			}.bind(this));
 
@@ -67,34 +67,40 @@ class Timecard extends React.Component {
   		var lat1 = this.state.timeCard.jobLat;
   		// ---------------to find the distance between-----------------------
 
-        	var R = 6371; // Radius of the earth in km
+        var R = 6371; // Radius of the earth in km
 
-  			var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
-  			var dLon = (lon2-lon1).toRad(); 
-  			var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        	Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
-        	Math.sin(dLon/2) * Math.sin(dLon/2); 
+  		var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+  		var dLon = (lon2-lon1).toRad(); 
+  		var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2); 
   
-  			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-  			var d = R * c; // Distance in km
-  			d = d*0.621
-  			//console.log (d)
-  			return(Math.floor(d));
+  		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  		var d = R * c; // Distance in km
+  		d = d*0.621
+  		//console.log (d)
+  		return(Math.floor(d));
   			
 	}
 
 
 	componentWillMount() {
-		//Get the data from database from jobs table and schedule table
-		Helpers._getOneSchedule(this.props.scheduleId)
-			.then(function(newSchedule){
-				//timeCard holds all the information needed to create a time card.
+			//Get the data from database from jobs table and schedule table
+			Helpers._getOneSchedule(this.props.scheduleId)
+				.then(function(newSchedule){
+					//timeCard holds all the information needed to create a time card.
 				this.setState({timeCard : newSchedule.data});
-				//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
-		}.bind(this))
+					//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
+			}.bind(this));
 
+			if(localStorage.scheduleId == this.props.scheduleId){
+				var cardData = localStorage.punchedCard;
+				this.props._handleClockIn(cardData, this.props.scheduleId);
+				this.setState({ newCard : cardData});
+        		this.setState({ isClocked : true });
+			}
 
-	}//componentWillMount	
+	}//componentWillMount	this.props.scheduleId
 
 
 	_onClockOut(){
@@ -125,12 +131,16 @@ class Timecard extends React.Component {
 			<IconButton onClick={this._onClockOut.bind(this, this.state.timeCard.id)} 
 					            iconClassName="material-icons" tooltip="Clock Out" 
 					            tooltipPosition="top-center" disabled={!this.state.isClocked} >alarm_off</IconButton>
+			<div>
 			{this.state.isClocked ? (
-				<Stopwatch clockIn = {that.state.newCard.clockedIn} />
+				<div>
+					<Stopwatch />
+					<CircularProgress size={20} thickness={3} />
+				</div>
 			) : (
 				<div> </div>
 			)}
-
+			</div>
 		</div>
 		);
 	}

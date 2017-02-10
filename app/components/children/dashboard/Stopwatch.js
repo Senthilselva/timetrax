@@ -1,5 +1,5 @@
 var React = require("react");
-import Paper from 'material-ui/Chip';
+import Paper from 'material-ui/Paper';
 import Moment from "moment"
 
 const leftPad = (width, n) => {
@@ -53,12 +53,9 @@ class Stopwatch extends React.Component {
     this.setState(this.initialState);
   }
   startTimer() {
-
-    //this.startTime = Date.now();
-    //console.log("this.props.clockIn" + this.props.clockIn)
-
+    //localStorage clockIn
     this.startTime = localStorage.clockIn;
-    console.log("startTime  "+ this.startTime)
+    //console.log("startTime  "+ this.startTime)
     this.timer = setInterval(this.update, 10);
   }
   update() {

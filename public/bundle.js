@@ -75554,7 +75554,7 @@
 	
 	var style = {
 		height: 150,
-		width: 300,
+		width: 200,
 		margin: 20,
 		textAlign: 'center',
 		display: 'inline-block'
@@ -75679,7 +75679,7 @@
   \*******************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -75692,6 +75692,10 @@
 	var _react2 = _interopRequireDefault(_react);
 	
 	var _materialUi = __webpack_require__(/*! material-ui */ 384);
+	
+	var _CircularProgress = __webpack_require__(/*! material-ui/CircularProgress */ 493);
+	
+	var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
 	
 	var _Stopwatch = __webpack_require__(/*! ./Stopwatch.js */ 686);
 	
@@ -75735,7 +75739,7 @@
 		}
 	
 		_createClass(Timecard, [{
-			key: "_onClockIn",
+			key: '_onClockIn',
 			value: function _onClockIn() {
 				//console.log("_onClockIn")
 				//check the geolocation
@@ -75751,23 +75755,22 @@
 	
 						//check condition
 						if (distance > 2) {
-							alert("You are " + +"Miles away to ClockIn");
-							alert("ClockIn Once you get Closer");
+							alert("You are not at the location to ClockIn");
 						} else {
 							//write to the database
 							var newCard = {};
 							newCard.JobId = this.state.timeCard.JobId;
 							newCard.UserId = this.state.timeCard.UserId;
 							newCard.clockIn = Date.now();
+							//update localstorage
+							localStorage.setItem("clockIn", newCard.clockIn);
 	
 							_Helpers2.default._createTimecard(newCard).then(function (newdata) {
 								//inform Parent
 								this.props._handleClockIn(newdata.data, this.props.scheduleId);
-								//console.log(JSON.stringify(newdata.data))
 								//update localstorage
 								this.setState({ newCard: newdata.data });
 								this.setState({ isClocked: true });
-								localStorage.setItem("clockIn", newCard.clockIn);
 							}.bind(this));
 						}
 					}.bind(this));
@@ -75777,7 +75780,7 @@
 			//find distance
 	
 		}, {
-			key: "_findDistance",
+			key: '_findDistance',
 			value: function _findDistance(lon2, lat2) {
 				var lon1 = this.state.timeCard.jobLng;
 				var lat1 = this.state.timeCard.jobLat;
@@ -75796,7 +75799,7 @@
 				return Math.floor(d);
 			}
 		}, {
-			key: "componentWillMount",
+			key: 'componentWillMount',
 			value: function componentWillMount() {
 				//Get the data from database from jobs table and schedule table
 				_Helpers2.default._getOneSchedule(this.props.scheduleId).then(function (newSchedule) {
@@ -75804,11 +75807,18 @@
 					this.setState({ timeCard: newSchedule.data });
 					//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
 				}.bind(this));
-			} //componentWillMount	
+	
+				if (localStorage.scheduleId == this.props.scheduleId) {
+					var cardData = localStorage.punchedCard;
+					this.props._handleClockIn(cardData, this.props.scheduleId);
+					this.setState({ newCard: cardData });
+					this.setState({ isClocked: true });
+				}
+			} //componentWillMount	this.props.scheduleId
 	
 	
 		}, {
-			key: "_onClockOut",
+			key: '_onClockOut',
 			value: function _onClockOut() {
 				console.log("_onClockOut :" + this.state.newCardId);
 				var clockOutTime = Date.now();
@@ -75821,47 +75831,56 @@
 				}.bind(this));
 			}
 		}, {
-			key: "render",
+			key: 'render',
 			value: function render() {
 				var that = this;
 				//console.log(this.state.timeCard);
 				return _react2.default.createElement(
-					"div",
+					'div',
 					null,
 					_react2.default.createElement(
-						"b",
+						'b',
 						null,
-						" ",
+						' ',
 						this.state.timeCard.jobName,
-						" "
+						' '
 					),
 					_react2.default.createElement(
-						"div",
+						'div',
 						null,
-						" ",
+						' ',
 						this.state.timeCard.startTime,
-						" to ",
+						' to ',
 						this.state.timeCard.endTime,
-						" "
+						' '
 					),
 					_react2.default.createElement(
 						_materialUi.IconButton,
 						{ onClick: this._onClockIn.bind(this, this.state.timeCard.id),
-							iconClassName: "material-icons", tooltip: "Clock In",
-							tooltipPosition: "top-center", disabled: this.state.isClocked },
-						"alarm"
+							iconClassName: 'material-icons', tooltip: 'Clock In',
+							tooltipPosition: 'top-center', disabled: this.state.isClocked },
+						'alarm'
 					),
 					_react2.default.createElement(
 						_materialUi.IconButton,
 						{ onClick: this._onClockOut.bind(this, this.state.timeCard.id),
-							iconClassName: "material-icons", tooltip: "Clock Out",
-							tooltipPosition: "top-center", disabled: !this.state.isClocked },
-						"alarm_off"
+							iconClassName: 'material-icons', tooltip: 'Clock Out',
+							tooltipPosition: 'top-center', disabled: !this.state.isClocked },
+						'alarm_off'
 					),
-					this.state.isClocked ? _react2.default.createElement(_Stopwatch2.default, { clockIn: that.state.newCard.clockedIn }) : _react2.default.createElement(
-						"div",
+					_react2.default.createElement(
+						'div',
 						null,
-						" "
+						this.state.isClocked ? _react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(_Stopwatch2.default, null),
+							_react2.default.createElement(_CircularProgress2.default, { size: 20, thickness: 3 })
+						) : _react2.default.createElement(
+							'div',
+							null,
+							' '
+						)
 					)
 				);
 			}
@@ -75883,9 +75902,9 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _Chip = __webpack_require__(/*! material-ui/Chip */ 490);
+	var _Paper = __webpack_require__(/*! material-ui/Paper */ 432);
 	
-	var _Chip2 = _interopRequireDefault(_Chip);
+	var _Paper2 = _interopRequireDefault(_Paper);
 	
 	var _moment = __webpack_require__(/*! moment */ 687);
 	
@@ -75970,12 +75989,9 @@
 	  }, {
 	    key: "startTimer",
 	    value: function startTimer() {
-	
-	      //this.startTime = Date.now();
-	      //console.log("this.props.clockIn" + this.props.clockIn)
-	
+	      //localStorage clockIn
 	      this.startTime = localStorage.clockIn;
-	      console.log("startTime  " + this.startTime);
+	      //console.log("startTime  "+ this.startTime)
 	      this.timer = setInterval(this.update, 10);
 	    }
 	  }, {
@@ -75994,7 +76010,7 @@
 	          timeElapsed = _state2.timeElapsed;
 	
 	      return React.createElement(
-	        _Chip2.default,
+	        _Paper2.default,
 	        {
 	          style: styles.chip },
 	        React.createElement(TimeElapsed, { id: "timer", timeElapsed: timeElapsed })

@@ -15,7 +15,7 @@ const iconStyle = { margin: 12 };
 
 const style = {
   height: 150,
-  width: 300,
+  width: 200,
   margin: 20,
   textAlign: 'center',
   display: 'inline-block',

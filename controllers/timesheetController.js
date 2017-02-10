@@ -13,7 +13,7 @@ router.post("/create", function(req,res){
   newtimesheet.clockedInDate = new Date(req.body.clockIn);
 
   newtimesheet.clockedIn = new Date(req.body.clockIn);
-  newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "hh:MM");
+  newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "HH:MM");
   models.Timesheet.create(newtimesheet).then(function(data){
     // create a row in the database
     res.json(data)
