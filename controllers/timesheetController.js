@@ -12,7 +12,7 @@ router.post("/create", function(req,res){
   newtimesheet.UserId = req.body.UserId;
  // newtimesheet.clockedInDate = new Date(req.body.clockIn);
   newtimesheet.clockedInDate = req.body.clockIn;
-
+  console.log("TIME NOW IS: "+newtimesheet.clockedInDate)
   newtimesheet.clockedIn = req.body.clockIn;
   newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "HH:MM");
   models.Timesheet.create(newtimesheet).then(function(data){
