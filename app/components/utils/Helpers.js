@@ -1,5 +1,6 @@
 // Include the axios package for performing HTTP requests ( based alternative to request)
 import axios from "axios";
+import dateFormat from 'dateformat';
 
 //This files make calls the controller
 const helpers = {
@@ -22,7 +23,8 @@ const helpers = {
 	//gets all the schedule for the user. the user is stored in localStorage
 	_getTodaySchedule: () => {
 		var vEmail = localStorage.getItem('userName');
-		return axios.get("/schedule/user/today/" + vEmail );
+		var today = new Date();
+		return axios.get("/schedule/user/today/" + vEmail+"/"+today );
 	},
 
 	_getOneSchedule: (id) => {
@@ -44,13 +46,19 @@ const helpers = {
 	 //to enter the data into the timesheet table
 	 //calls timesheet controller
 	_createTimecard: (newTimeSheet) => {
+		console.log("newTimeSheet : "+ JSON.stringify(newTimeSheet));
+		newTimeSheet.clockInDate = newTimeSheet.clockIn;
+		newTimeSheet.clockedIn = dateFormat(newTimeSheet.clockedIn, "HH:MM");
+		newTimeSheet.clockIn = newTimeSheet.clockedIn.toString();
+		console.log(newTimeSheet.clockedIn + 1)
 		return axios.post("/timesheet/create", newTimeSheet);
 	},
 
 	//update the timesheet from endtime
 	_updateTimecard:(cardId, time) => {
-		return axios.post("/timesheet/update", 
-			{ cardId:cardId,
+		time = dateFormat(time, "HH:MM");
+		time = time.toString();
+		return axios.post("/timesheet/update",{ cardId:cardId,
 			  clockOut:time });
 	},
 

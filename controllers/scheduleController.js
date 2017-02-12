@@ -91,9 +91,9 @@ router.get('/schedule/:scheduleId', function(req,res) {
 
 
 //Returns a User's Schedule for Today
-router.get('/user/today/:userName', function(req,res) {
+router.get('/user/today/:userName/:today', function(req,res) {
   console.log("Returning a User's Schedule for Today", req.params);
-  var today = new Date();
+  var today = req.params.today;
   today = dateFormat(today, "fullDate");
   console.log("Today's date ------------", today);
 
@@ -134,6 +134,8 @@ router.get('/user/today/:userName', function(req,res) {
 router.get('/userforday/:userName/:searchDate', function(req,res) {   
   console.log(" ZZZZZZ Returning a User's Schedule for a given Date", req.params.searchDate);
 
+  var dateneeded = dateFormat(req.params.searchDate, "yyyy-mm-dd");
+
   models.Schedule.findAll(
     { include: [
       { 
@@ -150,7 +152,6 @@ router.get('/userforday/:userName/:searchDate', function(req,res) {
   }).then(function(data){
 
     var jobList = [];
-    var dateneeded = dateFormat(req.params.searchDate, "mm-dd-yy");
 
     for(var i=0; i< data.length; i++){
       var job = {};

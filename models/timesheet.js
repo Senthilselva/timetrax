@@ -11,15 +11,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     clockedIn: {
-      type: DataTypes.TIME,
+      type: DataTypes.STRING,
       allowNull: false
     },
     clockedOut: {
-      type: DataTypes.TIME,
+      type: DataTypes.STRING,
       allowNull: true
     },
-    validEntry: {
-      type: DataTypes.STRING,
+    minsWorked: {
+      type: DataTypes.INTEGER,
       allowNull:true
     },
   },

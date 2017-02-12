@@ -11,10 +11,9 @@ router.post("/create", function(req,res){
   newtimesheet.JobId = req.body.JobId;
   newtimesheet.UserId = req.body.UserId;
  // newtimesheet.clockedInDate = new Date(req.body.clockIn);
-  newtimesheet.clockedInDate = req.body.clockIn;
-  console.log("TIME NOW IS: "+newtimesheet.clockedInDate)
+  newtimesheet.clockedInDate = req.body.clockInDate;
+  //console.log("TIME NOW IS: "+newtimesheet.clockedInDate)
   newtimesheet.clockedIn = req.body.clockIn;
-  newtimesheet.clockedIn = dateFormat(newtimesheet.clockedIn, "HH:MM");
   models.Timesheet.create(newtimesheet).then(function(data){
     // create a row in the database
     res.json(data)
@@ -24,8 +23,10 @@ router.post("/create", function(req,res){
 
 router.post("/update", function(req,res){
   var cardId = req.body.cardId;
-  var clockOut = new Date(req.body.clockOut);
-  clockOut = dateFormat(clockOut, "hh:MM");
+  var clockOut = req.body.clockOut;
+  console.log("aaaaaaaaaaaaaaaaaaaaaLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLaaaaaaaaaaaaaaaaaa  "+ clockOut)
+
+  //clockOut = dateFormat(clockOut, "hh:MM");
     models.Timesheet.update({
       clockedOut : clockOut
     }, {

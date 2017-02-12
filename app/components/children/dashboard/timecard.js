@@ -111,8 +111,9 @@ class Timecard extends React.Component {
     	Helpers._updateTimecard(this.state.newCard.id, clockOutTime)
 			.then(function(data,err){
 			//inform Parent
-			this.props._handleClockOut(this.props.scheduleId);
 			this.setState({ isClocked : false })
+			
+			this.props._handleClockOut(this.props.scheduleId);
 		}.bind(this));		
 
 
