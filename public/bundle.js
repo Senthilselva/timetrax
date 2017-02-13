@@ -75814,7 +75814,8 @@
 				name: userData.firstName,
 				today: today,
 				scheduleList: [],
-				scheduleId: 0
+				scheduleId: 0,
+				punchedScheduleId: 0
 			};
 	
 			_this._handleClockIn = _this._handleClockIn.bind(_this);
