@@ -32,7 +32,7 @@ class TodaySchedule extends React.Component {
     		name: userData.firstName,
     		today: today,
     		scheduleList:[],
-    		punchedScheduleId : 0
+    		scheduleId : 0
 		}
 
 		this._handleClockIn = this._handleClockIn.bind(this);
@@ -41,18 +41,20 @@ class TodaySchedule extends React.Component {
   	};
 
 	componentWillMount() {
-
+		//localStorage.clear();
 	  	Helpers._getTodaySchedule()
 	  		.then(function(userData,err){
+	    		//console.log("localStorage.scheduleId--------"+ localStorage.scheduleId)
 	        	this.setState({scheduleList: userData.data});
-	    	}.bind(this));
+	    }.bind(this));
+	  	if(localStorage.scheduleId) this.setState({ punchedScheduleId: localStorage.scheduleId })
 	}
 
- 	_handleClockIn(punchedCard, scheduleId){ 
- 		console.log("_handleClockIn"+ punchedCard)
-
- 		localStorage.setItem("punchedCard", punchedCard);
+ 	_handleClockIn(punchedCardId, scheduleId){ 
+ 		console.log("_handleClockIn"+ punchedCardId);
+ 		localStorage.setItem("punchedCardId", punchedCardId);
  		localStorage.setItem("scheduleId", scheduleId);
+		console.log("scheduleId"+localStorage.getItem("scheduleId"));
 
  		//mark the id that is punched
  		this.setState({ punchedScheduleId: scheduleId})
@@ -61,8 +63,8 @@ class TodaySchedule extends React.Component {
 
 
   	_handleClockOut(index, event){ 
-  		localStorage.setItem("punchedCard", null);
- 		localStorage.setItem("scheduleId", null);
+  		localStorage.setItem("punchedCardId", 0);
+ 		localStorage.setItem("scheduleId", 0);
 
  		this.setState({ punchedScheduleId: 0});
 

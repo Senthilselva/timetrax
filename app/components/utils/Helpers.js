@@ -50,7 +50,7 @@ const helpers = {
 		newTimeSheet.clockInDate = newTimeSheet.clockIn;
 		newTimeSheet.clockedIn = dateFormat(newTimeSheet.clockedIn, "HH:MM");
 		newTimeSheet.clockIn = newTimeSheet.clockedIn.toString();
-		console.log(newTimeSheet.clockedIn + 1)
+		
 		return axios.post("/timesheet/create", newTimeSheet);
 	},
 
@@ -59,7 +59,7 @@ const helpers = {
 		time = dateFormat(time, "HH:MM");
 		time = time.toString();
 		return axios.post("/timesheet/update",{ cardId:cardId,
-			  clockOut:time });
+			  									clockOut:time });
 	},
 
 	_updateInvalidTimecard:(cardId, dis) => {

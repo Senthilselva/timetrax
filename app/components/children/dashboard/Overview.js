@@ -15,22 +15,14 @@ class Overview extends React.Component {
     	}
     }
 
-    // componentWillMount() {
-    // 	Helpers._getTotalHoursWorked()
-	  	// 	.then(function(userData,err){
-	  	// 		console.log(userData);
-	   //      	this.setState({totalNumberHoursWorked: userData.data});
-	   //  }.bind(this));
-   	// }
-
-    
     render() {
     	return ( 
 	      <Card>
-	        <CardHeader title={this.state.name + "'s Overview"} subtitle="" avatar="assets/images/ic_account_circle_black_24dp_2x.png" />
-	        <CardText>
-	          This section will display an overview of total hours worked for the current week. Needs to be worked on.
-	        </CardText>
+            {/*
+            <CardHeader title={this.state.name + "'s Overview"} subtitle="" avatar="assets/images/ic_account_circle_black_24dp_2x.png" />
+	        */}
+            <CardHeader title={this.state.name} subtitle="" avatar="assets/images/ic_account_circle_black_24dp_2x.png" />
+	        <CardText> Clock in from the location! </CardText>
 	      </Card>
     	);
   	}

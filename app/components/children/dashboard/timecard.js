@@ -6,6 +6,12 @@ import Stopwatch from "./Stopwatch.js"
 import Helpers from '../../utils/Helpers.js';
 import GeoLocation from '../../utils/Geolocation.js';
 
+if (typeof(Number.prototype.toRad) === "undefined") {
+  Number.prototype.toRad = function() {
+    return this * Math.PI / 180;
+  }
+}
+
 class Timecard extends React.Component {
 	constructor(props) {
 		super(props);
@@ -20,7 +26,6 @@ class Timecard extends React.Component {
 	}
 
 	_onClockIn(){
-		//console.log("_onClockIn")
 		//check the geolocation
 		var geo=navigator.geolocation;
   		if (!geo) {
@@ -46,12 +51,10 @@ class Timecard extends React.Component {
 					
 					Helpers._createTimecard(newCard)
 			 		.then(function(newdata){
-			 			//inform Parent
-			 			this.props._handleClockIn(newdata.data, this.props.scheduleId);
-        				//update localstorage
-        				this.setState({ newCard : newdata.data});
+        				this.setState({ newCardId : newdata.data.id});
         				this.setState({ isClocked : true });
-        				
+			 			//inform Parent
+			 			this.props._handleClockIn(newdata.data.id, this.props.scheduleId);	
         			}.bind(this));
 
 
@@ -78,45 +81,43 @@ class Timecard extends React.Component {
   		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   		var d = R * c; // Distance in km
   		d = d*0.621
-  		//console.log (d)
+
   		return(Math.floor(d));
   			
 	}
 
 
 	componentWillMount() {
-			//Get the data from database from jobs table and schedule table
-			Helpers._getOneSchedule(this.props.scheduleId)
-				.then(function(newSchedule){
-					//timeCard holds all the information needed to create a time card.
-				this.setState({timeCard : newSchedule.data});
-					//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
-			}.bind(this));
+		//Get the data from database from jobs table and schedule table
+		Helpers._getOneSchedule(this.props.scheduleId)
+			.then(function(newSchedule){
+			
+			//timeCard holds all the information needed to create a time card.
+			this.setState({timeCard : newSchedule.data});
 
 			if(localStorage.scheduleId == this.props.scheduleId){
-				var cardData = localStorage.punchedCard;
-				this.props._handleClockIn(cardData, this.props.scheduleId);
-				this.setState({ newCard : cardData});
-        		this.setState({ isClocked : true });
+				var cardDataId = localStorage.getItem("punchedCardId");
+				//console.log(JSON.stringify(cardDataId));
+				this.setState({ newCardId : cardDataId});
+	       		this.setState({ isClocked : true });
+	       		this.setState({timeCard : newSchedule.data});
 			}
+				
+		}.bind(this));
 
 	}//componentWillMount	this.props.scheduleId
 
 
 	_onClockOut(){
-		console.log("_onClockOut :" + this.state.newCardId);
+		console.log("_onClockOut :" + JSON.stringify(this.state.newCard));
 		var clockOutTime = Date.now(); 
 		//update database	
-
-    	Helpers._updateTimecard(this.state.newCard.id, clockOutTime)
+		this.setState({ isClocked : false })
+    	Helpers._updateTimecard(this.state.newCardId, clockOutTime)
 			.then(function(data,err){
 			//inform Parent
-			this.setState({ isClocked : false })
-			
 			this.props._handleClockOut(this.props.scheduleId);
 		}.bind(this));		
-
-
 	}
 
 	render() {

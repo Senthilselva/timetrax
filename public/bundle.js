@@ -68911,7 +68911,7 @@
 			newTimeSheet.clockInDate = newTimeSheet.clockIn;
 			newTimeSheet.clockedIn = (0, _dateformat2.default)(newTimeSheet.clockedIn, "HH:MM");
 			newTimeSheet.clockIn = newTimeSheet.clockedIn.toString();
-			console.log(newTimeSheet.clockedIn + 1);
+	
 			return _axios2.default.post("/timesheet/create", newTimeSheet);
 		},
 	
@@ -75665,7 +75665,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	           value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -75696,47 +75696,38 @@
 	
 	
 	var Overview = function (_React$Component) {
-	   _inherits(Overview, _React$Component);
+	           _inherits(Overview, _React$Component);
 	
-	   function Overview(props) {
-	      _classCallCheck(this, Overview);
+	           function Overview(props) {
+	                      _classCallCheck(this, Overview);
 	
-	      var _this = _possibleConstructorReturn(this, (Overview.__proto__ || Object.getPrototypeOf(Overview)).call(this, props));
+	                      var _this = _possibleConstructorReturn(this, (Overview.__proto__ || Object.getPrototypeOf(Overview)).call(this, props));
 	
-	      var userData = _Auth2.default._getData();
-	      _this.state = {
-	         name: userData.firstName
-	         // totalNumberHoursWorked : 0
-	      };
-	      return _this;
-	   }
+	                      var userData = _Auth2.default._getData();
+	                      _this.state = {
+	                                 name: userData.firstName
+	                                 // totalNumberHoursWorked : 0
+	                      };
+	                      return _this;
+	           }
 	
-	   // componentWillMount() {
-	   // 	Helpers._getTotalHoursWorked()
-	   // 	.then(function(userData,err){
-	   // 		console.log(userData);
-	   //      	this.setState({totalNumberHoursWorked: userData.data});
-	   //  }.bind(this));
-	   // }
+	           _createClass(Overview, [{
+	                      key: "render",
+	                      value: function render() {
+	                                 return _react2.default.createElement(
+	                                            _materialUi.Card,
+	                                            null,
+	                                            _react2.default.createElement(_materialUi.CardHeader, { title: this.state.name, subtitle: "", avatar: "assets/images/ic_account_circle_black_24dp_2x.png" }),
+	                                            _react2.default.createElement(
+	                                                       _materialUi.CardText,
+	                                                       null,
+	                                                       " Clock in from the location! "
+	                                            )
+	                                 );
+	                      }
+	           }]);
 	
-	
-	   _createClass(Overview, [{
-	      key: "render",
-	      value: function render() {
-	         return _react2.default.createElement(
-	            _materialUi.Card,
-	            null,
-	            _react2.default.createElement(_materialUi.CardHeader, { title: this.state.name + "'s Overview", subtitle: "", avatar: "assets/images/ic_account_circle_black_24dp_2x.png" }),
-	            _react2.default.createElement(
-	               _materialUi.CardText,
-	               null,
-	               "This section will display an overview of total hours worked for the current week. Needs to be worked on."
-	            )
-	         );
-	      }
-	   }]);
-	
-	   return Overview;
+	           return Overview;
 	}(_react2.default.Component);
 	
 	// Export the component back for use in other files
@@ -75823,7 +75814,7 @@
 				name: userData.firstName,
 				today: today,
 				scheduleList: [],
-				punchedScheduleId: 0
+				scheduleId: 0
 			};
 	
 			_this._handleClockIn = _this._handleClockIn.bind(_this);
@@ -75835,18 +75826,20 @@
 		_createClass(TodaySchedule, [{
 			key: "componentWillMount",
 			value: function componentWillMount() {
-	
+				//localStorage.clear();
 				_Helpers2.default._getTodaySchedule().then(function (userData, err) {
+					//console.log("localStorage.scheduleId--------"+ localStorage.scheduleId)
 					this.setState({ scheduleList: userData.data });
 				}.bind(this));
+				if (localStorage.scheduleId) this.setState({ punchedScheduleId: localStorage.scheduleId });
 			}
 		}, {
 			key: "_handleClockIn",
-			value: function _handleClockIn(punchedCard, scheduleId) {
-				console.log("_handleClockIn" + punchedCard);
-	
-				localStorage.setItem("punchedCard", punchedCard);
+			value: function _handleClockIn(punchedCardId, scheduleId) {
+				console.log("_handleClockIn" + punchedCardId);
+				localStorage.setItem("punchedCardId", punchedCardId);
 				localStorage.setItem("scheduleId", scheduleId);
+				console.log("scheduleId" + localStorage.getItem("scheduleId"));
 	
 				//mark the id that is punched
 				this.setState({ punchedScheduleId: scheduleId });
@@ -75854,8 +75847,8 @@
 		}, {
 			key: "_handleClockOut",
 			value: function _handleClockOut(index, event) {
-				localStorage.setItem("punchedCard", null);
-				localStorage.setItem("scheduleId", null);
+				localStorage.setItem("punchedCardId", 0);
+				localStorage.setItem("scheduleId", 0);
 	
 				this.setState({ punchedScheduleId: 0 });
 			}
@@ -75968,6 +75961,12 @@
 	//import helper file
 	
 	
+	if (typeof Number.prototype.toRad === "undefined") {
+		Number.prototype.toRad = function () {
+			return this * Math.PI / 180;
+		};
+	}
+	
 	var Timecard = function (_React$Component) {
 		_inherits(Timecard, _React$Component);
 	
@@ -75990,7 +75989,6 @@
 		_createClass(Timecard, [{
 			key: '_onClockIn',
 			value: function _onClockIn() {
-				//console.log("_onClockIn")
 				//check the geolocation
 				var geo = navigator.geolocation;
 				if (!geo) {
@@ -76015,11 +76013,10 @@
 							localStorage.setItem("clockIn", newCard.clockIn);
 	
 							_Helpers2.default._createTimecard(newCard).then(function (newdata) {
-								//inform Parent
-								this.props._handleClockIn(newdata.data, this.props.scheduleId);
-								//update localstorage
-								this.setState({ newCard: newdata.data });
+								this.setState({ newCardId: newdata.data.id });
 								this.setState({ isClocked: true });
+								//inform Parent
+								this.props._handleClockIn(newdata.data.id, this.props.scheduleId);
 							}.bind(this));
 						}
 					}.bind(this));
@@ -76044,7 +76041,7 @@
 				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 				var d = R * c; // Distance in km
 				d = d * 0.621;
-				//console.log (d)
+	
 				return Math.floor(d);
 			}
 		}, {
@@ -76052,31 +76049,30 @@
 			value: function componentWillMount() {
 				//Get the data from database from jobs table and schedule table
 				_Helpers2.default._getOneSchedule(this.props.scheduleId).then(function (newSchedule) {
+	
 					//timeCard holds all the information needed to create a time card.
 					this.setState({ timeCard: newSchedule.data });
-					//this.setState({distance : GeoLocation._getDistance(this.state.timeCard.jobLng, this.state.timeCard.jobLat)});
-				}.bind(this));
 	
-				if (localStorage.scheduleId == this.props.scheduleId) {
-					var cardData = localStorage.punchedCard;
-					this.props._handleClockIn(cardData, this.props.scheduleId);
-					this.setState({ newCard: cardData });
-					this.setState({ isClocked: true });
-				}
+					if (localStorage.scheduleId == this.props.scheduleId) {
+						var cardDataId = localStorage.getItem("punchedCardId");
+						//console.log(JSON.stringify(cardDataId));
+						this.setState({ newCardId: cardDataId });
+						this.setState({ isClocked: true });
+						this.setState({ timeCard: newSchedule.data });
+					}
+				}.bind(this));
 			} //componentWillMount	this.props.scheduleId
 	
 	
 		}, {
 			key: '_onClockOut',
 			value: function _onClockOut() {
-				console.log("_onClockOut :" + this.state.newCardId);
+				console.log("_onClockOut :" + JSON.stringify(this.state.newCard));
 				var clockOutTime = Date.now();
 				//update database	
-	
-				_Helpers2.default._updateTimecard(this.state.newCard.id, clockOutTime).then(function (data, err) {
+				this.setState({ isClocked: false });
+				_Helpers2.default._updateTimecard(this.state.newCardId, clockOutTime).then(function (data, err) {
 					//inform Parent
-					this.setState({ isClocked: false });
-	
 					this.props._handleClockOut(this.props.scheduleId);
 				}.bind(this));
 			}
