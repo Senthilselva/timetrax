@@ -44,7 +44,7 @@ class TodaySchedule extends React.Component {
 		//localStorage.clear();
 	  	Helpers._getTodaySchedule()
 	  		.then(function(userData,err){
-	    		//console.log("localStorage.scheduleId--------"+ localStorage.scheduleId)
+	    		console.log("localStorage.scheduleId--------"+ localStorage.scheduleId)
 	        	this.setState({scheduleList: userData.data});
 	    }.bind(this));
 	  	if(localStorage.scheduleId) this.setState({ punchedScheduleId: localStorage.scheduleId })
