@@ -90,7 +90,7 @@ class TodaySchedule extends React.Component {
 					{this.state.scheduleList.map(function(row, i){
 						return(
 							<Paper style={style} zDepth={2} key={i}>
-								{that.state.punchedScheduleId == 0 || that.state.punchedScheduleId== row.id ? (
+								{!that.state.punchedScheduleId || that.state.punchedScheduleId == 0 || that.state.punchedScheduleId== row.id ? (
 								<TimeCard scheduleId = {row.id} 
 										  _handleClockIn ={that._handleClockIn}
 										  _handleClockOut ={that._handleClockOut}/>

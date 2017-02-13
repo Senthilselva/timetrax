@@ -75886,7 +75886,7 @@
 								return _react2.default.createElement(
 									_Paper2.default,
 									{ style: style, zDepth: 2, key: i },
-									that.state.punchedScheduleId == 0 || that.state.punchedScheduleId == row.id ? _react2.default.createElement(_TimeCard2.default, { scheduleId: row.id,
+									!that.state.punchedScheduleId || that.state.punchedScheduleId == 0 || that.state.punchedScheduleId == row.id ? _react2.default.createElement(_TimeCard2.default, { scheduleId: row.id,
 										_handleClockIn: that._handleClockIn,
 										_handleClockOut: that._handleClockOut }) : _react2.default.createElement(_TimeCardNoClock2.default, { scheduleId: row.id })
 								);
