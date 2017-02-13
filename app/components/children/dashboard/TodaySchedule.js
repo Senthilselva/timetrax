@@ -32,7 +32,8 @@ class TodaySchedule extends React.Component {
     		name: userData.firstName,
     		today: today,
     		scheduleList:[],
-    		scheduleId : 0
+    		scheduleId : 0,
+    		punchedScheduleId: 0
 		}
 
 		this._handleClockIn = this._handleClockIn.bind(this);
