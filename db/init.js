@@ -124,7 +124,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Job.create(
 	{
-		name: "Trump National Golf Resort",
+		name: "National Golf Resort",
 		address: "900 Lamington Rd",
 		city:"Bedminster",
 		state:"NJ",
@@ -318,7 +318,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "3",
 		startDate: tomorrow,
 		startTime: "18:00",
@@ -328,7 +328,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "1",
 		startDate: tomorrow,
 		startTime: "14:00",
@@ -338,7 +338,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "3",
 		startDate: tomorrow,
 		startTime: "18:00",
@@ -348,7 +348,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "1",
 		startDate: thenextday,
 		startTime: "10:00",
@@ -358,7 +358,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "2",
 		startDate: thenextday,
 		startTime: "12:30",
@@ -368,7 +368,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
+		UserId: "4",
 		JobId: "3",
 		startDate: thenextday,
 		startTime: "18:00",
@@ -522,7 +522,7 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 	return db.Schedule.create(
 	{
 		UserId: "4",
-		JobId: "3",
+		JobId: "8",
 		startDate: today,
 		startTime: "10:00",
 		endTime: "14:00"
