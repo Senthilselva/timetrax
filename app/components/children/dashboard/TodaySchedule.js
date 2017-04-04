@@ -48,7 +48,11 @@ class TodaySchedule extends React.Component {
 	    		console.log("localStorage.scheduleId--------"+ localStorage.scheduleId)
 	        	this.setState({scheduleList: userData.data});
 	    }.bind(this));
-	  	if(localStorage.scheduleId) this.setState({ punchedScheduleId: localStorage.scheduleId })
+	  	if(localStorage.scheduleId != undefined) {
+	  		console.log(this.state.punchedScheduleId)
+	  		this.setState({ punchedScheduleId: localStorage.scheduleId })
+	  		console.log(this.state.punchedScheduleId)
+	  	}
 	}
 
  	_handleClockIn(punchedCardId, scheduleId){ 

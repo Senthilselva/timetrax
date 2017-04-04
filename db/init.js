@@ -139,6 +139,21 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Job.create(
 	{
+		name: "icims Pools",
+		address: "90 Matawan Road",
+		city:"Matawan",
+		state:"NJ",
+		zip:"07747",
+		contactName: "Anna",
+		contactPhone: "23456789",
+		contactEmail: "paul@icims.com",
+		lat: 40.431438,
+		lng: -74.249208
+	});
+})
+.then(function(){
+	return db.Job.create(
+	{
 		name: "Maplewood Country Club",
 		address: "28 Baker St",
 		city:"Maplewood",
@@ -207,14 +222,14 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		contactName: "Senthil Selvakumar",
 		contactPhone: "(732) 634-2018",
 		contactEmail: "senthilselvak@gmail.com",
-		lat: 40.5828630,
-		lng: -74.3498990
+		lat: 40.582863,
+		lng: -74.349899
 	});
 })
 .then(function(){
 	return db.Job.create(
 	{
-		name: "Hampshire Pools",
+		name: "Interscape Pools",
 		address: "301 Hampshire Drive",
 		city:"Plainsboro",
 		state:"NJ",
@@ -222,8 +237,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 		contactName: "Zeynep Ozdemir",
 		contactPhone: "(609) 716-0688",
 		contactEmail: "odcikin@msn.com",
-		lat: 40.3284670,
-		lng: -74.5616890
+		lat: 40.5772740,
+		lng: -74.5874260
 	});
 })
 .then(function(){
@@ -268,8 +283,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "1",
-		JobId: "1",
+		UserId: "4",
+		JobId: "7",
 		startDate: "2017-01-21",
 		startTime: "13:00",
 		endTime: "18:00"
@@ -460,8 +475,8 @@ conn.query('SET FOREIGN_KEY_CHECKS = 0')
 .then(function(){
 	return db.Schedule.create(
 	{
-		UserId: "3",
-		JobId: "3",
+		UserId: "4",
+		JobId: "7",
 		startDate: today,
 		startTime: "10:00",
 		endTime: "14:00"

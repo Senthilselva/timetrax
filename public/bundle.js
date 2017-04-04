@@ -75832,7 +75832,11 @@
 					console.log("localStorage.scheduleId--------" + localStorage.scheduleId);
 					this.setState({ scheduleList: userData.data });
 				}.bind(this));
-				if (localStorage.scheduleId) this.setState({ punchedScheduleId: localStorage.scheduleId });
+				if (localStorage.scheduleId != undefined) {
+					console.log(this.state.punchedScheduleId);
+					this.setState({ punchedScheduleId: localStorage.scheduleId });
+					console.log(this.state.punchedScheduleId);
+				}
 			}
 		}, {
 			key: "_handleClockIn",
@@ -76012,7 +76016,7 @@
 							newCard.clockIn = Date.now();
 							//update localstorage
 							localStorage.setItem("clockIn", newCard.clockIn);
-	
+							console.log(JSON.stringify(newCard));
 							_Helpers2.default._createTimecard(newCard).then(function (newdata) {
 								this.setState({ newCardId: newdata.data.id });
 								this.setState({ isClocked: true });

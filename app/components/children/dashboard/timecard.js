@@ -48,7 +48,7 @@ class Timecard extends React.Component {
 					newCard.clockIn = Date.now();
         			//update localstorage
         			localStorage.setItem("clockIn" , newCard.clockIn);
-					
+					console.log(JSON.stringify(newCard));
 					Helpers._createTimecard(newCard)
 			 		.then(function(newdata){
         				this.setState({ newCardId : newdata.data.id});
