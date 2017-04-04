@@ -76006,7 +76006,7 @@
 						var distance = this._findDistance(lon2, lat2);
 	
 						//check condition
-						if (distance > 2) {
+						if (distance > 10) {
 							alert("You are not at the location to ClockIn");
 						} else {
 							//write to the database
